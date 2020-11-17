@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import Comment from './Comment';
+import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
 
 function Article() {
@@ -114,6 +115,7 @@ function Article() {
           <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} />
         </>
       )}
+      <NewComment />
     </div>
   );
 }

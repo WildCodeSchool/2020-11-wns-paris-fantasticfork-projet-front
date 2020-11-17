@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import {
-  Paper,
-  Button,
-  Icon,
-  Avatar,
-  Chip,
-  Typography,
-} from '@material-ui/core';
+import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
+import Comment from './Comment';
 import sampleImage from '../../images/cat.jpg';
 
 function Article() {
-  const [heart, setHeart] = useState(true);
+  const [heart, setHeart] = useState(false);
+  const [toggle, setToggle] = useState(true);
+
   return (
     <div style={{ width: '100%', backgroundColor: '#FCFCFC' }}>
       <Paper style={{ margin: 20, padding: 40, display: 'flex' }} elevation={3}>
@@ -50,25 +46,25 @@ function Article() {
               borderBottom: '1px solid #CCCCCC',
             }}
           />
-          <Typography variant='body' gutterBottom>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            lobortis magna risus, ac auctor ipsum euismod vel. Vivamus eu massa
-            elit. Donec mattis dui non bibendum laoreet. Phasellus pharetra
-            luctus ultrices. Nunc dictum, est vitae efficitur luctus, risus
-            dolor fermentum ligula, non maximus justo ante sed risus. Nullam
-            pharetra suscipit eleifend. Cras eu neque a nisl imperdiet facilisis
-            in eget leo. Donec fermentum et dui ac accumsan. Nunc eget metus eu
-            urna eleifend tincidunt eget vel ligula. Interdum et malesuada fames
-            ac ante ipsum primis in faucibus. Nam quis purus finibus, molestie
-            turpis sed, mattis mi. Donec lacus ex, aliquet in luctus sed,
-            ullamcorper nec libero. In sit amet feugiat quam. Nullam rhoncus
-            eleifend mauris, et condimentum ligula placerat eu. Nulla a
-            dignissim ipsum. Nunc feugiat lacus sit amet tincidunt tincidunt.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Proin at aliquet diam. Vivamus nec faucibus
-            nunc. In hac habitasse platea dictumst. Suspendisse id aliquet
-            libero.
+          <Typography variant='body1' gutterBottom>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lobortis magna risus, ac auctor ipsum euismod vel. Vivamus eu massa elit.
+            Donec mattis dui non bibendum laoreet. Phasellus pharetra luctus ultrices. Nunc dictum, est vitae efficitur luctus, risus dolor fermentum
+            ligula, non maximus justo ante sed risus. Nullam pharetra suscipit eleifend. Cras eu neque a nisl imperdiet facilisis in eget leo. Donec
+            fermentum et dui ac accumsan. Nunc eget metus eu urna eleifend tincidunt eget vel ligula. Interdum et malesuada fames ac ante ipsum primis
+            in faucibus. Nam quis purus finibus, molestie turpis sed, mattis mi. Donec lacus ex, aliquet in luctus sed, ullamcorper nec libero. In sit
+            amet feugiat quam. Nullam rhoncus eleifend mauris, et condimentum ligula placerat eu. Nulla a dignissim ipsum. Nunc feugiat lacus sit amet
+            tincidunt tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin at aliquet diam.
+            Vivamus nec faucibus nunc. In hac habitasse platea dictumst. Suspendisse id aliquet libero.
           </Typography>
+          <Link
+            style={{ display: 'flex', alignItems: 'center', marginTop: 10 }}
+            href='https://odyssey.wildcodeschool.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Icon style={{ paddingRight: 10 }}>link</Icon>
+            https://odyssey.wildcodeschool.com/
+          </Link>
           <div
             style={{
               flex: 1,
@@ -85,8 +81,7 @@ function Article() {
             </div>
             <div style={{ flex: 1 }} />
             <Button>
-              <Icon style={{ color: '#3f51b5', marginRight: 5 }}>thumb_up</Icon>
-              3
+              <Icon style={{ color: '#3f51b5', marginRight: 5 }}>thumb_up</Icon>3
             </Button>
             <Button>
               <Icon
@@ -102,18 +97,23 @@ function Article() {
           </div>
         </div>
       </Paper>
-      <Paper style={{ margin: 20, padding: 20 }} elevation={0}>
-        <Button>
-          <Icon style={{ color: '#3f51b5', marginRight: 5 }}>comment</Icon>3
-        </Button>
-        comments
-      </Paper>
-      <Paper style={{ height: 100, margin: 20 }} elevation={3}>
-        comment
-      </Paper>
-      <Paper style={{ height: 100, margin: 20 }} elevation={3}>
-        comment
-      </Paper>
+      <div style={{ margin: 20, padding: 10, display: 'flex', alignItems: 'center' }} elevation={0}>
+        <Icon style={{ color: '#3f51b5' }}>comment</Icon>
+        <Typography variant='button' style={{ color: '#3f51b5', marginLeft: 10 }}>
+          3 Answers
+        </Typography>
+        <div style={{ flex: 1 }} />
+        <IconButton color='primary' onClick={() => setToggle(!toggle)}>
+          <Icon style={{ color: '#9e9e9e' }}>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
+        </IconButton>
+      </div>
+      {toggle && (
+        <>
+          <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} best={true} />
+          <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} />
+          <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} />
+        </>
+      )}
     </div>
   );
 }

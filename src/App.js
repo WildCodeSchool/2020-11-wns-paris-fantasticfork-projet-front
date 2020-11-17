@@ -11,7 +11,7 @@ function App() {
       }}
     >
       <div style={{ width: '20%' }}></div>
-      <div style={{ width: '60%' }}>
+      <div>
         <Article />
       </div>
       <div style={{ width: '20%' }}></div>

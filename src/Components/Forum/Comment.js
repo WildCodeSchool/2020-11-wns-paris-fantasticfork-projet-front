@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { Paper, Icon, Avatar, Chip, Typography, Button } from '@material-ui/core';
 import NewComment from './NewComment';
+import './Comment.css';
 
 export default function Comment({ date, name, message, best }) {
   const [reply, setReply] = useState(false);
   return (
     <>
-      <Paper style={{ margin: 20, padding: 40, display: 'flex', flexDirection: 'column' }} elevation={3}>
-        <div style={{ display: 'flex' }}>
+      <Paper className='Comment_container' elevation={3}>
+        <div className='flex_'>
           <Avatar alt={name} />
-          <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 10 }}>
-            <Typography variant='button' style={{ color: '#3f51b5' }}>
+          <div className='flex_column' style={{ marginLeft: 10 }}>
+            <Typography variant='button' className='blue'>
               {name}
             </Typography>
-            <Typography variant='caption' style={{ color: '#9e9e9e' }}>
+            <Typography variant='caption' className='lightgrey'>
               Posted on
-              <span style={{ fontWeight: 'bold' }}> {date}</span>
+              <span className='lightgrey'> {date}</span>
             </Typography>
           </div>
           {best && (
@@ -25,12 +26,12 @@ export default function Comment({ date, name, message, best }) {
             </>
           )}
         </div>
-        <div style={{ display: 'flex', marginTop: 20 }}>
+        <div className='Comment_element'>
           <Typography variant='body1' gutterBottom>
             {message}
           </Typography>
         </div>
-        <div style={{ display: 'flex', marginTop: 20 }}>
+        <div className='Comment_element'>
           {!reply && (
             <Button size='small' style={{ color: '#9e9e9e' }} onClick={() => setReply(true)}>
               <Icon fontSize={'small'}>subdirectory_arrow_right</Icon>reply

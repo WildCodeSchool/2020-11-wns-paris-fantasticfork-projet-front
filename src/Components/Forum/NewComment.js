@@ -1,16 +1,17 @@
 import { Paper, Icon, Avatar, TextField, IconButton } from '@material-ui/core';
+import './NewComment.css';
 
 export default function NewComment({ reply }) {
   return (
-    <div style={{ display: 'flex' }}>
+    <div className='NewComment'>
       {reply && (
-        <div style={{ margin: 20, paddingLeft: 20 }}>
-          <Icon style={{ color: '#9e9e9e' }}>subdirectory_arrow_right</Icon>
+        <div className='NewComment_reply'>
+          <Icon className='NewComment_reply_icon'>subdirectory_arrow_right</Icon>
         </div>
       )}
-      <Paper style={{ margin: 20, padding: 40, paddingRight: 30, display: 'flex', flex: 1, alignItems: 'flex-start' }} elevation={3}>
-        <Avatar style={{ backgroundColor: '#673ab7' }}>M</Avatar>
-        <TextField id='Comment' label='Comment' multiline rows={4} variant='outlined' style={{ flex: 1, marginLeft: 15, marginRight: 15 }} />
+      <Paper className='NewComment_container' elevation={3}>
+        <Avatar className='NewComment_avatar'>M</Avatar>
+        <TextField id='Comment' label='Comment' multiline rows={4} variant='outlined' className='NewComment_textfield' />
         <IconButton style={{ marginRight: 0 }} color='primary'>
           <Icon>create</Icon>
         </IconButton>

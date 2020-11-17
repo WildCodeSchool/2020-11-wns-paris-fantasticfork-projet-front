@@ -3,50 +3,31 @@ import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from 
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
+import './Article.css';
 
 function Article() {
   const [heart, setHeart] = useState(false);
   const [toggle, setToggle] = useState(true);
 
   return (
-    <div style={{ width: '100%', backgroundColor: '#FCFCFC' }}>
-      <Paper style={{ margin: 20, padding: 40, display: 'flex' }} elevation={3}>
-        <div
-          style={{
-            flex: 1,
-            margin: 20,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+    <div className='Article'>
+      <Paper className='Article_container' elevation={3}>
+        <div className='Article_header'>
           <Typography variant='h2'>I have a question</Typography>
-          <div style={{ display: 'flex', marginTop: 20 }}>
+          <div className='Article_id'>
             <Avatar src={sampleImage} />
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginLeft: 10,
-              }}
-            >
-              <Typography variant='button' style={{ color: '#3f51b5' }}>
+            <div className='flex_column' style={{ marginLeft: 10 }}>
+              <Typography variant='button' className='blue'>
                 Simba
               </Typography>
-              <Typography variant='caption' style={{ color: '#9e9e9e' }}>
+              <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span style={{ fontWeight: 'bold' }}> 17 Nov 2020</span>
+                <span className='lightgrey bold'> 17 Nov 2020</span>
               </Typography>
             </div>
           </div>
 
-          <div
-            style={{
-              flex: 1,
-              marginTop: 40,
-              marginBottom: 40,
-              borderBottom: '1px solid #CCCCCC',
-            }}
-          />
+          <div className='Article_borderline' />
           <Typography variant='body1' gutterBottom>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lobortis magna risus, ac auctor ipsum euismod vel. Vivamus eu massa elit.
             Donec mattis dui non bibendum laoreet. Phasellus pharetra luctus ultrices. Nunc dictum, est vitae efficitur luctus, risus dolor fermentum
@@ -57,24 +38,12 @@ function Article() {
             tincidunt tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin at aliquet diam.
             Vivamus nec faucibus nunc. In hac habitasse platea dictumst. Suspendisse id aliquet libero.
           </Typography>
-          <Link
-            style={{ display: 'flex', alignItems: 'center', marginTop: 10 }}
-            href='https://odyssey.wildcodeschool.com/'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
+          <Link className='Article_link' href='https://odyssey.wildcodeschool.com/' target='_blank' rel='noopener noreferrer'>
             <Icon style={{ paddingRight: 10 }}>link</Icon>
             https://odyssey.wildcodeschool.com/
           </Link>
-          <div
-            style={{
-              flex: 1,
-              marginTop: 40,
-              marginBottom: 20,
-              borderBottom: '1px solid #CCCCCC',
-            }}
-          />
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div className='Article_borderline' />
+          <div className='flex_'>
             <div>
               <Chip label='nodejs' variant='outlined' color='primary' />
               <Chip label='graphql' variant='outlined' olor='secondary' />
@@ -82,14 +51,18 @@ function Article() {
             </div>
             <div style={{ flex: 1 }} />
             <Button>
-              <Icon style={{ color: '#3f51b5', marginRight: 5 }}>thumb_up</Icon>3
+              <Icon className='blue' style={{ marginRight: 5 }}>
+                thumb_up
+              </Icon>
+              3
             </Button>
             <Button>
               <Icon
                 onClick={() => {
                   setHeart(!heart);
                 }}
-                style={{ color: '#DC004E', marginRight: 5 }}
+                className='red'
+                style={{ marginRight: 5 }}
               >
                 {heart ? 'favorite' : 'favorite_border'}
               </Icon>
@@ -98,14 +71,14 @@ function Article() {
           </div>
         </div>
       </Paper>
-      <div style={{ margin: 20, padding: 10, display: 'flex', alignItems: 'center' }} elevation={0}>
-        <Icon style={{ color: '#3f51b5' }}>comment</Icon>
-        <Typography variant='button' style={{ color: '#3f51b5', marginLeft: 10 }}>
+      <div className='Article_comment_info' elevation={0}>
+        <Icon className='blue'>comment</Icon>
+        <Typography variant='button' className='blue' style={{ marginLeft: 10 }}>
           3 Answers
         </Typography>
         <div style={{ flex: 1 }} />
         <IconButton color='primary' onClick={() => setToggle(!toggle)}>
-          <Icon style={{ color: '#9e9e9e' }}>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
+          <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
       {toggle && (

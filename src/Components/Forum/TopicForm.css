@@ -1,0 +1,24 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 12px;
+    width: 500px;
+}
+
+.submit-button {
+    align-self: center;
+    width: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#contained-button-file {
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+}
+
+#url, #message, #title, #upload-button {
+    margin-top: 20px;
+}

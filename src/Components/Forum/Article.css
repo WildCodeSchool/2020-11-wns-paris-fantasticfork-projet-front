@@ -1,6 +1,7 @@
 .Article{
   width: 100%;
   background-color: var(--background);
+  margin-bottom: 40px;
 }
 
 .Article_container{

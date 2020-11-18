@@ -1,25 +1,70 @@
 import React, { useState } from 'react';
-import { Paper, TextField } from '@material-ui/core';
+import { Button, Paper, TextField } from '@material-ui/core';
 
 import './TopicForm.css';
 
 const TopicForm = () => {
-    const [url, setUrl] = useState("");
-    const [title, setTitle] = useState("");
-    const [message, setMessage] = useState("");
+    const [inputFields, setInputFields] = useState(
+        [{
+            subject: '',
+            message: '',
+            url: ''
+        }]
+    )
+
+    const handleChange = (index, e) => {
+        const values = [...inputFields]
+        values[index][e.target.name] = e.target.value
+        setInputFields(values)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
 
     return (
-        <div>
+        <Paper>
             <h3>New Topic</h3>
-            <Paper elevation={2} style={{ margin: "10px 20px" }}>
-                <form className="form">
-                    <TextField id='title' label='Title' variant='standard' autoFocus={true} required onChange={(e) => setTitle(e.target.value)} />
-                    <TextField id='message' label='Message' multiline={true} variant='standard' required onChange={(e) => setMessage(e.target.value)} />
-                    <TextField id='url' label='URL' variant='standard' onChange={(e) => setUrl(e.target.value)} />
-                    <input type="submit" className="submit-button" value="Envoyer" />
-                </form>
-            </Paper>
-        </div>
+            <form onSubmit={handleSubmit}>
+                {inputFields.map((field, index) => (
+                    <div key={index} className="form">
+                        <TextField 
+                            id='title' 
+                            name='subject' 
+                            label='Subject' 
+                            variant='standard' 
+                            autoFocus={true} 
+                            value={inputFields.subject} 
+                            onChange={(e) => handleChange(index, e)}
+                            required  />
+                        <TextField 
+                            id='message' 
+                            name='message' 
+                            label='Message' 
+                            multiline={true} 
+                            variant='standard' 
+                            value={inputFields.message} 
+                            onChange={(e) => handleChange(index, e)}
+                            required />
+                        <TextField 
+                            id='url' 
+                            name="url" 
+                            label='URL' 
+                            variant='standard'
+                            value={inputFields.url} 
+                            onChange={(e) => handleChange(index, e)} />
+                        <Button
+                            className="submit-button"
+                            variant="contained"
+                            color="secondary"
+                            type="submit"
+                            onClick={handleSubmit} >
+                                Send
+                        </Button>
+                    </div>
+                ))}
+            </form>
+        </Paper>
     )
 }
 

@@ -33,7 +33,6 @@ function Article({ match }) {
     axios
       .get(`http://localhost:5000/topic/${match.params.id}`)
       .then((res) => {
-        console.log(res.data.body);
         setTopic(res.data.body);
       })
       .catch((err) => console.log(err));
@@ -50,7 +49,7 @@ function Article({ match }) {
         })
         .catch((err) => console.log(err));
     }
-  }, [newMessage]);
+  }, [newMessage, match.params.id]);
 
   return (
     <div className='Article'>
@@ -131,7 +130,7 @@ function Article({ match }) {
         <>
           {topic.responses.length > 0 &&
             topic.responses.map((res, idx) => (
-              <div key={res._id}>
+              <div key={idx}>
                 <Comment date={res.date && res.date.split('T')[0]} name={res.name} message={res.message} best={idx === 0 ? true : null} />
               </div>
             ))}

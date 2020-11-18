@@ -10,19 +10,16 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 function ArticleList() {
   return (
     <div>
-      <Container>
+      <Container className="container-box">
         <Paper>
-          <Avatar />
+          <Avatar className="avatar-size" />
           <h3>User 1</h3>
           <h4 className="color-h4">How to get my javascript project ?</h4>
           <p className="Paper-block">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            aliquip ex ea commodo consequat.
           </p>
           <Paper elevation={3} />
           <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
@@ -49,10 +46,7 @@ function ArticleList() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            aliquip ex ea commodo consequat.
           </p>
           <Paper elevation={3} />
           <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
@@ -78,10 +72,7 @@ function ArticleList() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            aliquip ex ea commodo consequat.
           </p>
           <Paper elevation={3} />
           <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />

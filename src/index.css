@@ -20,8 +20,15 @@ code {
 .Paper-block {
   text-align: center;
   width: 60%;
+  padding: 5%;
+  padding-left: 5%;
 }
 
 .color-h4 {
   color: darkblue;
+}
+
+.container-box {
+  padding: 2%;
+  padding-right: 20%;
 }

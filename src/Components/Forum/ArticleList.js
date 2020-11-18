@@ -1,90 +1,74 @@
-import React from "react";
-import { Button, Avatar, Container, Chip } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Avatar, Chip, Icon, Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ShareIcon from "@material-ui/icons/Share";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import RestoreIcon from "@material-ui/icons/Restore";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
-function ArticleList() {
+function ArticleList({ history }) {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/topics")
+      .then((res) => {
+        setTopics(res.data.body);
+        console.log(res.data.body);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const goToPage = (topic_id) => {
+    history.push(`/topics/${topic_id}`);
+  };
+
   return (
     <div>
-      <Container className="container-box">
-        <Paper>
-          <Avatar className="avatar-size" />
-          <h3>User 1</h3>
-          <h4 className="color-h4">How to get my javascript project ?</h4>
-          <p className="Paper-block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Paper elevation={3} />
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          Date of publication : 18 Nov 2020
-          <br></br>
-          <Chip label="javascript" variant="outlined" color="primary" />
-          <Button variant="contained" color="primary">
-            I answer !
-          </Button>
-          <ThumbUpAltIcon />
-          <ShareIcon />
-        </Paper>
-      </Container>
-      <br></br>
-      <br></br>
-      <Container>
-        <Paper>
-          <Avatar />
-          <h3>User 2</h3>
-          <h4 className="color-h4">
-            My experience has how to get away with typescrit.
-          </h4>
-          <p className="Paper-block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Paper elevation={3} />
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          Date of publication : 14 Nov 2020
-          <br></br>
-          <Chip label="typescript" variant="outlined" color="secondary" />
-          <Button variant="contained" color="primary">
-            I answer !
-          </Button>
-          <FavoriteIcon />
-        </Paper>
-      </Container>
-      <br></br>
-      <br></br>
-      <Container>
-        <Paper>
-          <Avatar />
-          <h3>User 3</h3>
-          <h4 className="color-h4">
-            How can I find the resource from the last online course ?
-          </h4>
-          <p className="Paper-block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Paper elevation={3} />
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          Date of publication : 10 Nov 2020
-          <br></br>
-          <Chip label="ressources" variant="outlined" color="#81c784" />
-          <Button variant="contained" color="primary">
-            I answer !
-          </Button>
-          <ThumbUpAltIcon />
-        </Paper>
-      </Container>
+      {topics &&
+        topics.map((topic) => {
+          return (
+            <div style={{ margin: 20 }}>
+              <Paper
+                onClick={() => goToPage(topic._id)}
+                style={{ padding: 30 }}
+                elevation={3}
+              >
+                <Avatar />
+                <h3>{topic.username}</h3>
+                <h4 className="color-h4">
+                  {topic.subject ? topic.subject : ""}
+                </h4>
+                <Typography variant="body1" gutterBottom>
+                  {topic.body}
+                </Typography>
+                <Paper elevation={3} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: 20,
+                  }}
+                >
+                  <Icon>restore</Icon> Date of publication : 18 Nov 2020
+                </div>
+                <div className="flex_" style={{ padding: 20 }}>
+                  {topic.tags.length > 0 &&
+                    topic.tags.map((tag, idx) => (
+                      <Chip
+                        key={idx}
+                        label={tag}
+                        variant="outlined"
+                        color="primary"
+                        style={{ marginRight: 5 }}
+                      />
+                    ))}
+
+                  <div style={{ flex: 1 }} />
+                  <Icon>thumb_up</Icon>
+                  <Icon>share</Icon>
+                </div>
+              </Paper>
+            </div>
+          );
+        })}
     </div>
   );
 }

@@ -1,0 +1,31 @@
+:root {
+  --blue: #3f51b5;
+  --red: #ffffff;
+  --lightgrey: #9e9e9e;
+  --background: #FCFCFC;
+}
+
+.blue{
+  color: var(--blue);
+}
+
+.red{
+  color: var(--red);
+}
+
+.lightgrey{
+  color: var(--lightgrey);
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.flex_ {
+  display: flex;
+}
+
+.flex_column{
+  display: flex;
+  flex-direction: column;
+}

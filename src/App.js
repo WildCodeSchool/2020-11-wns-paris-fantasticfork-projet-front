@@ -1,23 +1,15 @@
-import React from "react";
-import { Typography, Button } from "@material-ui/core";
-import ArticleList from "./Components/Forum/ArticleList.js";
-import Article from "./Components/Forum/Article";
-import Paper from "@material-ui/core/Paper";
-import "./index.css";
+import Article from './Components/Forum/Article';
+import ArticleList from './Components/Forum/ArticleList';
+import './App.css';
 
 function App() {
   return (
-    <div style={{ width: "100%" }}>
-      <Typography variant="h2" component="h2" className="text1">
-        Studn'Connect
-      </Typography>
-      <Typography variant="h4" component="h4" className="text1">
-        Your Questions
-      </Typography>
-      <ArticleList />
-      <Paper />
-      <Button />
-      <Article />
+    <div style={{ height: '100vh', width: '100%', display: 'flex', backgroundColor: '#FCFCFC' }}>
+      <div style={{ width: 500 }}>navbar</div>
+      <div style={{ padding: 40 }}>
+        <Article />
+        <ArticleList />
+      </div>
     </div>
   );
 }

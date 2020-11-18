@@ -1,0 +1,31 @@
+.NewComment{
+  display: flex;
+}
+
+.NewComment_reply{
+  margin: 20px;
+  padding-left: 20px;
+}
+
+.NewComment_reply_icon{
+  color: #9e9e9e;
+}
+
+.NewComment_container{
+  margin: 20px;
+  padding: 40px;
+  padding-right: 30px;
+  display: flex;
+  flex: 1;
+  align-items: flex-start; 
+}
+
+.NewComment_avatar{
+  background-color: #673ab7 !important;
+}
+
+.NewComment_textfield{
+  flex: 1;
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+}

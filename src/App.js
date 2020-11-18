@@ -1,4 +1,5 @@
 import Article from './Components/Forum/Article';
+import ArticleList from './Components/Forum/ArticleList';
 import './App.css';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <div style={{ width: 500 }}>navbar</div>
       <div style={{ padding: 40 }}>
         <Article />
+        <ArticleList />
       </div>
     </div>
   );

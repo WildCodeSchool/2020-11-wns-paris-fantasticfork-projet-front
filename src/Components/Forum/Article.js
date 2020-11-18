@@ -26,7 +26,8 @@ function Article({ match }) {
   const [heart, setHeart] = useState(false);
   const [toggle, setToggle] = useState(true);
   const [topic, setTopic] = useState(initSchema);
-
+  const [newMessage, setNewMessage] = useState(false);
+  console.log(newMessage);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/topic/${match.params.id}`)
@@ -36,6 +37,18 @@ function Article({ match }) {
       })
       .catch((err) => console.log(err));
   }, [match.params.id]);
+
+  useEffect(() => {
+    if (newMessage) {
+      axios
+        .get(`http://localhost:5000/topic/${match.params.id}`)
+        .then((res) => {
+          console.log(res.data.body);
+          setTopic(res.data.body);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [newMessage]);
 
   return (
     <div className='Article'>
@@ -110,11 +123,24 @@ function Article({ match }) {
         <>
           {topic.responses.length > 0 &&
             topic.responses.map((res, idx) => (
-              <Comment key={res._id} date={res.date.split('T')[0]} name={res.name} message={res.message} best={idx === 0 ? true : null} />
+              <div key={res._id}>
+                <Comment date={res.date && res.date.split('T')[0]} name={res.name} message={res.message} best={idx === 0 ? true : null} />
+              </div>
             ))}
         </>
       )}
-      <NewComment />
+      {/* <Button style={{ marginLeft: 40 }} onClick={() => setNewMessage(false)}>
+        Write a comment
+      </Button> */}
+      {newMessage ? (
+        <div className='flex_' style={{ justifyContent: 'flex-end' }}>
+          <Button style={{ margin: 20 }} variant='contained' color='primary' onClick={() => setNewMessage(false)}>
+            Write a comment
+          </Button>
+        </div>
+      ) : (
+        <NewComment topic_id={topic._id} uploaded={() => setNewMessage(true)} />
+      )}
     </div>
   );
 }

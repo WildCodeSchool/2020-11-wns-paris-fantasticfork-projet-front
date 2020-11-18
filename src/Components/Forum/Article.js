@@ -1,53 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
 import './Article.css';
 
-function Article() {
+const initSchema = {
+  username: '',
+  subject: '',
+  body: '',
+  date: '',
+  url: [],
+  tags: [],
+  responses: [
+    {
+      date: '',
+      name: '',
+      message: '',
+    },
+  ],
+};
+
+function Article({ match }) {
   const [heart, setHeart] = useState(false);
   const [toggle, setToggle] = useState(true);
+  const [topic, setTopic] = useState(initSchema);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/topic/${match.params.id}`)
+      .then((res) => {
+        console.log(res.data.body);
+        setTopic(res.data.body);
+      })
+      .catch((err) => console.log(err));
+  }, [match.params.id]);
 
   return (
     <div className='Article'>
       <Paper className='Article_container' elevation={3}>
         <div className='Article_header'>
-          <Typography variant='h2'>I have a question</Typography>
+          <Typography variant='h2'>{topic.subject}</Typography>
           <div className='Article_id'>
             <Avatar src={sampleImage} />
             <div className='flex_column' style={{ marginLeft: 10 }}>
               <Typography variant='button' className='blue'>
-                Simba
+                {topic.username}
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> 17 Nov 2020</span>
+                <span className='lightgrey bold'> {topic.date.split('T')[0]}</span>
               </Typography>
             </div>
           </div>
 
           <div className='Article_borderline' />
           <Typography variant='body1' gutterBottom>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lobortis magna risus, ac auctor ipsum euismod vel. Vivamus eu massa elit.
-            Donec mattis dui non bibendum laoreet. Phasellus pharetra luctus ultrices. Nunc dictum, est vitae efficitur luctus, risus dolor fermentum
-            ligula, non maximus justo ante sed risus. Nullam pharetra suscipit eleifend. Cras eu neque a nisl imperdiet facilisis in eget leo. Donec
-            fermentum et dui ac accumsan. Nunc eget metus eu urna eleifend tincidunt eget vel ligula. Interdum et malesuada fames ac ante ipsum primis
-            in faucibus. Nam quis purus finibus, molestie turpis sed, mattis mi. Donec lacus ex, aliquet in luctus sed, ullamcorper nec libero. In sit
-            amet feugiat quam. Nullam rhoncus eleifend mauris, et condimentum ligula placerat eu. Nulla a dignissim ipsum. Nunc feugiat lacus sit amet
-            tincidunt tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin at aliquet diam.
-            Vivamus nec faucibus nunc. In hac habitasse platea dictumst. Suspendisse id aliquet libero.
+            {topic.body}
           </Typography>
-          <Link className='Article_link' href='https://odyssey.wildcodeschool.com/' target='_blank' rel='noopener noreferrer'>
-            <Icon style={{ paddingRight: 10 }}>link</Icon>
-            https://odyssey.wildcodeschool.com/
-          </Link>
+          {topic.url.length > 0 &&
+            topic.url.map((u) => (
+              <Link key={u} className='Article_link' href={u} target='_blank' rel='noopener noreferrer'>
+                <Icon style={{ paddingRight: 10 }}>link</Icon>
+                {u}
+              </Link>
+            ))}
           <div className='Article_borderline' />
           <div className='flex_'>
             <div>
-              <Chip label='nodejs' variant='outlined' color='primary' />
-              <Chip label='graphql' variant='outlined' olor='secondary' />
-              <Chip label='javascript' variant='outlined' color='primary' />
+              {topic.tags.length > 0 &&
+                topic.tags.map((t, idx) => (
+                  <Chip key={idx} label={t} variant='outlined' style={{ marginRight: 5 }} color={idx % 2 === 0 ? 'primary' : 'secondary'} />
+                ))}
             </div>
             <div style={{ flex: 1 }} />
             <Button>
@@ -74,7 +99,7 @@ function Article() {
       <div className='Article_comment_info' elevation={0}>
         <Icon className='blue'>comment</Icon>
         <Typography variant='button' className='blue' style={{ marginLeft: 10 }}>
-          3 Answers
+          {topic.responses.length} Answers
         </Typography>
         <div style={{ flex: 1 }} />
         <IconButton color='primary' onClick={() => setToggle(!toggle)}>
@@ -83,9 +108,10 @@ function Article() {
       </div>
       {toggle && (
         <>
-          <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} best={true} />
-          <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} />
-          <Comment date={'01/10/2025'} name={'Mufasa'} message={'I am your father'} />
+          {topic.responses.length > 0 &&
+            topic.responses.map((res, idx) => (
+              <Comment key={res._id} date={res.date.split('T')[0]} name={res.name} message={res.message} best={idx === 0 ? true : null} />
+            ))}
         </>
       )}
       <NewComment />

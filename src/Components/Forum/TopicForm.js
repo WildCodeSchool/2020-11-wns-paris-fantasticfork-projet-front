@@ -8,8 +8,8 @@ const TopicForm = ({ close }) => {
   const [inputFields, setInputFields] = useState({
     username: 'Student',
     subject: '',
-    message: '',
-    urls: [],
+    body: '',
+    url: [],
     tags: [],
   });
   const [newUrl, setNewUrl] = useState('');
@@ -18,15 +18,15 @@ const TopicForm = ({ close }) => {
     if (newUrl === '') {
       return null;
     }
-    let urls = Array.from(inputFields.urls);
-    urls.push(newUrl);
+    let url = Array.from(inputFields.url);
+    url.push(newUrl);
     setNewUrl('');
-    setInputFields({ ...inputFields, urls });
+    setInputFields({ ...inputFields, url });
   };
   const deleteUrl = (idx) => {
-    let urls = Array.from(inputFields.urls);
-    urls.splice(idx, 1);
-    setInputFields({ ...inputFields, urls });
+    let url = Array.from(inputFields.url);
+    url.splice(idx, 1);
+    setInputFields({ ...inputFields, url });
   };
 
   const addTags = (event) => {
@@ -45,10 +45,11 @@ const TopicForm = ({ close }) => {
     setInputFields({ ...inputFields, tags });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:5000/topic', { inputFields });
-    console.log(inputFields);
+  const handleSubmit = () => {
+    axios
+      .put('http://localhost:5000/topic', inputFields)
+      .then(() => close())
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -74,19 +75,19 @@ const TopicForm = ({ close }) => {
         />
         <TextField
           id='message'
-          name='message'
+          name='body'
           label='Message'
           multiline
           rows={4}
           variant='standard'
-          value={inputFields.message}
-          onChange={(e) => setInputFields({ ...inputFields, message: e.target.value })}
+          value={inputFields.body}
+          onChange={(e) => setInputFields({ ...inputFields, body: e.target.value })}
           required
           style={{ width: '70%', margin: 20 }}
         />
         <div style={{ maxHeight: 150, width: '70%', overflow: 'auto' }}>
-          {inputFields.urls.length > 0 &&
-            inputFields.urls.map((url, idx) => (
+          {inputFields.url.length > 0 &&
+            inputFields.url.map((url, idx) => (
               <div key={url} className='url_list blue' href={url} target='_blank' rel='noopener noreferrer'>
                 <Icon style={{ paddingRight: 10 }}>link</Icon>
                 {url}
@@ -113,9 +114,6 @@ const TopicForm = ({ close }) => {
           <IconButton onClick={addUrl}>
             <Icon fontSize='small'>add</Icon>
           </IconButton>
-          {/* <button onClick={addUrl} className='add-url'>
-            +
-          </button> */}
         </div>
         <div className='tags-input' style={{ width: '70%', margin: 20 }}>
           <ul id='tags'>

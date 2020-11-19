@@ -16,6 +16,15 @@ function ArticleList({ history }) {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/topics')
+      .then((res) => {
+        setTopics(res.data.body);
+      })
+      .catch((err) => console.log(err));
+  }, [open]);
+
   const goToPage = (topic_id) => {
     history.push(`/topics/${topic_id}`);
   };

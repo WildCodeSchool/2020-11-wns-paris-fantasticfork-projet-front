@@ -11,7 +11,6 @@ function ArticleList({ history }) {
       .get('http://localhost:5000/topics')
       .then((res) => {
         setTopics(res.data.body);
-        console.log(res.data.body);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -26,24 +25,38 @@ function ArticleList({ history }) {
         topics.map((topic) => {
           return (
             <div style={{ margin: 20 }}>
-              {/* <div style={{ margin: 20, paddingRight: 300 }}> */}
-              <Paper onClick={() => goToPage(topic._id)} style={{ padding: 30 }} elevation={3}>
-                <Avatar />
-                <h3>{topic.username}</h3>
-                <h4 className='color-h4'>{topic.subject ? topic.subject : ''}</h4>
-                <Typography variant='body1' gutterBottom>
+              <Paper onClick={() => goToPage(topic._id)} style={{ padding: 30, paddingRight: 50, paddingLeft: 50 }} elevation={3}>
+                <div className='flex_' style={{ alignItems: 'center', marginBottom: 20 }}>
+                  <Typography variant='h5' gutterBottom className='blue'>
+                    {topic.subject ? topic.subject : ''}
+                  </Typography>
+                  <div style={{ flex: 1 }} />
+                  <Icon className='blue' style={{ marginRight: 15 }}>
+                    thumb_up
+                  </Icon>
+                  <Icon className='blue' style={{ marginRight: 15 }}>
+                    share
+                  </Icon>
+                </div>
+
+                <Typography variant='body2' gutterBottom>
                   {topic.body}
                 </Typography>
                 <Paper elevation={3} />
-                <div style={{ display: 'flex', alignItems: 'center', padding: 20 }}>
-                  <Icon>restore</Icon> Date of publication : 18 Nov 2020
-                </div>
-                <div className='flex_' style={{ padding: 20 }}>
-                  {topic.tags.length > 0 &&
-                    topic.tags.map((tag, idx) => <Chip key={idx} label={tag} variant='outlined' color='primary' style={{ marginRight: 5 }} />)}
+
+                <div className='flex_' style={{ alignItems: 'center', marginTop: 20 }}>
+                  <Avatar style={{ width: 30, height: 30, backgroundColor: 'orange', marginRight: 5 }} />
+                  <Typography variant='button' className='blue' style={{ marginRight: 10 }}>
+                    {topic.username}
+                  </Typography>
+                  <Typography variant='overline' className='lightgrey'>
+                    {topic.date.split('T')[0]}
+                  </Typography>
                   <div style={{ flex: 1 }} />
-                  <Icon>thumb_up</Icon>
-                  <Icon>share</Icon>
+                  {topic.tags.length > 0 &&
+                    topic.tags.map((t, idx) => (
+                      <Chip key={idx} label={t} variant='outlined' style={{ marginRight: 5 }} color={idx % 2 === 0 ? 'primary' : 'secondary'} />
+                    ))}
                 </div>
               </Paper>
             </div>

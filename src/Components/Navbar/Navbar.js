@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { List, ListItem, ListItemIcon, ListItemText, Icon, Avatar, Typography, Badge } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText, Icon, Avatar, Typography } from '@material-ui/core';
 import sampleImage from '../../images/cat.jpg';
 
 import './Navbar.css';
@@ -14,8 +14,8 @@ export default function Navbar({ menu }) {
         </Typography>
       </div>
       <List disablePadding dense>
-        {menu.map((elem) => (
-          <ListItem button style={{ height: 50, marginBottom: 5 }} component={Link} to={elem.link}>
+        {menu.map((elem, idx) => (
+          <ListItem key={idx} button style={{ height: 50, marginBottom: 5 }} component={Link} to={elem.link}>
             <ListItemIcon style={{ marginLeft: 20 }}>
               <Icon fontSize='medium'>{elem.icon}</Icon>
             </ListItemIcon>

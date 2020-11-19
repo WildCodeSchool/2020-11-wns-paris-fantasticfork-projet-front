@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Avatar, Chip, Icon, Typography } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
+import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
+import TopicForm from './TopicForm';
 
 function ArticleList({ history }) {
   const [topics, setTopics] = useState([]);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     axios
@@ -21,10 +22,15 @@ function ArticleList({ history }) {
 
   return (
     <div>
+      <div className='flex_' style={{ alignItems: 'center', justifyContent: 'flex-end', marginRight: 20, marginBottom: 20 }}>
+        <Button variant='contained' color='primary' onClick={() => setOpen(true)}>
+          Ask a question
+        </Button>
+      </div>
       {topics &&
         topics.map((topic) => {
           return (
-            <div style={{ margin: 20 }}>
+            <div key={topic._id} style={{ margin: 20 }}>
               <Paper onClick={() => goToPage(topic._id)} style={{ padding: 30, paddingRight: 50, paddingLeft: 50 }} elevation={3}>
                 <div className='flex_' style={{ alignItems: 'center', marginBottom: 20 }}>
                   <Typography variant='h5' gutterBottom className='blue'>
@@ -62,6 +68,18 @@ function ArticleList({ history }) {
             </div>
           );
         })}
+      <Modal
+        style={{ width: '60%', top: 100, left: '20%' }}
+        open={open}
+        onClose={() => setOpen(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <TopicForm close={() => setOpen(false)} />
+      </Modal>
     </div>
   );
 }

@@ -10,7 +10,10 @@ export default function SubNavbar({ title }) {
         Forum
       </Typography>
       <div style={{ flex: 1 }} />
-      <Badge badgeContent={4} color='secondary' style={{ margin: 15 }}>
+      <Badge badgeContent={7} color='secondary'>
+        <Icon>comments</Icon>
+      </Badge>
+      <Badge badgeContent={4} color='secondary' style={{ margin: 30 }}>
         <Icon>mail</Icon>
       </Badge>
     </div>

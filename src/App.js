@@ -6,10 +6,10 @@ import ArticleList from './Components/Forum/ArticleList';
 import './App.css';
 
 const menu = [
-  { text: 'Home', icon: 'home', link: '' },
-  { text: 'Home', icon: 'home', link: '' },
-  { text: 'Home', icon: 'home', link: '' },
-  { text: 'Forum', icon: 'forum', link: '' },
+  { text: 'Home', icon: 'home', link: '/' },
+  { text: 'Home', icon: 'home', link: '/' },
+  { text: 'Home', icon: 'home', link: '/' },
+  { text: 'Forum', icon: 'forum', link: '/topics' },
 ];
 
 function App() {

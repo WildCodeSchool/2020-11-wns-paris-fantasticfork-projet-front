@@ -10,7 +10,7 @@ const TopicForm = () => {
             username: 'Student',
             subject: '',
             message: '',
-            urls: [],
+            url: [],
             tags: []
         }
     )
@@ -18,15 +18,15 @@ const TopicForm = () => {
 
     const addUrl = () => {
         if (newUrl === '') { return null }
-        let urls = Array.from(inputFields.urls)
-        urls.push(newUrl)
+        let url = Array.from(inputFields.url)
+        url.push(newUrl)
         setNewUrl('')
-        setInputFields({ ...inputFields, urls })
+        setInputFields({ ...inputFields, url })
     }
     const deleteUrl = (idx) => {
-        let urls = Array.from(inputFields.urls)
-        urls.splice(idx, 1)
-        setInputFields({ ...inputFields, urls })
+        let url = Array.from(inputFields.url)
+        url.splice(idx, 1)
+        setInputFields({ ...inputFields, url })
     }
 
     const addTags = event => {
@@ -72,7 +72,7 @@ const TopicForm = () => {
                     value={inputFields.message}
                     onChange={(e) => setInputFields({ ...inputFields, message: e.target.value })}
                     required />
-                {inputFields.urls.length > 0 && inputFields.urls.map((url, idx) => (
+                {inputFields.url.length > 0 && inputFields.url.map((url, idx) => (
                     <div key={url} className='url_list blue' href={url} target='_blank' rel='noopener noreferrer'>
                         <Icon style={{ paddingRight: 10 }}>link</Icon>
                         {url}
@@ -85,7 +85,7 @@ const TopicForm = () => {
                 <div>
                     <TextField
                         id='url'
-                        name="urls"
+                        name="url"
                         label='URL'
                         variant='standard'
                         value={newUrl}

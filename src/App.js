@@ -20,7 +20,7 @@ function App() {
       </div>
       <div style={{ width: '100%' }}>
         <SubNavbar title={menu.text} />
-        <div style={{ marginTop: 70, padding: 40, paddingRight: 300 }}>
+        <div className='lightgreyBackground' style={{ marginTop: 70, padding: 40 }}>
           <Switch>
             <Route exact path='/' component={ArticleList} />
             <Route exact path='/topics' history component={ArticleList} />

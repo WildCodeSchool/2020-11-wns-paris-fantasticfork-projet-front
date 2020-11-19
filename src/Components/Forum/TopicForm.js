@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Button, Paper, TextField, Link, Icon, IconButton } from '@material-ui/core';
 
 import './TopicForm.css';
@@ -9,7 +10,7 @@ const TopicForm = () => {
             username: 'Student',
             subject: '',
             message: '',
-            url: [],
+            urls: [],
             tags: []
         }
     )
@@ -17,15 +18,15 @@ const TopicForm = () => {
 
     const addUrl = () => {
         if (newUrl === '') { return null }
-        let url = Array.from(inputFields.url)
-        url.push(newUrl)
+        let urls = Array.from(inputFields.urls)
+        urls.push(newUrl)
         setNewUrl('')
-        setInputFields({ ...inputFields, url })
+        setInputFields({ ...inputFields, urls })
     }
     const deleteUrl = (idx) => {
-        let url = Array.from(inputFields.url)
-        url.splice(idx, 1)
-        setInputFields({ ...inputFields, url })
+        let urls = Array.from(inputFields.urls)
+        urls.splice(idx, 1)
+        setInputFields({ ...inputFields, urls })
     }
 
     const addTags = event => {
@@ -44,6 +45,7 @@ const TopicForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post('http://localhost:5000/topic', {inputFields},)
         console.log(inputFields)
     }
 
@@ -70,7 +72,7 @@ const TopicForm = () => {
                     value={inputFields.message}
                     onChange={(e) => setInputFields({ ...inputFields, message: e.target.value })}
                     required />
-                {inputFields.url.length > 0 && inputFields.url.map((url, idx) => (
+                {inputFields.urls.length > 0 && inputFields.urls.map((url, idx) => (
                     <div key={url} className='url_list blue' href={url} target='_blank' rel='noopener noreferrer'>
                         <Icon style={{ paddingRight: 10 }}>link</Icon>
                         {url}
@@ -83,7 +85,7 @@ const TopicForm = () => {
                 <div>
                     <TextField
                         id='url'
-                        name="url"
+                        name="urls"
                         label='URL'
                         variant='standard'
                         value={newUrl}

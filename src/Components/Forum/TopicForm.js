@@ -6,7 +6,7 @@ import './TopicForm.css';
 const TopicForm = () => {
     const [inputFields, setInputFields] = useState(
         {
-            username: 'Clem Stud',
+            username: 'Student',
             subject: '',
             message: '',
             url: [],
@@ -110,7 +110,7 @@ const TopicForm = () => {
                 <Button
                     className="submit-button"
                     variant="contained"
-                    style={{marginTop: "20px", marginBottom: "20px"}}
+                    style={{ marginTop: "20px", marginBottom: "20px" }}
                     color="secondary"
                     onClick={handleSubmit} >
                     Send

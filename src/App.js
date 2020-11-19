@@ -15,12 +15,12 @@ const menu = [
 function App() {
   return (
     <div className='flex_ lightgreyBackground' style={{ height: '100vh', width: '100%' }}>
-      <div style={{ width: 300 }}>
+      <div style={{ width: 200 }}>
         <Navbar menu={menu} />
       </div>
-      <div>
+      <div style={{ width: '100%' }}>
         <SubNavbar title={menu.text} />
-        <div style={{ padding: 40 }}>
+        <div style={{ marginTop: 70, padding: 40 }}>
           <Switch>
             <Route exact path='/' component={ArticleList} />
             <Route exact path='/topics' history component={ArticleList} />

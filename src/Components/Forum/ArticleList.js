@@ -25,7 +25,7 @@ function ArticleList({ history }) {
       {topics &&
         topics.map((topic) => {
           return (
-            <div style={{ margin: 20 }}>
+            <div style={{ margin: 20, paddingRight: 300 }}>
               <Paper
                 onClick={() => goToPage(topic._id)}
                 style={{ padding: 30 }}

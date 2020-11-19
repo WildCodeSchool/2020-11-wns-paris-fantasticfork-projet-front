@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Paper, TextField, Link, Icon, IconButton } from '@material-ui/core';
+import { Button, Paper, TextField, Icon, IconButton } from '@material-ui/core';
 
 import './TopicForm.css';
 
@@ -43,16 +43,16 @@ const TopicForm = () => {
         setInputFields({ ...inputFields, tags })
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/topic', {inputFields},)
-        console.log(inputFields)
+        const res = await axios.put('http://localhost:5000/topic', inputFields)
+        console.log('data: ', res.data)
+        console.log('input: ', inputFields)
     }
 
     return (
         <Paper>
             <h3>New Topic</h3>
-
             <div className="form">
                 <TextField
                     id='title'

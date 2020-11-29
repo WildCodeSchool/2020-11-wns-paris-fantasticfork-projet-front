@@ -1,0 +1,46 @@
+.Article{
+  width: 100%;
+  background-color: var(--background);
+  margin-bottom: 40px;
+}
+
+.Article_container{
+  width: 100%;
+  display: flex;
+  margin: 20px;
+  padding: 40px;
+}
+
+.Article_header{
+  flex: 1;
+  margin: 20;
+  display: flex;
+  flex-direction: column;
+}
+
+.Article_id{
+  display: flex;
+  margin-top: 20px;
+}
+
+.Article_borderline {
+  width: 100%;
+  flex: 1;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.Article_link{
+  display: flex;
+  align-items: center;
+  margin-top: 15px !important;
+}
+
+.Article_comment_info{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  padding: 10px; 
+}

@@ -1,0 +1,11 @@
+.Comment_container{
+  margin: 20px;
+  padding: 40px;
+  display: flex;
+  flex-Direction: column;
+}
+
+.Comment_element{
+  display: flex;
+  margin-top: 20px;
+}

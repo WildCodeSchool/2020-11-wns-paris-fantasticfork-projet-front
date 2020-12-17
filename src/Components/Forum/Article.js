@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ArticleView from "./ArticleView";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ArticleView from './ArticleView';
 
 const initSchema = {
-  username: "",
-  subject: "",
-  body: "",
-  date: "",
+  username: '',
+  subject: '',
+  body: '',
+  date: '',
   url: [],
   tags: [],
   responses: [
     {
-      date: "",
-      name: "",
-      message: "",
+      date: '',
+      name: '',
+      message: '',
     },
   ],
 };
@@ -51,9 +51,13 @@ function Article({ match }) {
     <div>
       <ArticleView
         data={topic}
-        setHeart={setHeart()}
-        setToggle={setToggle()}
-        setToggleWrite={setToggleWrite()}
+        heart={heart}
+        toggle={toggle}
+        toggleWrite={toggleWrite}
+        setHeart={() => setHeart()}
+        setToggle={() => setToggle()}
+        setToggleWrite={() => setToggleWrite()}
+        setNewMessage={() => setNewMessage()}
       />
     </div>
   );

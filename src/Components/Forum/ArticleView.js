@@ -110,6 +110,7 @@ const ArticleView = (props) => {
         <div style={{ flex: 1 }} />
         {!toggleWrite && (
           <Button
+            className='addComment'
             style={{ marginRight: 20 }}
             variant="contained"
             color="primary"

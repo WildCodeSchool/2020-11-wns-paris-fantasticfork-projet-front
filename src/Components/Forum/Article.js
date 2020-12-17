@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ArticleView from "./ArticleView";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ArticleView from './ArticleView';
 
 const initSchema = {
-  username: "",
-  subject: "",
-  body: "",
-  date: "",
+  username: '',
+  subject: '',
+  body: '',
+  date: '',
   url: [],
   tags: [],
   responses: [
     {
-      date: "",
-      name: "",
-      message: "",
+      date: '',
+      name: '',
+      message: '',
     },
   ],
 };
@@ -21,7 +21,7 @@ const initSchema = {
 function Article({ match }) {
   const [heart, setHeart] = useState(false);
   const [toggle, setToggle] = useState(true);
-  const [toggleWrite, setToggleWrite] = useState(false);
+  // const [toggleWrite, setToggleWrite] = useState(false);
   const [topic, setTopic] = useState(initSchema);
   const [newMessage, setNewMessage] = useState(false);
 
@@ -41,7 +41,7 @@ function Article({ match }) {
         .then((res) => {
           console.log(res.data.body);
           setTopic(res.data.body);
-          setToggleWrite(false);
+          // setToggleWrite(false);
         })
         .catch((err) => console.log(err));
     }
@@ -53,10 +53,10 @@ function Article({ match }) {
         data={topic}
         heart={heart}
         toggle={toggle}
-        toggleWrite={toggleWrite}
+        // toggleWrite={toggleWrite}
         setHeart={() => setHeart(!heart)}
         setToggle={() => setToggle(!toggle)}
-        setToggleWrite={() => setToggleWrite(true)}
+        // setToggleWrite={() => setToggleWrite(true)}
         setNewMessage={() => setNewMessage(true)}
       />
     </div>

@@ -1,5 +1,6 @@
+import { ImageTwoTone } from '@material-ui/icons';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import ArticleView from './Components/Forum/ArticleView';
+import ArticleView from './ArticleView';
 
 const article = {
   username: 'John',
@@ -37,23 +38,26 @@ const badArticle = {
   ],
 };
 
-// test("Find John", () => {
-//   render(<ArticleView data={article} />);
-//   const element = screen.getByText(/John/i);
-//   expect(element).toBeInTheDocument();
-// });
+describe('User name is visible in the article view', () => {
+  it('Should find existing name John', () => {
+    render(<ArticleView data={article} />);
+    const element = screen.getByText(/John/i);
+    expect(element).toBeInTheDocument();
+  });
 
-// test("Not find John", () => {
-//   render(<ArticleView data={badArticle} />)
-//   const submitButtons = screen.queryAllByText('John')
-//   expect(submitButtons).toHaveLength(0)
-//   ();
-// })
+  it('Not find John', () => {
+    render(<ArticleView data={badArticle} />);
+    const submitButtons = screen.queryAllByText('John');
+    expect(submitButtons).toHaveLength(0);
+  });
+});
 
-test('I can add comment', () => {
-  render(<ArticleView data={article} />);
-  const element = screen.getByText('Write a comment');
-  fireEvent.click(element);
-  const commentBox = screen.getByText('create');
-  expect(commentBox).toBeInTheDocument();
+describe(`Toggle comment text box with 'write a comment' button`, () => {
+  it('Should open toggle box when button is clicked', () => {
+    render(<ArticleView data={article} />);
+    const element = screen.getByText('Write a comment');
+    fireEvent.click(element);
+    const commentBox = screen.getByText('create');
+    expect(commentBox).toBeInTheDocument();
+  });
 });

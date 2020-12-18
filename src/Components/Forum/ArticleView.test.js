@@ -1,5 +1,4 @@
-import { ImageTwoTone } from '@material-ui/icons';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ArticleView from './ArticleView';
 
 const article = {
@@ -20,35 +19,17 @@ const article = {
   ],
 };
 
-const badArticle = {
-  username: 'Paul',
-  subject: 'Litter kitter kitty litty little kitten big roar',
-  body:
-    'I bet my nine lives on you-oooo-ooo-hooo annoy the old grumpy cat, start a fight and then retreat to wash when i lose for prow?? ew dog you drink from the toilet, yum yum warm milk hotter pls, ouch too hot or sit by the fire and plan your travel so chase laser, tuxedo cats always looking dapper.',
-  date: '21/11/2019',
-  url: ['www.url.com'],
-  tags: ['cat, kitty, roar'],
-  responses: [
-    {
-      date: '22/11/2019',
-      name: 'Kate',
-      message:
-        "Shove bum in owner's face like camera lens stare at ceiling light so snuggles up to shoulders or knees and purrs you to sleep but why dog in house?",
-    },
-  ],
-};
-
-describe('User name is visible in the article view', () => {
-  it('Should find existing name John', () => {
+describe('Article data is visible in the article view', () => {
+  it('Should render username', () => {
     render(<ArticleView data={article} />);
     const element = screen.getByText(/John/i);
     expect(element).toBeInTheDocument();
   });
 
-  it('Not find John', () => {
-    render(<ArticleView data={badArticle} />);
-    const submitButtons = screen.queryAllByText('John');
-    expect(submitButtons).toHaveLength(0);
+  it('Shoud find existing response', () => {
+    render(<ArticleView data={article} toggle={true} />);
+    const username = screen.queryAllByText('Kate');
+    expect(username).toHaveLength(1);
   });
 });
 
@@ -57,6 +38,7 @@ describe(`Toggle comment text box with 'write a comment' button`, () => {
     render(<ArticleView data={article} />);
     const element = screen.getByText('Write a comment');
     fireEvent.click(element);
+
     const commentBox = screen.getByText('create');
     expect(commentBox).toBeInTheDocument();
   });

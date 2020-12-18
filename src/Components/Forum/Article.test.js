@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import Article from './Article';
 import ArticleView from './ArticleView';
 
 const article = {
@@ -22,24 +23,36 @@ const article = {
 describe('Article data is visible in the article view', () => {
   it('Should render username', () => {
     render(<ArticleView data={article} />);
-    const element = screen.getByText(/John/i);
-    expect(element).toBeInTheDocument();
+    const username = screen.getByText(/John/i);
+    expect(username).toBeInTheDocument();
   });
 
   it('Shoud find existing response', () => {
     render(<ArticleView data={article} toggle={true} />);
-    const username = screen.queryAllByText('Kate');
-    expect(username).toHaveLength(1);
+    const commentedUser = screen.queryAllByText('Kate');
+    expect(commentedUser).toHaveLength(1);
   });
 });
 
-describe(`Toggle comment text box with 'write a comment' button`, () => {
+describe(`Toggle comment textfield with 'write a comment' button`, () => {
   it('Should open toggle box when button is clicked', () => {
-    render(<ArticleView data={article} />);
-    const element = screen.getByText('Write a comment');
-    fireEvent.click(element);
+    render(<Article data={article} />);
+    const openButton = screen.getByText('Write a comment');
+    fireEvent.click(openButton);
 
     const commentBox = screen.getByText('create');
     expect(commentBox).toBeInTheDocument();
+  });
+
+  it('Should close toggle box when cancel button is clicked', () => {
+    render(<Article data={article} />);
+    const openButton = screen.getByText('Write a comment');
+    fireEvent.click(openButton);
+
+    const closeButton = screen.getByText('cancel');
+    fireEvent.click(closeButton);
+
+    const commentBox = screen.queryAllByText('create');
+    expect(commentBox).toHaveLength(0);
   });
 });

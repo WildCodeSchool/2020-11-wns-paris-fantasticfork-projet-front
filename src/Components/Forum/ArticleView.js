@@ -7,9 +7,9 @@ import sampleImage from '../../images/cat.jpg';
 import './Article.css';
 
 const ArticleView = (props) => {
-  const { data, heart, setHeart, setToggle, toggle, setNewMessage } = props;
+  const { data, heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
 
-  const [toggleWrite, setToggleWrite] = useState(false);
+  // const [toggleWrite, setToggleWrite] = useState(false);
 
   return (
     <div className='Article'>
@@ -76,7 +76,7 @@ const ArticleView = (props) => {
             variant='contained'
             color='primary'
             onClick={() => {
-              setToggleWrite(!toggleWrite);
+              openToggleWrite();
             }}
           >
             Write a comment
@@ -86,7 +86,7 @@ const ArticleView = (props) => {
           <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
-      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} />}
+      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} cancel={() => closeToggleWrite()} />}
       {toggle && (
         <>
           {data.responses.length > 0 &&

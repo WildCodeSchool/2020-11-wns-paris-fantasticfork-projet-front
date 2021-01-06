@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import SubNavbar from './Components/Navbar/SubNavbar';
-import Article from './Components/Forum/Article';
+import ArticleContainer from './Components/Forum/ArticleContainer';
 import ArticleList from './Components/Forum/ArticleList';
 import './App.css';
 
@@ -24,7 +24,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={ArticleList} />
             <Route exact path='/topics' history component={ArticleList} />
-            <Route path='/topics/:id' component={Article} />
+            <Route path='/topics/:id' component={ArticleContainer} />
           </Switch>
         </div>
       </div>

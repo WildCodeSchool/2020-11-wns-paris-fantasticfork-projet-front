@@ -24,7 +24,7 @@ const TOPICS = gql`
 function ArticleList({ history }) {
   const [topics, setTopics] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const { loading, error, data } = useQuery(TOPICS);
+  const { loading, error, data, refetch } = useQuery(TOPICS);
 
 
   // useEffect(() => {
@@ -37,12 +37,13 @@ function ArticleList({ history }) {
   // }, []);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/topics')
-      .then((res) => {
-        setTopics(res.data.body);
-      })
-      .catch((err) => console.log(err));
+    // axios
+    //   .get('http://localhost:5000/topics')
+    //   .then((res) => {
+    //     setTopics(res.data.body);
+    //   })
+    //   .catch((err) => console.log(err));
+    refetch();
   }, [open]);
 
   const goToPage = (topic_id) => {
@@ -88,7 +89,7 @@ function ArticleList({ history }) {
                     {topic.username}
                   </Typography>
                   <Typography variant='overline' className='lightgrey'>
-                    {topic.date.split('T')[0]}
+                    { getDateFromTimestamp(topic.date) }
                   </Typography>
                   <div style={{ flex: 1 }} />
                   {topic.tags.length > 0 &&
@@ -117,3 +118,11 @@ function ArticleList({ history }) {
 }
 
 export default ArticleList;
+
+function getDateFromTimestamp(timestamp) {
+  const date = new Date(Date(timestamp)).toLocaleDateString('fr-FR');
+  const hours = new Date(Date(timestamp)).getHours('fr-FR');
+  const minutes = new Date(Date(timestamp)).getMinutes('fr-FR');
+
+  return `${date} - ${hours}:${minutes}`;
+}

@@ -1,10 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Paper, TextField, Icon, IconButton } from "@material-ui/core";
+import { gql, useMutation } from '@apollo/client';
 
 import "./TopicForm.css";
 
+const ADD_TOPIC = gql`
+  mutation CreateTopic (
+    $username: String!,
+    $subject: String!,
+    $body: String!,
+    $url: [String],
+    $tags: [String]
+  ) {
+    createTopic (
+      username: $username,
+      subject: $subject,
+      body: $body,
+      url: $url,
+      tags: $tags
+    ) {
+      subject
+    }
+  }
+`;
+
 const TopicForm = ({ close }) => {
+  const [ addTopic, { loading, data }] = useMutation(ADD_TOPIC);
+
   const [inputFields, setInputFields] = useState({
     username: "Student",
     subject: "",
@@ -12,6 +35,7 @@ const TopicForm = ({ close }) => {
     url: [],
     tags: [],
   });
+
   const [newUrl, setNewUrl] = useState("");
 
   const addUrl = () => {
@@ -23,6 +47,7 @@ const TopicForm = ({ close }) => {
     setNewUrl("");
     setInputFields({ ...inputFields, url });
   };
+
   const deleteUrl = (idx) => {
     let url = Array.from(inputFields.url);
     url.splice(idx, 1);
@@ -46,10 +71,12 @@ const TopicForm = ({ close }) => {
   };
 
   const handleSubmit = () => {
-    axios
-      .put("http://localhost:5000/topic", inputFields)
-      .then(() => close())
-      .catch((err) => console.log(err));
+    // axios
+    //   .put("http://localhost:5000/topic", inputFields)
+    //   .then(() => close())
+    //   .catch((err) => console.log(err));
+    addTopic({ variables: inputFields });
+    close();
   };
 
   return (
@@ -68,6 +95,9 @@ const TopicForm = ({ close }) => {
           <Icon className="lightgrey">close</Icon>
         </IconButton>
       </div>
+      
+      { loading ? 'LOADING...' : '' }
+
       <div
         className="form flex_"
         style={{

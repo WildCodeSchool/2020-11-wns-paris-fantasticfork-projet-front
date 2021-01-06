@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import SubNavbar from "./Components/Navbar/SubNavbar";
-import Article from "./Components/Forum/Article";
+import ArticleContainer from "./Components/Forum/ArticleContainer";
 import ArticleList from "./Components/Forum/ArticleList";
 import Footer from "./Components/Footer/Footer";
 import "./App.css";

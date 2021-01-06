@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Paper, Icon, Avatar, TextField, IconButton } from '@material-ui/core';
 import './NewComment.css';
 
-export default function NewComment({ reply, topic_id, uploaded }) {
+export default function NewComment({ reply, topic_id, uploaded, cancel }) {
   const [message, setMessage] = useState('');
 
   const submitCommment = () => {
@@ -14,6 +14,7 @@ export default function NewComment({ reply, topic_id, uploaded }) {
         message,
       })
       .then(() => uploaded())
+      .then(() => cancel())
       .catch((err) => console.log(err));
   };
 
@@ -36,9 +37,14 @@ export default function NewComment({ reply, topic_id, uploaded }) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <IconButton style={{ marginRight: 0 }} color='primary' onClick={submitCommment}>
-          <Icon>create</Icon>
-        </IconButton>
+        <div className='NewComment_button_container'>
+          <IconButton style={{ marginRight: 0 }} color='primary' onClick={submitCommment}>
+            <Icon>create</Icon>
+          </IconButton>
+          <IconButton style={{ marginRight: 0 }} color='primary' onClick={cancel}>
+            <Icon>cancel</Icon>
+          </IconButton>
+        </div>
       </Paper>
     </div>
   );

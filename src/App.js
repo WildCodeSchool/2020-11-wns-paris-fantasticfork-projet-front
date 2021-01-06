@@ -29,9 +29,9 @@ function App() {
           style={{ marginTop: 70, padding: 40 }}
         >
           <Switch>
-            <Route exact path="/" component={ArticleList} />
-            <Route exact path="/topics" history component={ArticleList} />
-            <Route path="/topics/:id" component={Article} />
+            <Route exact path='/' component={ArticleList} />
+            <Route exact path='/topics' history component={ArticleList} />
+            <Route path='/topics/:id' component={ArticleContainer} />
           </Switch>
           <Footer />
         </div>

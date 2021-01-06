@@ -1,10 +1,16 @@
-.h4-footer {
+.footer-line {
   border-top: 2px solid #3f51b5;
   width: 100%;
-  padding-top: 8px;
 }
 
-.footer {
+.h4-footer {
+  width: 100%;
+  padding-top: 8px;
   text-align: center;
-  width: 100px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
 }

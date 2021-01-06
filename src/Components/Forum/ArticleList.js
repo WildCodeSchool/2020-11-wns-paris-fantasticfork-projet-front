@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import axios from 'axios';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicForm';
 
@@ -22,10 +21,9 @@ const TOPICS = gql`
 `;
 
 function ArticleList({ history }) {
-  const [topics, setTopics] = useState([]);
+  // const [topics, setTopics] = useState([]);
   const [open, setOpen] = React.useState(false);
   const { loading, error, data } = useQuery(TOPICS);
-
 
   // useEffect(() => {
   //   axios
@@ -36,14 +34,14 @@ function ArticleList({ history }) {
   //     .catch((err) => console.log(err));
   // }, []);
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/topics')
-      .then((res) => {
-        setTopics(res.data.body);
-      })
-      .catch((err) => console.log(err));
-  }, [open]);
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5000/topics')
+  //     .then((res) => {
+  //       setTopics(res.data.body);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [open]);
 
   const goToPage = (topic_id) => {
     history.push(`/topics/${topic_id}`);

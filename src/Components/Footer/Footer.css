@@ -1,5 +1,9 @@
+.footer {
+  color: var(--blue);
+}
+
 .footer-line {
-  border-top: 2px solid #3f51b5;
+  border-top: 2px solid var(--blue);
   width: 100%;
 }
 

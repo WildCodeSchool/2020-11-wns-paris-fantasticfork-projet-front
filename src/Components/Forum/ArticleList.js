@@ -1,20 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery, gql } from '@apollo/client';
 import axios from 'axios';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicForm';
 
+const TOPICS = gql`
+  query Topics {
+    topics {
+      _id
+      username
+      subject
+      body
+      date
+      url
+      tags
+      comments {
+        commentBody
+      }
+    }
+  }
+`;
+
 function ArticleList({ history }) {
   const [topics, setTopics] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const { loading, error, data } = useQuery(TOPICS);
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/topics')
-      .then((res) => {
-        setTopics(res.data.body);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5000/topics')
+  //     .then((res) => {
+  //       setTopics(res.data.body);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   useEffect(() => {
     axios
@@ -29,6 +49,9 @@ function ArticleList({ history }) {
     history.push(`/topics/${topic_id}`);
   };
 
+  if (loading) return <p>LOADING...</p>;
+  if (error) return <p>{`ERROR: ${error}`}</p>;
+
   return (
     <div>
       <div className='flex_' style={{ alignItems: 'center', justifyContent: 'flex-end', marginRight: 20, marginBottom: 20 }}>
@@ -36,8 +59,8 @@ function ArticleList({ history }) {
           Ask a question
         </Button>
       </div>
-      {topics &&
-        topics.map((topic) => {
+      {data.topics &&
+        data.topics.map((topic) => {
           return (
             <div key={topic._id} style={{ margin: 20 }}>
               <Paper onClick={() => goToPage(topic._id)} style={{ padding: 30, paddingRight: 50, paddingLeft: 50 }} elevation={3}>

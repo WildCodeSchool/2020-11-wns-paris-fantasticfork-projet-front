@@ -22,3 +22,7 @@
 .Comment_editbutton_icon{
   margin-right: 5px;
 }
+
+.Comment_sendbutton{
+  color: var(--blue) !important;
+}

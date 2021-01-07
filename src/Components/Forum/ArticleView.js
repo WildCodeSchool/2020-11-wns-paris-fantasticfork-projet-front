@@ -10,25 +10,9 @@ const ArticleView = (props) => {
   const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
 
-  // const TOPIC = gql`
-  //   query Topic ($_id: ID!)  {
-  //     topic(_id: $_id) {
-  //       like
-  //       dislike
-  //     }
-  //   }
-  // `;
-
-  // console.log(data._id);
-
-  // const { loading, error, data: gqlData  } = useQuery(TOPIC, { 
-  //   variables: { _id: data._id },
-  // });
-    // console.log('gqlData: ', gqlData)
-  //place the best comment on the top
   const sortedComments = Array.from(data.comments);
-  const bestComment = data.comments.length ? 
-      data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current))
+  const bestComment = data.comments.length 
+      ? data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current))
       : null;
 
   if (bestComment && sortedComments) {

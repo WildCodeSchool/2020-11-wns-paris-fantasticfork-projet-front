@@ -13,6 +13,8 @@ const TOPICS = gql`
       date
       url
       tags
+      like
+      dislike
       comments {
         commentBody
       }
@@ -52,8 +54,9 @@ function ArticleList({ history }) {
                     {topic.subject ? topic.subject : ''}
                   </Typography>
                   <div style={{ flex: 1 }} />
+                  <p>{topic.like ? topic.like : '0'}</p>
                   <Icon className='blue' style={{ marginRight: 15 }}>
-                    thumb_up
+                  thumb_up
                   </Icon>
                   <Icon className='blue' style={{ marginRight: 15 }}>
                     share

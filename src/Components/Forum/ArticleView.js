@@ -1,6 +1,5 @@
 import React from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
-import { gql, useQuery } from '@apollo/client';
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';

@@ -23,8 +23,15 @@ const UPDATE_COMMENT = gql`
 `;
 
 export default function Comment(props) {
-  const { commentId, date, name, message, like, dislike, best } = props;
+  const { commentId, date, name, message, like, dislike, best, lastUpdateDate, refresh } = props;
   const [updateComment, { loading }] = useMutation(UPDATE_COMMENT);
+
+  const addLike = () => {
+    // console.log(executed);
+    // const likeNumber = like ? like + 1 : 1;
+    // updateComment({ variables: { commentId: commentId, like: likeNumber } });
+    refresh();
+  };
 
   return (
     !loading && (
@@ -36,9 +43,16 @@ export default function Comment(props) {
               <Typography variant='button' className='blue'>
                 {name}
               </Typography>
+
               <Typography variant='caption' className='lightgrey'>
                 Posted on
                 <span className='lightgrey'> {getDateFromTimestamp(date)}</span>
+                {lastUpdateDate && (
+                  <>
+                    "Modified on"
+                    <span className='lightgrey'> {getDateFromTimestamp(lastUpdateDate)}</span>
+                  </>
+                )}
               </Typography>
             </div>
             {best && (
@@ -54,8 +68,8 @@ export default function Comment(props) {
             </Typography>
           </div>
           <div className='Comment_like'>
-            <Button>
-              <Icon className='blue' style={{ marginRight: 5 }}>
+            <Button onClick>
+              <Icon className='blue' style={{ marginRight: 5 }} onClick={addLike}>
                 thumb_up
               </Icon>
               {like && like}

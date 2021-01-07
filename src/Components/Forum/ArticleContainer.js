@@ -29,7 +29,7 @@ const GET_TOPIC = gql`
 
 function ArticleContainer({ match }) {
   const topicId = match.params.id;
-  const { loading, error, data } = useQuery(GET_TOPIC, {
+  const { loading, error, data, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
 
@@ -37,8 +37,8 @@ function ArticleContainer({ match }) {
     loading === false && (
       <Article
         data={data.topic}
-        setNewMessage={() => {
-          console.log('refresh needed');
+        refresh={() => {
+          console.log('refresh');
         }}
       />
     )

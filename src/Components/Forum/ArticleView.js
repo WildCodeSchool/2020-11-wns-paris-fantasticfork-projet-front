@@ -10,14 +10,10 @@ const ArticleView = (props) => {
   const data = props.data;
 
   //place the best comment on the top
-  const sortedComments = data.comments ? Array.from(data.comments) : null;
-  const bestComment = () => {
-    if (data?.comments) {
-      return data.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
-    }
-    return null;
-  };
-  if (bestComment && sortedComments) {
+  const sortedComments = Array.from(data.comments);
+  let bestComment;
+  if (data.comments.length > 0) {
+    bestComment = data.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
     const indexBestComment = data.comments.indexOf(bestComment);
     sortedComments.splice(indexBestComment, 1);
     sortedComments.unshift(bestComment);
@@ -99,7 +95,7 @@ const ArticleView = (props) => {
         </IconButton>
       </div>
       {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
-      {toggle && data?.comment && (
+      {toggle && (
         <>
           {sortedComments?.map((comment, idx) => (
             <div key={idx}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import Comment from './Comment';
 import NewComment from './NewComment';
@@ -31,7 +31,7 @@ const ArticleView = (props) => {
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> {data.date.split('T')[0]}</span>
+                <span className='lightgrey bold'> {data.date.toString()}</span>
               </Typography>
             </div>
           </div>

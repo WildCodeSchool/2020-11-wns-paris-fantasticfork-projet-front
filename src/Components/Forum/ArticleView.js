@@ -1,13 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
 import './Article.css';
 
+const ADD_LIKE_TOPIC = gql `
+mutation AddLikeTopic($_id: ID!, $like: Int) {
+  updateTopic(_id: $_id, like: $like) {
+    like
+    dislike
+  }
+}
+`
+
+const GET_LIKES_TOPIC = gql `
+query GetLikesTopic($_id: ID!) {
+  topic(_id: $_id) {
+    like
+    dislike
+  }
+}
+`
+
 const ArticleView = (props) => {
   const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
+
+  const [ addLikeTopic ] = useMutation(ADD_LIKE_TOPIC);
+  const { loading, error, data: fetchedData, refetch } = useQuery(GET_LIKES_TOPIC, { variables: { _id: data._id }});
+  // const [ likes, setLikes ] = useState(dataBeforeTopicLike.like);
+
+  function handleTopicLike() {
+    refetch();
+    // setLikes(fetchedData.topic.like + 1) ;
+    const likes = fetchedData.topic.like + 1;
+    addLikeTopic({ variables: {_id: data._id, like: likes} });
+    // setLikes(fetchedData.like);
+  }
 
   const sortedComments = Array.from(data.comments);
   const bestComment = data.comments.length 
@@ -57,11 +88,11 @@ const ArticleView = (props) => {
                 ))}
             </div>
             <div style={{ flex: 1 }} />
-            <Button>
+            <Button onClick={ handleTopicLike }>
               <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
               </Icon>
-              { data.like ? data.like : '0' }
+              <div className="likes-count">{ fetchedData.like || (data.like ? data.like : '0') }</div>
             </Button>
             <Button>
               <Icon onClick={() => setHeart()} className='red' style={{ marginRight: 5 }}>
@@ -115,3 +146,4 @@ const ArticleView = (props) => {
 };
 
 export default ArticleView;
+

@@ -8,9 +8,10 @@ import "./App.css";
 
 const menu = [
   { text: "Home", icon: "home", link: "/" },
-  { text: "Home", icon: "home", link: "/" },
-  { text: "Home", icon: "home", link: "/" },
+  { text: "Dashboard", icon: "dashboard", link: "/dashboard" },
+  { text: "My Class", icon: "school", link: "/classroom" },
   { text: "Forum", icon: "forum", link: "/topics" },
+  { text: "Daily", icon: "today", link: "/daily" },
 ];
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Navbar menu={menu} />
       </div>
       <div style={{ width: "100%" }}>
-        <SubNavbar title={menu.text} />
+        <SubNavbar menu={menu} />
         <div
           className="lightgreyBackground"
           style={{ marginTop: 70, padding: 40 }}

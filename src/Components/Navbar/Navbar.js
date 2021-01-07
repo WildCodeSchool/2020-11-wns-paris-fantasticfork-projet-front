@@ -10,7 +10,7 @@ export default function Navbar({ menu }) {
       <div className='flex_column' style={{ height: 230, justifyContent: 'center', alignItems: 'center', marginTop: -20 }}>
         <Avatar src={sampleImage} style={{ width: 80, height: 80, marginBottom: 10 }} />
         <Typography variant='h6' gutterBottom className='blue'>
-          John Stud Edit
+          John Stud
         </Typography>
       </div>
       <List disablePadding dense>

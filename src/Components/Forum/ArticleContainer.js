@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
 import Article from './Article';
 
-const initSchema = {
-  username: '',
-  subject: '',
-  body: '',
-  date: '',
-  url: [],
-  tags: [],
-  responses: [
-    {
-      date: '',
-      name: '',
-      message: '',
-    },
-  ],
-};
+const GET_TOPIC = gql`
+  query Topic($topicId: ID!) {
+    topic(_id: $topicId) {
+      _id
+      username
+      subject
+      body
+      date
+      url
+      tags
+      comments {
+        _id
+        author
+        commentBody
+        topicId
+        date
+        like
+        dislike
+        lastUpdateDate
+      }
+    }
+  }
+`;
 
 function ArticleContainer({ match }) {
-  const [topic, setTopic] = useState(initSchema);
+  const topicId = match.params.id;
+  const { loading, error, data } = useQuery(GET_TOPIC, {
+    variables: { topicId },
+  });
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/topic/${match.params.id}`)
-      .then((res) => {
-        setTopic(res.data.body);
-      })
-      .catch((err) => console.log(err));
-  }, [match.params.id]);
-
-  const loadNewMessage = () => {
-    console.log('executed');
-    axios
-      .get(`http://localhost:5000/topic/${match.params.id}`)
-      .then((res) => {
-        console.log(res.data.body);
-        setTopic(res.data.body);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  return <Article data={topic} setNewMessage={() => loadNewMessage()} />;
+  return (
+    loading === false && (
+      <Article
+        data={data.topic}
+        setNewMessage={() => {
+          console.log('refresh needed');
+        }}
+      />
+    )
+  );
 }
 
 export default ArticleContainer;

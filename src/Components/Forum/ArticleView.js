@@ -3,13 +3,20 @@ import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from 
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
-
 import './Article.css';
 
 const ArticleView = (props) => {
-  const { data, heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const data = props.data;
 
-  // const [toggleWrite, setToggleWrite] = useState(false);
+  //place the best comment on the top
+  const sortedComments = Array.from(data.comments);
+  const bestComment = data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current));
+  if (bestComment && sortedComments) {
+    const indexBestComment = data.comments.indexOf(bestComment);
+    sortedComments.splice(indexBestComment, 1);
+    sortedComments.unshift(bestComment);
+  }
 
   return (
     <div className='Article'>
@@ -24,7 +31,7 @@ const ArticleView = (props) => {
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> {data.date.split('T')[0]}</span>
+                <span className='lightgrey bold'> {data.date.toString()}</span>
               </Typography>
             </div>
           </div>
@@ -66,7 +73,7 @@ const ArticleView = (props) => {
       <div className='Article_comment_info' elevation={0}>
         <Icon className='blue'>comment</Icon>
         <Typography variant='button' className='blue' style={{ marginLeft: 10 }}>
-          {data.responses.length} Answers
+          {data.comments.length} Answers
         </Typography>
         <div style={{ flex: 1 }} />
         {!toggleWrite && (
@@ -89,12 +96,16 @@ const ArticleView = (props) => {
       {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} cancel={() => closeToggleWrite()} />}
       {toggle && (
         <>
-          {data.responses.length > 0 &&
-            data.responses.map((res, idx) => (
-              <div key={idx}>
-                <Comment date={res.date && res.date.split('T')[0]} name={res.name} message={res.message} best={idx === 0 ? true : null} />
-              </div>
-            ))}
+          {sortedComments?.map((comment, idx) => (
+            <div key={idx}>
+              <Comment
+                date={comment.date?.split('T')[0]}
+                name={comment.author}
+                message={comment.commentBody}
+                best={comment._id === bestComment._id ? true : null}
+              />
+            </div>
+          ))}
         </>
       )}
     </div>

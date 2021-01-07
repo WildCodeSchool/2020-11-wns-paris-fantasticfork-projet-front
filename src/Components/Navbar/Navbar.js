@@ -17,7 +17,7 @@ export default function Navbar({ menu }) {
         {menu.map((elem, idx) => (
           <ListItem key={idx} button style={{ height: 50, marginBottom: 5 }} component={Link} to={elem.link}>
             <ListItemIcon style={{ marginLeft: 20 }}>
-              <Icon fontSize='medium'>{elem.icon}</Icon>
+              <Icon fontSize='default'>{elem.icon}</Icon>
             </ListItemIcon>
             <ListItemText primary={elem.text} />
           </ListItem>

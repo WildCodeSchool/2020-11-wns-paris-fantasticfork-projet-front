@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { Paper, Icon, Avatar, Chip, Typography, Button } from '@material-ui/core';
-import NewComment from './NewComment';
+import React from 'react';
+import { Paper, Icon, Avatar, Chip, Typography } from '@material-ui/core';
 import './Comment.css';
 
 export default function Comment({ date, name, message, best }) {
-  const [reply, setReply] = useState(false);
   return (
     <>
       <Paper className='Comment_container' elevation={3}>
@@ -31,15 +29,7 @@ export default function Comment({ date, name, message, best }) {
             {message}
           </Typography>
         </div>
-        <div className='Comment_element'>
-          {!reply && (
-            <Button size='small' style={{ color: '#9e9e9e' }} onClick={() => setReply(true)}>
-              <Icon fontSize={'small'}>subdirectory_arrow_right</Icon>reply
-            </Button>
-          )}
-        </div>
       </Paper>
-      {reply && <NewComment reply={true} />}
     </>
   );
 }

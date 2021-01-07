@@ -6,12 +6,17 @@ import sampleImage from '../../images/cat.jpg';
 import './Article.css';
 
 const ArticleView = (props) => {
-  const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const { heart, setHeart, setToggle, toggle, refresh, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
 
   //place the best comment on the top
-  const sortedComments = Array.from(data.comments);
-  const bestComment = data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current));
+  const sortedComments = data.comments ? Array.from(data.comments) : null;
+  const bestComment = () => {
+    if (data?.comments) {
+      return data.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
+    }
+    return null;
+  };
   if (bestComment && sortedComments) {
     const indexBestComment = data.comments.indexOf(bestComment);
     sortedComments.splice(indexBestComment, 1);
@@ -93,8 +98,8 @@ const ArticleView = (props) => {
           <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
-      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} cancel={() => closeToggleWrite()} />}
-      {toggle && (
+      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
+      {toggle && data?.comment && (
         <>
           {sortedComments?.map((comment, idx) => (
             <div key={idx}>
@@ -106,6 +111,7 @@ const ArticleView = (props) => {
                 like={comment.like}
                 dislike={comment.dislike}
                 lastUpdateDate={comment.lastUpdateDate}
+                refresh={() => refresh()}
                 best={comment._id === bestComment._id ? true : null}
               />
             </div>

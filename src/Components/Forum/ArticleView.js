@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
+import { gql, useQuery } from '@apollo/client';
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
@@ -9,9 +10,27 @@ const ArticleView = (props) => {
   const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
 
+  // const TOPIC = gql`
+  //   query Topic ($_id: ID!)  {
+  //     topic(_id: $_id) {
+  //       like
+  //       dislike
+  //     }
+  //   }
+  // `;
+
+  // console.log(data._id);
+
+  // const { loading, error, data: gqlData  } = useQuery(TOPIC, { 
+  //   variables: { _id: data._id },
+  // });
+    // console.log('gqlData: ', gqlData)
   //place the best comment on the top
   const sortedComments = Array.from(data.comments);
-  const bestComment = data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current));
+  const bestComment = data.comments.length ? 
+      data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current))
+      : null;
+
   if (bestComment && sortedComments) {
     const indexBestComment = data.comments.indexOf(bestComment);
     sortedComments.splice(indexBestComment, 1);
@@ -59,7 +78,7 @@ const ArticleView = (props) => {
               <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
               </Icon>
-              3
+              { data.like ? data.like : '0' }
             </Button>
             <Button>
               <Icon onClick={() => setHeart()} className='red' style={{ marginRight: 5 }}>

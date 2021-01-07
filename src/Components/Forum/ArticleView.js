@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Comment from './Comment';
@@ -30,14 +30,11 @@ const ArticleView = (props) => {
 
   const [ addLikeTopic ] = useMutation(ADD_LIKE_TOPIC);
   const { loading, error, data: fetchedData, refetch } = useQuery(GET_LIKES_TOPIC, { variables: { _id: data._id }});
-  // const [ likes, setLikes ] = useState(dataBeforeTopicLike.like);
 
   function handleTopicLike() {
     refetch();
-    // setLikes(fetchedData.topic.like + 1) ;
     const likes = fetchedData.topic.like + 1;
     addLikeTopic({ variables: {_id: data._id, like: likes} });
-    // setLikes(fetchedData.like);
   }
 
   const sortedComments = Array.from(data.comments);

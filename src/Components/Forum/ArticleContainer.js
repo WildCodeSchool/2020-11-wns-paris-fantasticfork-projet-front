@@ -12,6 +12,8 @@ const GET_TOPIC = gql`
       date
       url
       tags
+      like
+      dislike
       comments {
         _id
         author

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Paper, Icon, Avatar, Chip, Typography } from '@material-ui/core';
+import { Paper, Icon, Avatar, Chip, Typography, Button } from '@material-ui/core';
 import './Comment.css';
 
-export default function Comment({ date, name, message, best }) {
+export default function Comment(props) {
+  const { commentId, date, name, message, like, dislike, best } = props;
   return (
     <>
       <Paper className='Comment_container' elevation={3}>
@@ -14,7 +15,7 @@ export default function Comment({ date, name, message, best }) {
             </Typography>
             <Typography variant='caption' className='lightgrey'>
               Posted on
-              <span className='lightgrey'> {date}</span>
+              <span className='lightgrey'> {getDateFromTimestamp(date)}</span>
             </Typography>
           </div>
           {best && (
@@ -29,7 +30,36 @@ export default function Comment({ date, name, message, best }) {
             {message}
           </Typography>
         </div>
+        <div className='Comment_like'>
+          <Button>
+            <Icon className='blue' style={{ marginRight: 5 }}>
+              thumb_up
+            </Icon>
+            {like && like}
+          </Button>
+          <Button>
+            <Icon className='blue' style={{ marginRight: 5 }}>
+              thumb_down
+            </Icon>
+            {dislike && dislike}
+          </Button>
+          <div className='flex1' />
+          <Button size='small' className='Comment_editbutton' onClick={() => {}}>
+            <Icon fontSize={'small'} className='Comment_editbutton_icon'>
+              edit
+            </Icon>
+            edit
+          </Button>
+        </div>
       </Paper>
     </>
   );
 }
+
+const getDateFromTimestamp = (timestamp) => {
+  const date = new Date(Date(timestamp)).toLocaleDateString('fr-FR');
+  const hours = new Date(Date(timestamp)).getHours('fr-FR');
+  const minutes = new Date(Date(timestamp)).getMinutes('fr-FR');
+
+  return `${date} - ${hours}:${minutes}`;
+};

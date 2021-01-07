@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import Article from './Article';
 
+// prettier-ignore
 const GET_TOPIC = gql`
   query Topic($topicId: ID!) {
     topic(_id: $topicId) {

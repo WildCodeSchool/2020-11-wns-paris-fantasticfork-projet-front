@@ -54,7 +54,7 @@ const ArticleView = (props) => {
                   <Chip key={idx} label={t} variant='outlined' style={{ marginRight: 5 }} color={idx % 2 === 0 ? 'primary' : 'secondary'} />
                 ))}
             </div>
-            <div style={{ flex: 1 }} />
+            <div className='flex1' />
             <Button>
               <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
@@ -99,9 +99,13 @@ const ArticleView = (props) => {
           {sortedComments?.map((comment, idx) => (
             <div key={idx}>
               <Comment
-                date={comment.date?.split('T')[0]}
+                commentId={comment._id}
                 name={comment.author}
                 message={comment.commentBody}
+                date={comment.date}
+                like={comment.like}
+                dislike={comment.dislike}
+                lastUpdateDate={comment.lastUpdateDate}
                 best={comment._id === bestComment._id ? true : null}
               />
             </div>

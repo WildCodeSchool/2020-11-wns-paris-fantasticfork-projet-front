@@ -10,9 +10,9 @@ function Article({ data, refresh }) {
     <ArticleView
       data={data}
       heart={heart}
+      setHeart={() => setHeart(!heart)}
       toggle={toggle}
       toggleWrite={toggleWrite}
-      setHeart={() => setHeart(!heart)}
       setToggle={() => setToggle(!toggle)}
       openToggleWrite={() => setToggleWrite(true)}
       closeToggleWrite={() => setToggleWrite(false)}

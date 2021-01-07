@@ -27,9 +27,8 @@ export default function Comment(props) {
   const [updateComment, { loading }] = useMutation(UPDATE_COMMENT);
 
   const addLike = () => {
-    // console.log(executed);
-    // const likeNumber = like ? like + 1 : 1;
-    // updateComment({ variables: { commentId: commentId, like: likeNumber } });
+    const likeNumber = like ? like + 1 : 1;
+    updateComment({ variables: { commentId: commentId, like: likeNumber } });
     refresh();
   };
 
@@ -68,8 +67,8 @@ export default function Comment(props) {
             </Typography>
           </div>
           <div className='Comment_like'>
-            <Button onClick>
-              <Icon className='blue' style={{ marginRight: 5 }} onClick={addLike}>
+            <Button onClick={addLike}>
+              <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
               </Icon>
               {like && like}

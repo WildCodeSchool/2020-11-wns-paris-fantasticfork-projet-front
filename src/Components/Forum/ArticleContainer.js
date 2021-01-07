@@ -33,16 +33,7 @@ function ArticleContainer({ match }) {
     variables: { topicId },
   });
 
-  return (
-    loading === false && (
-      <Article
-        data={data.topic}
-        refresh={() => {
-          console.log('refresh');
-        }}
-      />
-    )
-  );
+  return loading === false && <Article data={data.topic} refresh={() => refetch()} />;
 }
 
 export default ArticleContainer;

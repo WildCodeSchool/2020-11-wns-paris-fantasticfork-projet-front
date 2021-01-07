@@ -95,9 +95,9 @@ const ArticleView = (props) => {
         </IconButton>
       </div>
       {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
-      {toggle && (
+      {toggle && sortedComments && (
         <>
-          {sortedComments?.map((comment, idx) => (
+          {sortedComments.map((comment, idx) => (
             <div key={idx}>
               <Comment
                 commentId={comment._id}

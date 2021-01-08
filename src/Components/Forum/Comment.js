@@ -130,10 +130,12 @@ export default function Comment(props) {
   );
 }
 
-const getDateFromTimestamp = (timestamp) => {
-  const date = new Date(Date(timestamp)).toLocaleDateString('fr-FR');
-  const hours = new Date(Date(timestamp)).getHours('fr-FR');
-  const minutes = new Date(Date(timestamp)).getMinutes('fr-FR');
+const getDateFromTimestamp = (dateString) => {
+  const date = new Date(dateString);
 
-  return `${date} ${hours}:${minutes}`;
+  const day = new Date(date).toLocaleDateString('fr-FR');
+  const hours = new Date(date).getHours();
+  const minutes = new Date(date).getMinutes();
+
+  return `${day} - ${hours}:${minutes}`;
 };

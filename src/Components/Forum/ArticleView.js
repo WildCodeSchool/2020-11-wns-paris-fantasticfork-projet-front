@@ -6,13 +6,14 @@ import sampleImage from '../../images/cat.jpg';
 import './Article.css';
 
 const ArticleView = (props) => {
-  const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const { heart, setHeart, setToggle, toggle, refresh, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
 
   //place the best comment on the top
   const sortedComments = Array.from(data.comments);
-  const bestComment = data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current));
-  if (bestComment && sortedComments) {
+  let bestComment;
+  if (data.comments.length > 0) {
+    bestComment = data.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
     const indexBestComment = data.comments.indexOf(bestComment);
     sortedComments.splice(indexBestComment, 1);
     sortedComments.unshift(bestComment);
@@ -54,7 +55,7 @@ const ArticleView = (props) => {
                   <Chip key={idx} label={t} variant='outlined' style={{ marginRight: 5 }} color={idx % 2 === 0 ? 'primary' : 'secondary'} />
                 ))}
             </div>
-            <div style={{ flex: 1 }} />
+            <div className='flex1' />
             <Button>
               <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
@@ -93,15 +94,20 @@ const ArticleView = (props) => {
           <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
-      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} cancel={() => closeToggleWrite()} />}
-      {toggle && (
+      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
+      {toggle && sortedComments && (
         <>
-          {sortedComments?.map((comment, idx) => (
+          {sortedComments.map((comment, idx) => (
             <div key={idx}>
               <Comment
-                date={comment.date?.split('T')[0]}
+                commentId={comment._id}
                 name={comment.author}
                 message={comment.commentBody}
+                date={comment.date}
+                like={comment.like}
+                dislike={comment.dislike}
+                lastUpdateDate={comment.lastUpdateDate}
+                refresh={() => refresh()}
                 best={comment._id === bestComment._id ? true : null}
               />
             </div>

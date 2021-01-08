@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicForm';
+import { getDateFromTimestamp } from './utils/functions';
 
 const TOPICS = gql`
   query Topics {
@@ -103,11 +104,3 @@ function ArticleList({ history }) {
 }
 
 export default ArticleList;
-
-function getDateFromTimestamp(timestamp) {
-  const date = new Date(Date(timestamp)).toLocaleDateString('fr-FR');
-  const hours = new Date(Date(timestamp)).getHours('fr-FR');
-  const minutes = new Date(Date(timestamp)).getMinutes('fr-FR');
-
-  return `${date} - ${hours}:${minutes}`;
-}

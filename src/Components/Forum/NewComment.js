@@ -39,10 +39,10 @@ export default function NewComment({ reply, topic_id, uploaded, cancel }) {
         />
         <div className='NewComment_button_container'>
           <IconButton style={{ marginRight: 0 }} color='primary' onClick={submitCommment}>
-            <Icon>create</Icon>
+            <Icon>send</Icon>
           </IconButton>
           <IconButton style={{ marginRight: 0 }} color='primary' onClick={cancel}>
-            <Icon>cancel</Icon>
+            <Icon>close</Icon>
           </IconButton>
         </div>
       </Paper>

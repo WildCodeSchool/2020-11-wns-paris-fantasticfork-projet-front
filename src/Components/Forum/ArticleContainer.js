@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import Article from './Article';
 
+// prettier-ignore
 const GET_TOPIC = gql`
   query Topic($topicId: ID!) {
     topic(_id: $topicId) {
@@ -30,20 +31,11 @@ const GET_TOPIC = gql`
 
 function ArticleContainer({ match }) {
   const topicId = match.params.id;
-  const { loading, error, data } = useQuery(GET_TOPIC, {
+  const { loading, error, data, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
 
-  return (
-    loading === false && (
-      <Article
-        data={data.topic}
-        setNewMessage={() => {
-          console.log('refresh needed');
-        }}
-      />
-    )
-  );
+  return loading === false && <Article data={data.topic} refresh={() => refetch()} />;
 }
 
 export default ArticleContainer;

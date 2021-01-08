@@ -5,6 +5,7 @@ import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
 import './Article.css';
+import { getDateFromTimestamp } from './utils/functions';
 
 const ADD_LIKE_TOPIC = gql `
 mutation AddLikeTopic($_id: ID!, $like: Int) {
@@ -25,8 +26,9 @@ query GetLikesTopic($_id: ID!) {
 `
 
 const ArticleView = (props) => {
-  const { heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const { heart, setHeart, setToggle, toggle, refresh, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
+  console.log(data.date)
 
   const [ addLikeTopic ] = useMutation(ADD_LIKE_TOPIC);
   const { loading, error, data: fetchedData, refetch } = useQuery(GET_LIKES_TOPIC, { variables: { _id: data._id }});
@@ -38,11 +40,11 @@ const ArticleView = (props) => {
   }
 
   const sortedComments = Array.from(data.comments);
-  const bestComment = data.comments.length 
-      ? data.comments?.reduce((prev, current) => (prev.like > current.like ? prev : current))
-      : null;
 
-  if (bestComment && sortedComments) {
+  let bestComment;
+  if (data.comments.length > 0) {
+    bestComment = data.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
+		
     const indexBestComment = data.comments.indexOf(bestComment);
     sortedComments.splice(indexBestComment, 1);
     sortedComments.unshift(bestComment);
@@ -61,7 +63,7 @@ const ArticleView = (props) => {
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> {data.date.toString()}</span>
+                <span className='lightgrey bold'> {getDateFromTimestamp(data.date)}</span>
               </Typography>
             </div>
           </div>
@@ -84,8 +86,10 @@ const ArticleView = (props) => {
                   <Chip key={idx} label={t} variant='outlined' style={{ marginRight: 5 }} color={idx % 2 === 0 ? 'primary' : 'secondary'} />
                 ))}
             </div>
+
             <div style={{ flex: 1 }} />
             <Button onClick={ handleTopicLike }>
+
               <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
               </Icon>
@@ -123,15 +127,20 @@ const ArticleView = (props) => {
           <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
-      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} cancel={() => closeToggleWrite()} />}
-      {toggle && (
+      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
+      {toggle && sortedComments && (
         <>
-          {sortedComments?.map((comment, idx) => (
+          {sortedComments.map((comment, idx) => (
             <div key={idx}>
               <Comment
-                date={comment.date?.split('T')[0]}
+                commentId={comment._id}
                 name={comment.author}
                 message={comment.commentBody}
+                date={comment.date}
+                like={comment.like}
+                dislike={comment.dislike}
+                lastUpdateDate={comment.lastUpdateDate}
+                refresh={() => refresh()}
                 best={comment._id === bestComment._id ? true : null}
               />
             </div>

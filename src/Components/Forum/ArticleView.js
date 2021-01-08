@@ -4,10 +4,12 @@ import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
 import './Article.css';
+import { getDateFromTimestamp } from './utils/functions';
 
 const ArticleView = (props) => {
   const { heart, setHeart, setToggle, toggle, refresh, toggleWrite, openToggleWrite, closeToggleWrite } = props;
   const data = props.data;
+  console.log(data.date)
 
   //place the best comment on the top
   const sortedComments = Array.from(data.comments);
@@ -32,7 +34,7 @@ const ArticleView = (props) => {
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> {data.date.toString()}</span>
+                <span className='lightgrey bold'> {getDateFromTimestamp(data.date)}</span>
               </Typography>
             </div>
           </div>

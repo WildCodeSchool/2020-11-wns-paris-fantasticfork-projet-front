@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Paper, TextField, Icon, IconButton } from '@material-ui/core';
 import { gql, useMutation } from '@apollo/client';
-
 import './TopicForm.css';
 
 const ADD_TOPIC = gql`

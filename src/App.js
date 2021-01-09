@@ -14,7 +14,7 @@ const menu = [
 ];
 
 const client = new ApolloClient({
-  uri: 'https://stud-connect-back.herokuapp.com/graphql',
+  uri: 'https://stud-connect.herokuapp.com/graphql',
   cache: new InMemoryCache(),
 });
 

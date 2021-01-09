@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicForm';
+import { getDateFromTimestamp } from './utils/functions';
 
 const TOPICS = gql`
   query Topics {
@@ -13,6 +14,8 @@ const TOPICS = gql`
       date
       url
       tags
+      like
+      dislike
       comments {
         commentBody
       }
@@ -52,8 +55,9 @@ function ArticleList({ history }) {
                     {topic.subject ? topic.subject : ''}
                   </Typography>
                   <div style={{ flex: 1 }} />
+                  <p>{topic.like ? topic.like : '0'}</p>
                   <Icon className='blue' style={{ marginRight: 15 }}>
-                    thumb_up
+                  thumb_up
                   </Icon>
                   <Icon className='blue' style={{ marginRight: 15 }}>
                     share
@@ -100,11 +104,3 @@ function ArticleList({ history }) {
 }
 
 export default ArticleList;
-
-function getDateFromTimestamp(timestamp) {
-  const date = new Date(Date(timestamp)).toLocaleDateString('fr-FR');
-  const hours = new Date(Date(timestamp)).getHours('fr-FR');
-  const minutes = new Date(Date(timestamp)).getMinutes('fr-FR');
-
-  return `${date} - ${hours}:${minutes}`;
-}

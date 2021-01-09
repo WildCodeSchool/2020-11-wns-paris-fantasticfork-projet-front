@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@material-ui/core';
 import './Comment.css';
+import { getDateFromTimestamp } from './utils/functions';
 
 // prettier-ignore
 const UPDATE_COMMENT = gql`
@@ -129,11 +130,3 @@ export default function Comment(props) {
     )
   );
 }
-
-const getDateFromTimestamp = (timestamp) => {
-  const date = new Date(Date(timestamp)).toLocaleDateString('fr-FR');
-  const hours = new Date(Date(timestamp)).getHours('fr-FR');
-  const minutes = new Date(Date(timestamp)).getMinutes('fr-FR');
-
-  return `${date} ${hours}:${minutes}`;
-};

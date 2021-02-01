@@ -1,15 +1,54 @@
 import React from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import Comment from './Comment';
 import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
-
 import './Article.css';
+import { getDateFromTimestamp } from './utils/functions';
+
+const ADD_LIKE_TOPIC = gql `
+mutation AddLikeTopic($_id: ID!, $like: Int) {
+  updateTopic(_id: $_id, like: $like) {
+    like
+    dislike
+  }
+}
+`
+
+const GET_LIKES_TOPIC = gql `
+query GetLikesTopic($_id: ID!) {
+  topic(_id: $_id) {
+    like
+    dislike
+  }
+}
+`
 
 const ArticleView = (props) => {
-  const { data, heart, setHeart, setToggle, toggle, setNewMessage, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const { heart, setHeart, setToggle, toggle, refresh, toggleWrite, openToggleWrite, closeToggleWrite } = props;
+  const data = props.data;
+  console.log(data.date)
 
-  // const [toggleWrite, setToggleWrite] = useState(false);
+  const [ addLikeTopic ] = useMutation(ADD_LIKE_TOPIC);
+  const { loading, error, data: fetchedData, refetch } = useQuery(GET_LIKES_TOPIC, { variables: { _id: data._id }});
+
+  function handleTopicLike() {
+    refetch();
+    const likes = fetchedData.topic.like + 1;
+    addLikeTopic({ variables: {_id: data._id, like: likes} });
+  }
+
+  const sortedComments = Array.from(data.comments);
+
+  let bestComment;
+  if (data.comments.length > 0) {
+    bestComment = data.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
+		
+    const indexBestComment = data.comments.indexOf(bestComment);
+    sortedComments.splice(indexBestComment, 1);
+    sortedComments.unshift(bestComment);
+  }
 
   return (
     <div className='Article'>
@@ -24,7 +63,7 @@ const ArticleView = (props) => {
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> {data.date.split('T')[0]}</span>
+                <span className='lightgrey bold'> {getDateFromTimestamp(data.date)}</span>
               </Typography>
             </div>
           </div>
@@ -47,12 +86,14 @@ const ArticleView = (props) => {
                   <Chip key={idx} label={t} variant='outlined' style={{ marginRight: 5 }} color={idx % 2 === 0 ? 'primary' : 'secondary'} />
                 ))}
             </div>
+
             <div style={{ flex: 1 }} />
-            <Button>
+            <Button onClick={ handleTopicLike }>
+
               <Icon className='blue' style={{ marginRight: 5 }}>
                 thumb_up
               </Icon>
-              3
+              <div className="likes-count">{ fetchedData.like || (data.like ? data.like : '0') }</div>
             </Button>
             <Button>
               <Icon onClick={() => setHeart()} className='red' style={{ marginRight: 5 }}>
@@ -66,7 +107,7 @@ const ArticleView = (props) => {
       <div className='Article_comment_info' elevation={0}>
         <Icon className='blue'>comment</Icon>
         <Typography variant='button' className='blue' style={{ marginLeft: 10 }}>
-          {data.responses.length} Answers
+          {data.comments.length} Answers
         </Typography>
         <div style={{ flex: 1 }} />
         {!toggleWrite && (
@@ -86,15 +127,24 @@ const ArticleView = (props) => {
           <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
-      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => setNewMessage()} cancel={() => closeToggleWrite()} />}
-      {toggle && (
+      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
+      {toggle && sortedComments && (
         <>
-          {data.responses.length > 0 &&
-            data.responses.map((res, idx) => (
-              <div key={idx}>
-                <Comment date={res.date && res.date.split('T')[0]} name={res.name} message={res.message} best={idx === 0 ? true : null} />
-              </div>
-            ))}
+          {sortedComments.map((comment, idx) => (
+            <div key={idx}>
+              <Comment
+                commentId={comment._id}
+                name={comment.author}
+                message={comment.commentBody}
+                date={comment.date}
+                like={comment.like}
+                dislike={comment.dislike}
+                lastUpdateDate={comment.lastUpdateDate}
+                refresh={() => refresh()}
+                best={comment._id === bestComment._id ? true : null}
+              />
+            </div>
+          ))}
         </>
       )}
     </div>
@@ -102,3 +152,4 @@ const ArticleView = (props) => {
 };
 
 export default ArticleView;
+

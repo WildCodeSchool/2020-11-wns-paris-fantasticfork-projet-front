@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ArticleView from './ArticleView';
 
-function Article({ data, setNewMessage }) {
+function Article({ data, refresh }) {
   const [heart, setHeart] = useState(false);
   const [toggle, setToggle] = useState(true);
   const [toggleWrite, setToggleWrite] = useState(false);
@@ -10,13 +10,13 @@ function Article({ data, setNewMessage }) {
     <ArticleView
       data={data}
       heart={heart}
+      setHeart={() => setHeart(!heart)}
       toggle={toggle}
       toggleWrite={toggleWrite}
-      setHeart={() => setHeart(!heart)}
       setToggle={() => setToggle(!toggle)}
       openToggleWrite={() => setToggleWrite(true)}
       closeToggleWrite={() => setToggleWrite(false)}
-      setNewMessage={() => setNewMessage(true)}
+      refresh={() => refresh()}
     />
   );
 }

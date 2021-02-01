@@ -1,33 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useQuery, gql } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicForm';
+import { getDateFromTimestamp } from './utils/functions';
+
+const TOPICS = gql`
+  query Topics {
+    topics {
+      _id
+      username
+      subject
+      body
+      date
+      url
+      tags
+      like
+      dislike
+      comments {
+        commentBody
+      }
+    }
+  }
+`;
 
 function ArticleList({ history }) {
-  const [topics, setTopics] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const { loading, error, data, refetch } = useQuery(TOPICS);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/topics')
-      .then((res) => {
-        setTopics(res.data.body);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/topics')
-      .then((res) => {
-        setTopics(res.data.body);
-      })
-      .catch((err) => console.log(err));
+    refetch();
   }, [open]);
 
   const goToPage = (topic_id) => {
     history.push(`/topics/${topic_id}`);
   };
+
+  if (loading) return <p>LOADING...</p>;
+  if (error) return <p>{`ERROR: ${error}`}</p>;
 
   return (
     <div>
@@ -36,8 +45,8 @@ function ArticleList({ history }) {
           Ask a question
         </Button>
       </div>
-      {topics &&
-        topics.map((topic) => {
+      {data.topics &&
+        data.topics.map((topic) => {
           return (
             <div key={topic._id} style={{ margin: 20 }}>
               <Paper onClick={() => goToPage(topic._id)} style={{ padding: 30, paddingRight: 50, paddingLeft: 50 }} elevation={3}>
@@ -46,9 +55,13 @@ function ArticleList({ history }) {
                     {topic.subject ? topic.subject : ''}
                   </Typography>
                   <div style={{ flex: 1 }} />
-                  <Icon className='blue' style={{ marginRight: 15 }}>
+                  
+                  <Button>
+                    <div style={{'margin-right': 5}}>{topic.like ? topic.like : '0'}</div>
+                    <Icon className='blue' style={{ marginRight: 15 }}>
                     thumb_up
-                  </Icon>
+                    </Icon>
+                  </Button>
                   <Icon className='blue' style={{ marginRight: 15 }}>
                     share
                   </Icon>
@@ -65,7 +78,7 @@ function ArticleList({ history }) {
                     {topic.username}
                   </Typography>
                   <Typography variant='overline' className='lightgrey'>
-                    {topic.date.split('T')[0]}
+                    {getDateFromTimestamp(topic.date)}
                   </Typography>
                   <div style={{ flex: 1 }} />
                   {topic.tags.length > 0 &&

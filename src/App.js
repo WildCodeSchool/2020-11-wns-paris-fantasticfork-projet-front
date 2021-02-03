@@ -1,3 +1,4 @@
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Navbar from './Components/Navbar/Navbar';
@@ -7,11 +8,11 @@ import ArticleList from './Components/Forum/ArticleList';
 import './App.css';
 
 const menu = [
-  { text: "Home", icon: "home", link: "/" },
-  { text: "Dashboard", icon: "dashboard", link: "/dashboard" },
-  { text: "My Class", icon: "school", link: "/classroom" },
-  { text: "Forum", icon: "forum", link: "/topics" },
-  { text: "Daily", icon: "today", link: "/daily" },
+  { text: 'Home', icon: 'home', link: '/' },
+  { text: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
+  { text: 'My Class', icon: 'school', link: '/classroom' },
+  { text: 'Forum', icon: 'forum', link: '/topics' },
+  { text: 'Daily', icon: 'today', link: '/daily' },
 ];
 
 const client = new ApolloClient({

@@ -32,7 +32,8 @@ const GET_TOPIC = gql`
 
 function ArticleContainer({ match }) {
   const topicId = match.params.id;
-  const { loading, error, data, refetch } = useQuery(GET_TOPIC, {
+  // eslint-disable-next-line no-unused-vars
+  const { loading, data, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
 

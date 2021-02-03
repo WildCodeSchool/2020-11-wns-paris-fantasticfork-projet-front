@@ -8,3 +8,27 @@
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.Navbar_profile {
+  height: 230px;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.Navbar_img{
+  width: 80px !important; 
+  height: 80px !important;
+  margin-bottom: 10px;
+}
+
+
+
+.Navbar_menu_item {
+  height: 50px;
+  margin-bottom: 5px !important;
+}
+
+.Navbar_menu_icon {
+  margin-left: 20px;
+}

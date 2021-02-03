@@ -40,7 +40,7 @@ function ArticleList({ history }) {
   if (error) return <p>{`ERROR: ${error}`}</p>;
 
   return (
-    <div style={{ height: '100%' }}>
+    <div>
       <SubNavbar title='Forum' />
       <div
         className='flex_ pageContainer'

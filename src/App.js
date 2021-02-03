@@ -23,11 +23,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className='flex_ lightgreyBackground' style={{ height: '100vh', width: '100%' }}>
+      <div className='flex_ lightgreyBackground'>
         <div style={{ width: 200 }}>
           <Navbar menu={menu} />
         </div>
-        <div className='lightgreyBackground' style={{ height: '100%', width: 'calc(100% - 200px)' }}>
+        <div className='lightgreyBackground' style={{ width: 'calc(100% - 200px)' }}>
           <Switch>
             <Route exact path='/' component={ArticleList} />
             <Route exact path='/register' component={Register} />

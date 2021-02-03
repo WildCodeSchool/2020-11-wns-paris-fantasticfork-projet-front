@@ -6,7 +6,7 @@ import NewComment from './NewComment';
 import sampleImage from '../../images/cat.jpg';
 import './Article.css';
 import { getDateFromTimestamp } from './helpers/dates';
-import ModifyTopicForm from './ModifyTopicForm';
+import TopicForm from './TopicForm';
 
 const ADD_LIKE_TOPIC = gql `
 mutation AddLikeTopic($_id: ID!, $like: Int) {
@@ -60,7 +60,7 @@ const ArticleView = (props) => {
     <div className='Article'>
       {
         modifiyFormOpened ?
-        <ModifyTopicForm articleData={data} close={() => setModifyFormOpened(false)} /> :
+        <TopicForm mode="update_topic" topicData={data} close={() => setModifyFormOpened(false)} /> :
         
         
         <Paper className='Article_container' elevation={3}>

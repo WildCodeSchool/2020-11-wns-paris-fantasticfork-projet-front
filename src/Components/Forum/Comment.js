@@ -4,22 +4,11 @@ import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@mater
 import './Comment.css';
 import getDateFromTimestamp from './helpers/dates';
 
-// prettier-ignore
 const UPDATE_COMMENT = gql`
-  mutation updateComment(
-    $commentId: ID!, 
-    $commentBody: String, 
-    $like: Int, 
-    $dislike: Int, 
-    ) {
-      updateComment(
-        commentId: $commentId, 
-        commentBody: $commentBody, 
-        like: $like, 
-        dislike: $dislike, 
-      ) {
-          lastUpdateDate
-        }
+  mutation updateComment($commentId: ID!, $commentBody: String, $like: Int, $dislike: Int) {
+    updateComment(commentId: $commentId, commentBody: $commentBody, like: $like, dislike: $dislike) {
+      lastUpdateDate
+    }
   }
 `;
 

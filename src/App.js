@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Navbar from './Components/Navbar/Navbar';
-import SubNavbar from './Components/Navbar/SubNavbar';
+import Register from './Components/Auth/Register';
 import ArticleContainer from './Components/Forum/ArticleContainer';
 import ArticleList from './Components/Forum/ArticleList';
 import './App.css';
@@ -27,15 +27,13 @@ function App() {
         <div style={{ width: 200 }}>
           <Navbar menu={menu} />
         </div>
-        <div style={{ width: '100%' }}>
-          <SubNavbar menu={menu} />
-          <div className='lightgreyBackground' style={{ marginTop: 70, padding: 40 }}>
-            <Switch>
-              <Route exact path='/' component={ArticleList} />
-              <Route exact path='/topics' history component={ArticleList} />
-              <Route path='/topics/:id' component={ArticleContainer} />
-            </Switch>
-          </div>
+        <div className='lightgreyBackground' style={{ height: '100%', width: 'calc(100% - 200px)' }}>
+          <Switch>
+            <Route exact path='/' component={ArticleList} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/topics' history component={ArticleList} />
+            <Route path='/topics/:id' component={ArticleContainer} />
+          </Switch>
         </div>
       </div>
     </ApolloProvider>

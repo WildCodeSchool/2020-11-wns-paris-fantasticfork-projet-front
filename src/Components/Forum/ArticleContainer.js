@@ -11,6 +11,7 @@ const GET_TOPIC = gql`
       subject
       body
       date
+      lastUpdateDate
       url
       tags
       like

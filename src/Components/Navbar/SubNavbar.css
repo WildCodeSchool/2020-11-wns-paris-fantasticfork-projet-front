@@ -1,0 +1,17 @@
+.logButton {
+    color: var(--blue);
+    width: 80px;
+    height: 40px;
+    border: 2px solid var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.bell {
+    right: 250;
+    position: fixed;
+    border: 2px solid black;
+}

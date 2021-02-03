@@ -1,0 +1,45 @@
+{
+  "plugins": [
+      "react", "jest"
+  ],
+  "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true
+      }
+  },
+  "env": {
+      "es6":     true,
+      "browser": true,
+      "node":    true,
+      "jest":   true
+  },   
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "prettier/react",
+  ],  
+"rules": {
+  "max-len": ["error", {"code": 120}],
+  "prefer-promise-reject-errors": ["off"],
+  "react/jsx-filename-extension": ["off"],
+  "comma-dangle": ["off"],
+  "no-return-assign": ["off"]
+},
+"overrides": [
+  {
+    "files": "tests/**",
+    "rules": {
+      "no-template-curly-in-string": 1,
+    },
+  },
+  {
+    "files": "markdown.config.js",
+    "rules": {
+      "no-console": 0,
+    },
+  },
+],
+}

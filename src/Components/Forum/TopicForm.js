@@ -11,16 +11,28 @@ const ADD_TOPIC = gql`
   }
 `;
 
-const TopicForm = ({ close }) => {
-  const [addTopic, { loading }] = useMutation(ADD_TOPIC);
+const UPDATE_TOPIC = gql`
+  mutation UpdateTopic($_id: ID!, $username: String, $subject: String, $body: String, $url: [String], $tags: [String]) {
+    updateTopic(_id: $_id, username: $username, subject: $subject, body: $body, url: $url, tags: $tags) {
+      subject
+    }
+  }
+`;
 
-  const [inputFields, setInputFields] = useState({
-    username: 'Student',
-    subject: '',
-    body: '',
-    url: [],
-    tags: [],
-  });
+const TopicForm = ({ close, mode, topicData }) => {
+  const [addTopic, { loading }] = useMutation(ADD_TOPIC);
+  const [updateTopic, { updateLoading }] = useMutation(UPDATE_TOPIC);
+
+  const [inputFields, setInputFields] = useState(
+    mode === 'update_topic' ? topicData
+    : {
+        username: 'Student',
+        subject: '',
+        body: '',
+        url: [],
+        tags: [],
+      }
+  );
 
   const [newUrl, setNewUrl] = useState('');
 
@@ -57,7 +69,12 @@ const TopicForm = ({ close }) => {
   };
 
   const handleSubmit = () => {
-    addTopic({ variables: inputFields });
+    if (mode === 'update_topic') {
+      updateTopic({ variables: inputFields });
+    }
+    else {
+      addTopic({ variables: inputFields });
+    }
     close();
   };
 
@@ -71,14 +88,14 @@ const TopicForm = ({ close }) => {
           borderBottom: '1px solid #CCCCCC',
         }}
       >
-        <h3>New Topic</h3>
+        <h3>{ mode === 'update_topic' ? "Update Topic !" : "New Topic !" }</h3>
         <div style={{ flex: 1 }} />
         <IconButton color='primary' onClick={() => close()}>
           <Icon className='lightgrey'>close</Icon>
         </IconButton>
       </div>
 
-      {loading ? 'LOADING...' : ''}
+      {loading || updateLoading ? 'LOADING...' : ''}
 
       <div
         className='form flex_'

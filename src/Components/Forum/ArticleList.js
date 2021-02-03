@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicForm';
-import { getDateFromTimestamp } from './utils/functions';
+import { getDateFromTimestamp } from './helpers/dates';
 
 const TOPICS = gql`
   query Topics {

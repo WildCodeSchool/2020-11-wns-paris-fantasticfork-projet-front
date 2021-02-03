@@ -1,6 +1,6 @@
 import { Typography, Badge, Icon } from '@material-ui/core';
 
-export default function SubNavbar({ title }) {
+export default function SubNavbar({ menu }) {
   return (
     <div
       className='flex_'
@@ -15,7 +15,7 @@ export default function SubNavbar({ title }) {
       }}
     >
       <Typography variant='h4' gutterBottom style={{ marginLeft: 60 }} className='blue'>
-        Forum
+        {menu[0].text}
       </Typography>
       <div style={{ flex: 1 }} />
       <Badge badgeContent={7} color='secondary' style={{ position: 'fixed', right: 100 }}>

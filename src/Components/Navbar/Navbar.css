@@ -1,4 +1,5 @@
 .Navbar {
+  color: var(--blue);
   position: fixed;
   z-index:5;
   height: 100%;

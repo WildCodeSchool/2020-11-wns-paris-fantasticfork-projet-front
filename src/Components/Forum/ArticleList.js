@@ -55,11 +55,11 @@ function ArticleList({ history }) {
                     {topic.subject ? topic.subject : ''}
                   </Typography>
                   <div style={{ flex: 1 }} />
-                  
+
                   <Button>
-                    <div style={{'margin-right': 5}}>{topic.like ? topic.like : '0'}</div>
+                    <div style={{ marginRight: 5 }}>{topic.like ? topic.like : '0'}</div>
                     <Icon className='blue' style={{ marginRight: 15 }}>
-                    thumb_up
+                      thumb_up
                     </Icon>
                   </Button>
                   <Icon className='blue' style={{ marginRight: 15 }}>

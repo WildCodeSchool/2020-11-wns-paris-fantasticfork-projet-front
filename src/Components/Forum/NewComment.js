@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { gql, useMutation } from '@apollo/client';
 import { Paper, Icon, Avatar, TextField, IconButton } from '@material-ui/core';
 import './NewComment.css';
+
+const CREATE_COMMENT = gql`
+  mutation CreateComment($topicId: ID!, $author: String!, $commentBody: String!) {
+    createComment(topicId: $topicId, author: $author, commentBody: $commentBody) {
+      _id
+      commentBody
+    }
+  }
+`;
 
 export default function NewComment({ reply, topic_id, uploaded, cancel }) {
   const [message, setMessage] = useState('');
 
+  const [createComment, {}] = useMutation(CREATE_COMMENT);
+
   const submitCommment = () => {
-    axios
-      .post(`http://localhost:5000/message/${topic_id}`, {
-        date: Date.now(),
-        name: 'ThisIsMe',
-        message,
-      })
-      .then(() => uploaded())
-      .then(() => cancel())
-      .catch((err) => console.log(err));
+    try {
+      createComment({ variables: { topicId: topic_id, author: 'author', commentBody: message } });
+      uploaded();
+      cancel();
+    } catch {
+      cancel();
+    }
   };
 
   return (

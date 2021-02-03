@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
+import SubNavbar from '../Navbar/SubNavbar';
 import TopicForm from './TopicForm';
 import getDateFromTimestamp from './helpers/dates';
 
@@ -39,10 +40,10 @@ function ArticleList({ history }) {
   if (error) return <p>{`ERROR: ${error}`}</p>;
 
   return (
-    <div>
-      {/* eslint-disable-next-line max-len */}
+    <div style={{ height: '100%' }}>
+      <SubNavbar title='Forum' />
       <div
-        className='flex_'
+        className='flex_ pageContainer'
         style={{ alignItems: 'center', justifyContent: 'flex-end', marginRight: 20, marginBottom: 20 }}
       >
         <Button variant='contained' color='primary' onClick={() => setOpen(true)}>

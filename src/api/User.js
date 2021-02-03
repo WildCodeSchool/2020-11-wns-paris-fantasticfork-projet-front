@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 
-const REGISTER_USER = gql`
+// eslint-disable-next-line import/prefer-default-export
+export const REGISTER_USER = gql`
   mutation SignUp(
     $email: String!
     $password: String!
@@ -19,5 +20,3 @@ const REGISTER_USER = gql`
     }
   }
 `;
-
-export default { REGISTER_USER };

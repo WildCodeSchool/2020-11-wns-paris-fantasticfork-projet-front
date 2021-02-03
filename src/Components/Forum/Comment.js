@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@material-ui/core';
 import './Comment.css';
-import { getDateFromTimestamp } from './utils/functions';
+import { getDateFromTimestamp } from './helpers/dates';
 
 // prettier-ignore
 const UPDATE_COMMENT = gql`

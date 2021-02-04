@@ -2,24 +2,13 @@ import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@material-ui/core';
 import './Comment.css';
-import { getDateFromTimestamp } from './helpers/dates';
+import getDateFromTimestamp from './helpers/dates';
 
-// prettier-ignore
 const UPDATE_COMMENT = gql`
-  mutation updateComment(
-    $commentId: ID!, 
-    $commentBody: String, 
-    $like: Int, 
-    $dislike: Int, 
-    ) {
-      updateComment(
-        commentId: $commentId, 
-        commentBody: $commentBody, 
-        like: $like, 
-        dislike: $dislike, 
-      ) {
-          lastUpdateDate
-        }
+  mutation updateComment($commentId: ID!, $commentBody: String, $like: Int, $dislike: Int) {
+    updateComment(commentId: $commentId, commentBody: $commentBody, like: $like, dislike: $dislike) {
+      lastUpdateDate
+    }
   }
 `;
 
@@ -34,16 +23,16 @@ export default function Comment(props) {
     const dislikeNumber = dislike ? dislike + 1 : 1;
     let variables;
     if (mode === 'like') {
-      variables = { commentId: commentId, like: likeNumber };
+      variables = { commentId, like: likeNumber };
     } else {
-      variables = { commentId: commentId, dislike: dislikeNumber };
+      variables = { commentId, dislike: dislikeNumber };
     }
     updateComment({ variables });
     refresh();
   };
 
   const updateMessage = () => {
-    updateComment({ variables: { commentId: commentId, commentBody: commentMessage } });
+    updateComment({ variables: { commentId, commentBody: commentMessage } });
     setEditMode(false);
     refresh();
   };
@@ -73,7 +62,7 @@ export default function Comment(props) {
             {best && (
               <>
                 <div style={{ flex: 1 }} />
-                <Chip icon={<Icon fontSize={'small'}>thumb_up_alt</Icon>} label='Best answer' color='primary' />
+                <Chip icon={<Icon fontSize='small'>thumb_up_alt</Icon>} label='Best answer' color='primary' />
               </>
             )}
           </div>
@@ -111,14 +100,14 @@ export default function Comment(props) {
             <div className='flex1' />
             {editMode ? (
               <Button size='small' className='Comment_sendbutton' onClick={() => updateMessage()}>
-                <Icon fontSize={'small'} className='Comment_editbutton_icon'>
+                <Icon fontSize='small' className='Comment_editbutton_icon'>
                   send
                 </Icon>
                 Send
               </Button>
             ) : (
               <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
-                <Icon fontSize={'small'} className='Comment_editbutton_icon'>
+                <Icon fontSize='small' className='Comment_editbutton_icon'>
                   edit
                 </Icon>
                 edit

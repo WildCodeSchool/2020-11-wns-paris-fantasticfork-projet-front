@@ -24,14 +24,15 @@ const TopicForm = ({ close, mode, topicData }) => {
   const [updateTopic, { updateLoading }] = useMutation(UPDATE_TOPIC);
 
   const [inputFields, setInputFields] = useState(
-    mode === 'update_topic' ? topicData
-    : {
-        username: 'Student',
-        subject: '',
-        body: '',
-        url: [],
-        tags: [],
-      }
+    mode === 'update_topic'
+      ? topicData
+      : {
+          username: 'Student',
+          subject: '',
+          body: '',
+          url: [],
+          tags: [],
+        }
   );
 
   const [newUrl, setNewUrl] = useState('');
@@ -40,14 +41,14 @@ const TopicForm = ({ close, mode, topicData }) => {
     if (newUrl === '') {
       return null;
     }
-    let url = Array.from(inputFields.url);
+    const url = Array.from(inputFields.url);
     url.push(newUrl);
     setNewUrl('');
     setInputFields({ ...inputFields, url });
   };
 
   const deleteUrl = (idx) => {
-    let url = Array.from(inputFields.url);
+    const url = Array.from(inputFields.url);
     url.splice(idx, 1);
     setInputFields({ ...inputFields, url });
   };
@@ -56,14 +57,15 @@ const TopicForm = ({ close, mode, topicData }) => {
     if (event.target.value === '') {
       return null;
     }
-    let tags = Array.from(inputFields.tags);
+    const tags = Array.from(inputFields.tags);
     tags.push(event.target.value);
+    // eslint-disable-next-line no-param-reassign
     event.target.value = '';
     setInputFields({ ...inputFields, tags });
   };
 
   const removeTags = (indexToRemove) => {
-    let tags = Array.from(inputFields.tags);
+    const tags = Array.from(inputFields.tags);
     tags.splice(indexToRemove, 1);
     setInputFields({ ...inputFields, tags });
   };
@@ -71,8 +73,7 @@ const TopicForm = ({ close, mode, topicData }) => {
   const handleSubmit = () => {
     if (mode === 'update_topic') {
       updateTopic({ variables: inputFields });
-    }
-    else {
+    } else {
       addTopic({ variables: inputFields });
     }
     close();
@@ -88,7 +89,7 @@ const TopicForm = ({ close, mode, topicData }) => {
           borderBottom: '1px solid #CCCCCC',
         }}
       >
-        <h3>{ mode === 'update_topic' ? "Update Topic !" : "New Topic !" }</h3>
+        <h3>{mode === 'update_topic' ? 'Update Topic !' : 'New Topic !'}</h3>
         <div style={{ flex: 1 }} />
         <IconButton color='primary' onClick={() => close()}>
           <Icon className='lightgrey'>close</Icon>
@@ -111,7 +112,7 @@ const TopicForm = ({ close, mode, topicData }) => {
           name='subject'
           label='Subject'
           variant='standard'
-          autoFocus={true}
+          autoFocus
           value={inputFields.subject}
           onChange={(e) => setInputFields({ ...inputFields, subject: e.target.value })}
           required
@@ -170,15 +171,17 @@ const TopicForm = ({ close, mode, topicData }) => {
           <ul id='tags'>
             {inputFields.tags.length > 0 &&
               inputFields.tags.map((tag, index) => (
-                <li key={index} className='tag'>
+                <li key={tag} className='tag'>
                   <span className='tag-title'>{tag}</span>
-                  <span className='tag-close-icon' onClick={() => removeTags(index)}>
-                    x
-                  </span>
+                  <Icon onClick={() => removeTags(index)}>cancel</Icon>
                 </li>
               ))}
           </ul>
-          <input type='text' onKeyUp={(event) => (event.key === 'Enter' ? addTags(event) : null)} placeholder='Press enter to add tags' />
+          <input
+            type='text'
+            onKeyUp={(event) => (event.key === 'Enter' ? addTags(event) : null)}
+            placeholder='Press enter to add tags'
+          />
         </div>
         <Button
           className='submit-button'

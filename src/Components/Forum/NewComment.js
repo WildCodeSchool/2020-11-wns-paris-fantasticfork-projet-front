@@ -12,9 +12,11 @@ const CREATE_COMMENT = gql`
   }
 `;
 
+// eslint-disable-next-line camelcase
 export default function NewComment({ reply, topic_id, uploaded, cancel }) {
   const [message, setMessage] = useState('');
 
+  // eslint-disable-next-line no-empty-pattern
   const [createComment, {}] = useMutation(CREATE_COMMENT);
 
   const submitCommment = () => {

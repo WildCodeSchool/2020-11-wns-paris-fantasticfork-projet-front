@@ -14,7 +14,6 @@
 
 .Register_avatar {
   margin: 10px;
-  /* background-color: theme.palette.secondary.main, */
 }
 
 .Register_form {
@@ -22,6 +21,14 @@
   margin-top: 10px;
 }
 
+.Register_name_container {
+  display: flex;
+}
+
 .Register_button {
   margin: 30px 0px 20px !important;
+}
+
+.form_beween_space {
+  width:10px;
 }

@@ -10,7 +10,7 @@ export default function Authenticated({ children, title }) {
       </div>
       <div className='lightgreyBackground' style={{ width: 'calc(100% - 200px)' }}>
         <SubNavbar title={title} />
-        {children}
+        <div className='pageContainer'>{children}</div>
       </div>
     </div>
   );

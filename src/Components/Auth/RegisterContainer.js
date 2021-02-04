@@ -9,6 +9,7 @@ export default function RegisterContainer({ history }) {
   const [email, setEmail] = useState('');
   const [emailErrorText, setEmailErrorText] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordErrorText, setPasswordErrorText] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -18,6 +19,11 @@ export default function RegisterContainer({ history }) {
     setEmail(e.currentTarget.value);
   };
   const onPasswordHandler = (e) => {
+    if (e.currentTarget.value.length < 8) {
+      setPasswordErrorText('Password must have at least 8 caracters');
+    } else {
+      setPasswordErrorText('');
+    }
     setPassword(e.currentTarget.value);
   };
   const onConfirmPasswordHandler = (e) => {
@@ -78,6 +84,7 @@ export default function RegisterContainer({ history }) {
       emailErrorText={emailErrorText}
       password={password}
       onPasswordHandler={(e) => onPasswordHandler(e)}
+      passwordErrorText={passwordErrorText}
       confirmPassword={confirmPassword}
       onConfirmPasswordHandler={(e) => onConfirmPasswordHandler(e)}
       confirmPasswordErrorText={confirmPasswordErrorText}

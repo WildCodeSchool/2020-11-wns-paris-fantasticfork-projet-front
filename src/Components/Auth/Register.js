@@ -10,6 +10,7 @@ export default function Register(props) {
     emailErrorText,
     password,
     onPasswordHandler,
+    passwordErrorText,
     confirmPassword,
     onConfirmPasswordHandler,
     confirmPasswordErrorText,
@@ -80,6 +81,8 @@ export default function Register(props) {
               fullWidth
               value={password}
               onChange={onPasswordHandler}
+              error={!!passwordErrorText}
+              helperText={passwordErrorText}
             />
             <TextField
               label='Confirm password'

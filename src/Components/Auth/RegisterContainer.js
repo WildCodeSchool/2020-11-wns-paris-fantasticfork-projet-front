@@ -62,7 +62,7 @@ export default function RegisterContainer({ history }) {
         },
       });
 
-      history.push('/');
+      history.push('/home');
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);

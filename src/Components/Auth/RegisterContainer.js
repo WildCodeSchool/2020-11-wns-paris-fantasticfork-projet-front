@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../../api/User';
 import Register from './Register';
 
-export default function Register({ history }) {
+export default function RegisterContainer({ history }) {
   const [registerUser, { loading }] = useMutation(REGISTER_USER);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +41,12 @@ export default function Register({ history }) {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    if (this.state.emailErrorText == '' && this.state.confirmPasswordErrorText == '') {
+      console.log('_onSubmit: state=', this.state);
+    } else {
+      console.log('has error, unable to submit');
+    }
+
     try {
       const response = await registerUser({
         email,
@@ -59,3 +65,5 @@ export default function Register({ history }) {
 
   return <Register onSubmitHandler={(e) => onSubmitHandler(e)} />;
 }
+
+// https://gist.github.com/hsinhoyeh/505e7ae4734350da33903ef3ea68a0b8

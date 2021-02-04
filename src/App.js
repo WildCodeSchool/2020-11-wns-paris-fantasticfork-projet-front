@@ -16,21 +16,22 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Switch>
-        <RouteWrapper exact path='/' component={ArticleList} layout={Authenticated} />
+        <RouteWrapper exact path='/' component={ArticleList} layout={Visitor} />
+        <RouteWrapper exact path='/home' component={RegisterContainer} layout={Authenticated} text='home' />
         <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
-        <RouteWrapper exact path='/topics' history component={ArticleList} layout={Authenticated} />
+        <RouteWrapper exact path='/topics' history component={ArticleList} layout={Authenticated} text='Forum' />
         <RouteWrapper path='/topics/:id' component={ArticleContainer} layout={Authenticated} />
       </Switch>
     </ApolloProvider>
   );
 }
 
-function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
+function RouteWrapper({ component: Component, layout: Layout, text, ...rest }) {
   return (
     <Route
       {...rest}
       render={(props) => (
-        <Layout {...props}>
+        <Layout title={text} {...props}>
           <Component {...props} />
         </Layout>
       )}

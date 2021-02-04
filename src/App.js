@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { Authenticated, Visitor } from './Layouts';
 import RegisterContainer from './Components/Auth/Register';
+import LoginContainer from './Components/Auth/LoginContainer';
 import ArticleContainer from './Components/Forum/ArticleContainer';
 import ArticleList from './Components/Forum/ArticleList';
 import './App.css';
@@ -19,6 +20,8 @@ function App() {
         <RouteWrapper exact path='/' component={ArticleList} layout={Visitor} />
         <RouteWrapper exact path='/home' component={RegisterContainer} layout={Authenticated} text='home' />
         <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
+        <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
+
         <RouteWrapper exact path='/topics' history component={ArticleList} layout={Authenticated} text='Forum' />
         <RouteWrapper path='/topics/:id' component={ArticleContainer} layout={Authenticated} />
       </Switch>

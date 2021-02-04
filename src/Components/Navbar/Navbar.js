@@ -4,7 +4,15 @@ import { List, ListItem, ListItemIcon, ListItemText, Icon, Avatar, Typography } 
 import sampleImage from '../../images/cat.jpg';
 import './Navbar.css';
 
-export default function Navbar({ menu }) {
+const menu = [
+  { text: 'Home', icon: 'home', link: '/' },
+  { text: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
+  { text: 'My Class', icon: 'school', link: '/classroom' },
+  { text: 'Forum', icon: 'forum', link: '/topics' },
+  { text: 'Daily', icon: 'today', link: '/daily' },
+];
+
+export default function Navbar() {
   return (
     <div className='Navbar'>
       <div className='flex_column Navbar_profile'>

@@ -2,10 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { Authenticated, Visitor } from './Layouts';
-import RegisterContainer from './Components/Auth/RegisterContainer';
-import LoginContainer from './Components/Auth/LoginContainer';
-import ArticleContainer from './Components/Forum/ArticleContainer';
-import ArticleList from './Components/Forum/ArticleList';
+import RegisterContainer from './Components/pages/Auth/RegisterContainer';
+import LoginContainer from './Components/pages/Auth/LoginContainer';
+import ArticleContainer from './Components/pages/Forum/ArticleContainer';
+import ArticleList from './Components/pages/Forum/ArticleList';
 import './App.css';
 
 const client = new ApolloClient({

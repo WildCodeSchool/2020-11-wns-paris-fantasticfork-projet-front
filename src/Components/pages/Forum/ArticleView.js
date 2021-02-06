@@ -3,7 +3,7 @@ import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from 
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Comment from './Comment';
 import NewComment from './NewComment';
-import sampleImage from '../../images/cat.jpg';
+import sampleImage from '../../../images/cat.jpg';
 import './Article.css';
 import getDateFromTimestamp from './helpers/dates';
 import TopicForm from './TopicForm';

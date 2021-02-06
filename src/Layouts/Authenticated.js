@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../Components/Navbar/Navbar';
-import SubNavbar from '../Components/Navbar/SubNavbar';
+import Navbar from '../Components/Common/Navbar/Navbar';
+import SubNavbar from '../Components/Common/Navbar/SubNavbar';
 
 export default function Authenticated({ children, title }) {
   return (

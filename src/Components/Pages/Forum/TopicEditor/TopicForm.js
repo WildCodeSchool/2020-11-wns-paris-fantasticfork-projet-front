@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Paper, TextField, Icon, IconButton } from '@material-ui/core';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { ADD_TOPIC, UPDATE_TOPIC } from '../../../../graphql/Topic';
 import './TopicForm.css';
-
-const ADD_TOPIC = gql`
-  mutation CreateTopic($username: String!, $subject: String!, $body: String!, $url: [String], $tags: [String]) {
-    createTopic(username: $username, subject: $subject, body: $body, url: $url, tags: $tags) {
-      subject
-    }
-  }
-`;
-
-const UPDATE_TOPIC = gql`
-  mutation UpdateTopic($_id: ID!, $username: String, $subject: String, $body: String, $url: [String], $tags: [String]) {
-    updateTopic(_id: $_id, username: $username, subject: $subject, body: $body, url: $url, tags: $tags) {
-      subject
-    }
-  }
-`;
 
 const TopicForm = ({ close, mode, topicData }) => {
   const [addTopic, { loading }] = useMutation(ADD_TOPIC);

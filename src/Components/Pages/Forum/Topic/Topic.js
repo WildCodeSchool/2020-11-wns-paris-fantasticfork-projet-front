@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import Comment from '../Comment/Comment';
 import NewComment from '../Comment/NewComment';
 import sampleImage from '../../../../images/cat.jpg';
 import getDateFromTimestamp from '../helpers/dates';
 import TopicForm from '../TopicEditor/TopicForm';
+import { ADD_LIKE_TOPIC, GET_LIKES_TOPIC } from '../../../../graphql/Topic';
 import './Topic.css';
-
-const ADD_LIKE_TOPIC = gql`
-  mutation AddLikeTopic($_id: ID!, $like: Int) {
-    updateTopic(_id: $_id, like: $like) {
-      like
-      dislike
-    }
-  }
-`;
-
-const GET_LIKES_TOPIC = gql`
-  query GetLikesTopic($_id: ID!) {
-    topic(_id: $_id) {
-      like
-      dislike
-    }
-  }
-`;
 
 const Topic = (props) => {
   const [heart, setHeart] = useState(false);

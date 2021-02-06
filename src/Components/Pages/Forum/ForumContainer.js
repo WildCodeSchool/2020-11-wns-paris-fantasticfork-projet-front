@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
 import TopicForm from './TopicEditor/TopicForm';
+import { TOPICS } from '../../../graphql/Topic';
 import getDateFromTimestamp from './helpers/dates';
 
-function Forum({ history }) {
+function ForumContainer({ history }) {
   const [open, setOpen] = React.useState(false);
   const { loading, error, data, refetch } = useQuery(TOPICS);
 
@@ -100,4 +101,4 @@ function Forum({ history }) {
   );
 }
 
-export default Forum;
+export default ForumContainer;

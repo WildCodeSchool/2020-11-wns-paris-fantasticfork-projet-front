@@ -5,7 +5,7 @@ import { Authenticated, Visitor } from './Layouts';
 import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
 import TopicContainer from './Components/Pages/Forum/Topic/TopicContainer';
-import Forum from './Components/Pages/Forum/Forum';
+import ForumContainer from './Components/Pages/Forum/ForumContainer';
 import './App.css';
 
 const client = new ApolloClient({
@@ -17,11 +17,11 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Switch>
-        <RouteWrapper exact path='/' component={Forum} layout={Visitor} />
+        <RouteWrapper exact path='/' component={ForumContainer} layout={Visitor} />
         <RouteWrapper exact path='/home' component={RegisterContainer} layout={Authenticated} text='home' />
         <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
         <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
-        <RouteWrapper exact path='/topics' history component={Forum} layout={Authenticated} text='Forum' />
+        <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
         <RouteWrapper path='/topics/:id' component={TopicContainer} layout={Authenticated} />
       </Switch>
     </ApolloProvider>

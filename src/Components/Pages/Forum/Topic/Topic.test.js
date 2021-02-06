@@ -22,7 +22,7 @@ it('Null test to comment', () => {
 //       date: '22/11/2019',
 //       name: 'Kate',
 //       message:
-//         // eslint-disable-next-line max-len
+// eslint-disable-next-line max-len
 //         "Shove bum in owner's face like camera lens stare at ceiling light so snuggles up to shoulders or knees and purrs you to sleep but why dog in house?",
 //     },
 //   ],

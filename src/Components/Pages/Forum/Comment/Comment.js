@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@material-ui/core';
-import './Comment.css';
+import { UPDATE_COMMENT } from '../../../../graphql/Comment';
 import getDateFromTimestamp from '../helpers/dates';
-
-const UPDATE_COMMENT = gql`
-  mutation updateComment($commentId: ID!, $commentBody: String, $like: Int, $dislike: Int) {
-    updateComment(commentId: $commentId, commentBody: $commentBody, like: $like, dislike: $dislike) {
-      lastUpdateDate
-    }
-  }
-`;
+import './Comment.css';
 
 export default function Comment(props) {
   const { commentId, date, name, message, like, dislike, best, lastUpdateDate, refresh } = props;

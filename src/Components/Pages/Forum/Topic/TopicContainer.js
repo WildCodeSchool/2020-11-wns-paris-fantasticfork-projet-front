@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import Article from './Article';
+import Topic from './Topic';
 
 // prettier-ignore
 const GET_TOPIC = gql`
@@ -30,14 +30,14 @@ const GET_TOPIC = gql`
   }
 `;
 
-function ArticleContainer({ match }) {
+function TopicContainer({ match }) {
   const topicId = match.params.id;
   // eslint-disable-next-line no-unused-vars
   const { loading, data, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
 
-  return loading === false && <Article data={data.topic} refresh={() => refetch()} />;
+  return loading === false && <Topic data={data.topic} refresh={() => refetch()} />;
 }
 
-export default ArticleContainer;
+export default TopicContainer;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { REGISTER_USER } from '../../../api/User';
+import { REGISTER_USER } from '../../../graphql/User';
 import Register from './Register';
 
 export default function RegisterContainer({ history }) {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
-import TopicForm from './TopicForm';
+import TopicForm from './TopicEditor/TopicForm';
 import getDateFromTimestamp from './helpers/dates';
 
 const TOPICS = gql`
@@ -23,7 +23,7 @@ const TOPICS = gql`
   }
 `;
 
-function ArticleList({ history }) {
+function Forum({ history }) {
   const [open, setOpen] = React.useState(false);
   const { loading, error, data, refetch } = useQuery(TOPICS);
 
@@ -119,4 +119,4 @@ function ArticleList({ history }) {
   );
 }
 
-export default ArticleList;
+export default Forum;

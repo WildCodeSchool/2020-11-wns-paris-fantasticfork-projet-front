@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import { gql, useMutation, useQuery } from '@apollo/client';
-import Comment from './Comment';
-import NewComment from './NewComment';
-import sampleImage from '../../../images/cat.jpg';
-import './Article.css';
-import getDateFromTimestamp from './helpers/dates';
-import TopicForm from './TopicForm';
+import Comment from '../Comment/Comment';
+import NewComment from '../Comment/NewComment';
+import sampleImage from '../../../../images/cat.jpg';
+import getDateFromTimestamp from '../helpers/dates';
+import TopicForm from '../TopicEditor/TopicForm';
+import './Topic.css';
 
 const ADD_LIKE_TOPIC = gql`
   mutation AddLikeTopic($_id: ID!, $like: Int) {
@@ -26,8 +26,12 @@ const GET_LIKES_TOPIC = gql`
   }
 `;
 
-const ArticleView = (props) => {
-  const { heart, setHeart, setToggle, toggle, refresh, toggleWrite, openToggleWrite, closeToggleWrite, data } = props;
+const Topic = (props) => {
+  const [heart, setHeart] = useState(false);
+  const [toggle, setToggle] = useState(true);
+  const [toggleWrite, setToggleWrite] = useState(false);
+
+  const { data, refresh } = props;
   const [modifiyFormOpened, setModifyFormOpened] = useState(false);
 
   const [addLikeTopic] = useMutation(ADD_LIKE_TOPIC);
@@ -140,7 +144,7 @@ const ArticleView = (props) => {
             variant='contained'
             color='primary'
             onClick={() => {
-              openToggleWrite();
+              setToggleWrite(true);
             }}
           >
             Write a comment
@@ -150,7 +154,9 @@ const ArticleView = (props) => {
           <Icon className='lightgrey'>{toggle ? 'expand_less' : 'expand_more'}</Icon>{' '}
         </IconButton>
       </div>
-      {toggleWrite && <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => closeToggleWrite()} />}
+      {toggleWrite && (
+        <NewComment topic_id={data._id} uploaded={() => refresh()} cancel={() => setToggleWrite(false)} />
+      )}
       {toggle && sortedComments && (
         <>
           {sortedComments.map((comment) => (
@@ -174,4 +180,4 @@ const ArticleView = (props) => {
   );
 };
 
-export default ArticleView;
+export default Topic;

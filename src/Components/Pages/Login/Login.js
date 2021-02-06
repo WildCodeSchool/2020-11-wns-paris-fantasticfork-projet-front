@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Avatar, Icon, Typography, TextField, Button, Grid, Link } from '@material-ui/core';
-import './Register.css';
+import '../Register/Register.css';
 
 export default function Login() {
   // TODO : Add a function "forgot password?"

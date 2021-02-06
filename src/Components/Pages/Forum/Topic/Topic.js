@@ -44,7 +44,12 @@ const Topic = (props) => {
   return (
     <div className='Article'>
       {modifiyFormOpened ? (
-        <TopicForm mode='update_topic' topicData={data} close={() => setModifyFormOpened(false)} />
+        <TopicForm
+          mode='update_topic'
+          open={() => setModifyFormOpened(true)}
+          topicData={data}
+          close={() => setModifyFormOpened(false)}
+        />
       ) : (
         <Paper className='Article_container' elevation={3}>
           <div className='Article_header'>

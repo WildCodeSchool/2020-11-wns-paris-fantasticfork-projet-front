@@ -2,8 +2,9 @@ import React from 'react';
 import { Container, Avatar, Icon, Typography, TextField, Button, Grid, Link } from '@material-ui/core';
 import '../Register/Register.css';
 
-export default function Login() {
-  // TODO : Add a function "forgot password?"
+export default function Login(props) {
+  const { formData, handleInputChange, onSubmitHandler } = props;
+
   return (
     <div className='Register_container'>
       <Container component='main' maxWidth='xs'>
@@ -14,33 +15,31 @@ export default function Login() {
           <Typography component='h1' variant='h5'>
             Login
           </Typography>
-          <form className='Register_form' onSubmit={() => {}}>
+          <form className='Register_form' onSubmit={(e) => onSubmitHandler(e)} noValidate>
             <TextField
+              id='email'
+              name='email'
+              label='Email Address'
+              type='email'
               variant='outlined'
               margin='normal'
               required
               fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
               autoFocus
-              type='email'
-              // value={Email}
-              // onChange={onEmailHandler}
+              value={formData.email}
+              onChange={handleInputChange}
             />
             <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='password'
               label='Password'
               type='password'
               id='password'
-              autoComplete='current-password'
-              // value={Password}
-              // onChange={onPasswordHandler}
+              name='password'
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              value={formData.password}
+              onChange={handleInputChange}
             />
             <Button type='submit' fullWidth variant='contained' color='primary' className='Register_button'>
               Login

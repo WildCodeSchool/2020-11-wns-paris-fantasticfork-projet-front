@@ -1,50 +1,15 @@
-import React, { useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
-import { Avatar, Chip, Icon, Typography, Button, Modal, Backdrop, Paper } from '@material-ui/core';
-import TopicForm from './TopicForm';
+import React from 'react';
+import { Avatar, Chip, Icon, Typography, Button, Paper } from '@material-ui/core';
 import getDateFromTimestamp from './helpers/dates';
 
-const TOPICS = gql`
-  query Topics {
-    topics {
-      _id
-      username
-      subject
-      body
-      date
-      url
-      tags
-      like
-      dislike
-      comments {
-        commentBody
-      }
-    }
-  }
-`;
-
-function ArticleList({ history }) {
-  const [open, setOpen] = React.useState(false);
-  const { loading, error, data, refetch } = useQuery(TOPICS);
-
-  useEffect(() => {
-    refetch();
-  }, [open, refetch]);
-
-  const goToPage = (topicId) => {
-    history.push(`/topics/${topicId}`);
-  };
-
-  if (loading) return <p>LOADING...</p>;
-  if (error) return <p>{`ERROR: ${error}`}</p>;
-
+function Forum({ data, goToPage, modalOpen }) {
   return (
-    <div>
+    <>
       <div
         className='flex_'
         style={{ alignItems: 'center', justifyContent: 'flex-end', marginRight: 20, marginBottom: 20 }}
       >
-        <Button variant='contained' color='primary' onClick={() => setOpen(true)}>
+        <Button variant='contained' color='primary' onClick={() => modalOpen(true)}>
           Ask a question
         </Button>
       </div>
@@ -90,7 +55,6 @@ function ArticleList({ history }) {
                 <div style={{ flex: 1 }} />
                 {topic.tags.length > 0 &&
                   topic.tags.map((t, idx) => (
-                    // eslint-disable-next-line max-len
                     <Chip
                       key={t}
                       label={t}
@@ -103,20 +67,8 @@ function ArticleList({ history }) {
             </Paper>
           </div>
         ))}
-      <Modal
-        style={{ width: '60%', top: 100, left: '20%' }}
-        open={open}
-        onClose={() => setOpen(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <TopicForm close={() => setOpen(false)} />
-      </Modal>
-    </div>
+    </>
   );
 }
 
-export default ArticleList;
+export default Forum;

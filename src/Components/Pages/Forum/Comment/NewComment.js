@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Paper, Icon, Avatar, TextField, IconButton } from '@material-ui/core';
+import { CREATE_COMMENT } from '../../../../graphql/Comment';
 import './NewComment.css';
-
-const CREATE_COMMENT = gql`
-  mutation CreateComment($topicId: ID!, $author: String!, $commentBody: String!) {
-    createComment(topicId: $topicId, author: $author, commentBody: $commentBody) {
-      _id
-      commentBody
-    }
-  }
-`;
 
 // eslint-disable-next-line camelcase
 export default function NewComment({ reply, topic_id, uploaded, cancel }) {

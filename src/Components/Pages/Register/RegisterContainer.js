@@ -2,96 +2,78 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../../../graphql/User';
 import Register from './Register';
+import { validMail } from '../../../helper/Auth';
+
+const initialFormData = {
+  email: '',
+  password: '',
+  confirmPassword: '',
+  firstname: '',
+  lastname: '',
+};
 
 export default function RegisterContainer({ history }) {
-  const [registerUser] = useMutation(REGISTER_USER);
+  const [registerUser] = useMutation(REGISTER_USER, {
+    onCompleted: ({ signUp }) => {
+      localStorage.setItem('userID', signUp.userID);
+      localStorage.setItem('token', signUp.token);
+      localStorage.setItem('tokenExpiration', signUp.tokenExpiration);
+      history.push('/home');
+    },
+  });
 
-  const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState(initialFormData);
   const [emailErrorText, setEmailErrorText] = useState('');
-  const [password, setPassword] = useState('');
   const [passwordErrorText, setPasswordErrorText] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
 
-  const onEmailHandler = (e) => {
-    setEmail(e.currentTarget.value);
-  };
-  const onPasswordHandler = (e) => {
-    if (e.currentTarget.value.length < 8) {
+  const handleInputChange = ({ target: { name, value } }) => {
+    if (name === 'password' && value.length < 8) {
       setPasswordErrorText('Password must have at least 8 caracters');
     } else {
       setPasswordErrorText('');
     }
-    setPassword(e.currentTarget.value);
-  };
-  const onConfirmPasswordHandler = (e) => {
-    setConfirmPassword(e.currentTarget.value);
-  };
-  const onFirstnameHandler = (e) => {
-    setFirstname(e.currentTarget.value);
-  };
-  const onLastnameHandler = (e) => {
-    setLastname(e.currentTarget.value);
-  };
 
-  const validMail = (_email) => {
-    const regex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
-    const valid = regex.test(_email);
-
-    return valid;
+    setFormData({ ...formData, [name]: value });
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    if (!validMail(email)) {
+    if (!validMail(formData.email)) {
       setEmailErrorText('Email address is not valid');
       return null;
     }
 
-    if (password !== confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       setConfirmPasswordErrorText('Passwords are not matched');
       return null;
     }
 
-    // res.success ? props.history.push('/login') : alert('Failed to sign up')
-
     try {
       await registerUser({
         variables: {
-          email,
-          password,
-          firstname,
-          lastname,
+          email: formData.email,
+          password: formData.password,
+          firstname: formData.firstname,
+          lastname: formData.lastname,
         },
       });
-
-      history.push('/home');
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);
-      history.push('/login');
+      history.push('/register');
     }
   };
 
   return (
     <Register
+      formData={formData}
+      handleInputChange={handleInputChange}
       onSubmitHandler={(e) => onSubmitHandler(e)}
-      email={email}
-      onEmailHandler={(e) => onEmailHandler(e)}
       emailErrorText={emailErrorText}
-      password={password}
-      onPasswordHandler={(e) => onPasswordHandler(e)}
       passwordErrorText={passwordErrorText}
-      confirmPassword={confirmPassword}
-      onConfirmPasswordHandler={(e) => onConfirmPasswordHandler(e)}
       confirmPasswordErrorText={confirmPasswordErrorText}
-      firstname={firstname}
-      onFirstnameHandler={(e) => onFirstnameHandler(e)}
-      lastname={lastname}
-      onLastnameHandler={(e) => onLastnameHandler(e)}
     />
   );
 }

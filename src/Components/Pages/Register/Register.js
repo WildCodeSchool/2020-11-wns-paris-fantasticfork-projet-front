@@ -1,23 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Container, Avatar, Icon, Typography, TextField, Button, Grid, Link } from '@material-ui/core';
 import './Register.css';
 
 export default function Register(props) {
   const {
+    formData,
+    handleInputChange,
     onSubmitHandler,
-    email,
-    onEmailHandler,
     emailErrorText,
-    password,
-    onPasswordHandler,
     passwordErrorText,
-    confirmPassword,
-    onConfirmPasswordHandler,
     confirmPasswordErrorText,
-    firstname,
-    onFirstnameHandler,
-    lastname,
-    onLastnameHandler,
   } = props;
 
   return (
@@ -34,6 +27,7 @@ export default function Register(props) {
           <form className='Register_form' onSubmit={(e) => onSubmitHandler(e)} noValidate>
             <TextField
               id='email'
+              name='email'
               label='Email Address'
               type='email'
               variant='outlined'
@@ -41,8 +35,8 @@ export default function Register(props) {
               required
               fullWidth
               autoFocus
-              value={email}
-              onChange={onEmailHandler}
+              value={formData.email}
+              onChange={handleInputChange}
               error={!!emailErrorText}
               helperText={emailErrorText}
             />
@@ -50,24 +44,26 @@ export default function Register(props) {
             <div className='Register_name_container'>
               <TextField
                 id='firstname'
+                name='firstname'
                 label='First name'
                 type='text'
                 variant='outlined'
                 margin='normal'
                 required
-                value={firstname}
-                onChange={onFirstnameHandler}
+                value={formData.firstname}
+                onChange={handleInputChange}
               />
               <div className='form_beween_space' />
               <TextField
                 id='lastname'
+                name='lastname'
                 label='Last name'
                 type='text'
                 variant='outlined'
                 margin='normal'
                 required
-                value={lastname}
-                onChange={onLastnameHandler}
+                value={formData.lastname}
+                onChange={handleInputChange}
               />
             </div>
 
@@ -75,12 +71,13 @@ export default function Register(props) {
               label='Password'
               type='password'
               id='password'
+              name='password'
               variant='outlined'
               margin='normal'
               required
               fullWidth
-              value={password}
-              onChange={onPasswordHandler}
+              value={formData.password}
+              onChange={handleInputChange}
               error={!!passwordErrorText}
               helperText={passwordErrorText}
             />
@@ -88,12 +85,13 @@ export default function Register(props) {
               label='Confirm password'
               type='password'
               id='confirmed-password'
+              name='confirmPassword'
               variant='outlined'
               margin='normal'
               required
               fullWidth
-              value={confirmPassword}
-              onChange={onConfirmPasswordHandler}
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
               error={!!confirmPasswordErrorText}
               helperText={confirmPasswordErrorText}
             />

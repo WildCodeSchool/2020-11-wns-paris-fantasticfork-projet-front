@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../graphql/User';
 import Login from './Login';
+import Notification from '../../Common/Notification/Notification';
 
 const initialFormData = {
   email: '',
@@ -9,10 +10,16 @@ const initialFormData = {
   confirmPassword: '',
 };
 
+const initialNotification = {
+  show: false,
+  severity: '',
+  message: '',
+};
+
 export default function LoginContainer({ history }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [notification, setNotification] = useState(initialNotification);
 
-  // eslint-disable-next-line no-unused-vars
   const [loginUser] = useMutation(LOGIN, {
     onCompleted: ({ login }) => {
       localStorage.setItem('userID', login.userID);
@@ -21,6 +28,10 @@ export default function LoginContainer({ history }) {
       history.push('/home');
     },
   });
+
+  const resetNotification = () => {
+    setNotification(initialNotification);
+  };
 
   const handleInputChange = ({ target: { name, value } }) => {
     setFormData({ ...formData, [name]: value });
@@ -37,15 +48,19 @@ export default function LoginContainer({ history }) {
         },
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
+      setNotification({ show: true, severity: 'error', message: `Login failed: ${err.message}` });
+      setTimeout(() => {
+        resetNotification();
+      }, 5000);
     }
   };
 
-  // if (loginError) {
-  //   return <p>{loginError}</p>;
-  // }
   return (
-    <Login formData={formData} handleInputChange={handleInputChange} onSubmitHandler={(e) => onSubmitHandler(e)} />
+    <>
+      <Login formData={formData} handleInputChange={handleInputChange} onSubmitHandler={(e) => onSubmitHandler(e)} />
+      {notification.show && (
+        <Notification severity={notification.severity} message={notification.message} closed={resetNotification} />
+      )}
+    </>
   );
 }

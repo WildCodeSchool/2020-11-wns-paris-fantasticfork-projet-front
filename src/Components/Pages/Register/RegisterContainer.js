@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../../../graphql/User';
 import Register from './Register';
+import Notification from '../../Common/Notification/Notification';
 import { validMail } from '../../../helper/Auth';
 
 const initialFormData = {
@@ -10,6 +11,12 @@ const initialFormData = {
   confirmPassword: '',
   firstname: '',
   lastname: '',
+};
+
+const initialNotification = {
+  show: false,
+  severity: '',
+  message: '',
 };
 
 export default function RegisterContainer({ history }) {
@@ -26,6 +33,11 @@ export default function RegisterContainer({ history }) {
   const [emailErrorText, setEmailErrorText] = useState('');
   const [passwordErrorText, setPasswordErrorText] = useState('');
   const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState('');
+  const [notification, setNotification] = useState(initialNotification);
+
+  const resetNotification = () => {
+    setNotification(initialNotification);
+  };
 
   const handleInputChange = ({ target: { name, value } }) => {
     if (name === 'password' && value.length < 8) {
@@ -60,20 +72,28 @@ export default function RegisterContainer({ history }) {
         },
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
+      setNotification({ show: true, severity: 'error', message: `Sign up failed: ${err.message}` });
+      setTimeout(() => {
+        resetNotification();
+      }, 5000);
+
       history.push('/register');
     }
   };
 
   return (
-    <Register
-      formData={formData}
-      handleInputChange={handleInputChange}
-      onSubmitHandler={(e) => onSubmitHandler(e)}
-      emailErrorText={emailErrorText}
-      passwordErrorText={passwordErrorText}
-      confirmPasswordErrorText={confirmPasswordErrorText}
-    />
+    <>
+      <Register
+        formData={formData}
+        handleInputChange={handleInputChange}
+        onSubmitHandler={(e) => onSubmitHandler(e)}
+        emailErrorText={emailErrorText}
+        passwordErrorText={passwordErrorText}
+        confirmPasswordErrorText={confirmPasswordErrorText}
+      />
+      {notification.show && (
+        <Notification severity={notification.severity} message={notification.message} closed={resetNotification} />
+      )}
+    </>
   );
 }

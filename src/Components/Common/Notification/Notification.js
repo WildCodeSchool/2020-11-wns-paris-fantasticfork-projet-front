@@ -6,7 +6,11 @@ import { Alert } from '@material-ui/lab';
 export default function Notification({ severity, message, closed }) {
   const [open, setOpen] = React.useState(true);
 
-  const handleClose;
+  const handleClose = () => {
+    setOpen(false);
+    closed();
+  };
+
   return (
     <Snackbar
       anchorOrigin={{
@@ -14,10 +18,10 @@ export default function Notification({ severity, message, closed }) {
         horizontal: 'right',
       }}
       open={open}
-      // autoHideDuration={5000}
-      onClose={() => setOpen(false)}
+      autoHideDuration={5000}
+      onClose={handleClose}
     >
-      <Alert severity={severity} elevation={6} variant='filled' onClose={() => setOpen(false)}>
+      <Alert severity={severity} elevation={6} variant='filled' onClose={handleClose}>
         {message}
       </Alert>
     </Snackbar>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../graphql/User';
+import UserContext from '../../../Contexts/UserContext';
 import Login from './Login';
 import Notification from '../../Common/Notification/Notification';
 
@@ -19,12 +20,21 @@ const initialNotification = {
 export default function LoginContainer({ history }) {
   const [formData, setFormData] = useState(initialFormData);
   const [notification, setNotification] = useState(initialNotification);
+  const { user, setUser } = useContext(UserContext);
 
   const [loginUser] = useMutation(LOGIN, {
     onCompleted: ({ login }) => {
       localStorage.setItem('userID', login.userID);
       localStorage.setItem('token', login.token);
       localStorage.setItem('tokenExpiration', login.tokenExpiration);
+      // we can save user info (like username, profile photo etc) as a global value
+      setUser({
+        ...user,
+        isAuth: true,
+        userID: login.userID,
+        token: login.token,
+        tokenExpiration: login.tokenExpiration,
+      });
       history.push('/home');
     },
   });

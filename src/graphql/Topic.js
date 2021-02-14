@@ -7,7 +7,8 @@ export const TOPICS = gql`
       username
       subject
       body
-      date
+      # date
+      createdAt
       url
       tags
       like
@@ -26,8 +27,10 @@ export const GET_TOPIC = gql`
       username
       subject
       body
-      date
-      lastUpdateDate
+      #date
+      #lastUpdateDate
+      createdAt
+      updatedAt
       url
       tags
       like

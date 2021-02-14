@@ -50,7 +50,7 @@ function Forum({ data, goToPage, modalOpen }) {
                   {topic.username}
                 </Typography>
                 <Typography variant='overline' className='lightgrey'>
-                  {getDateFromTimestamp(topic.date)}
+                  {getDateFromTimestamp(topic.createdAt)}
                 </Typography>
                 <div style={{ flex: 1 }} />
                 {topic.tags.length > 0 &&

@@ -6,10 +6,10 @@ function convertTime(time) {
   return `${time}`;      
 }
 
-const timestampToDateString = (dateString) => {
-  const date = new Date(dateString * 1000);
+const timestampToDateString = (timestamp) => {
+  const date = new Date(timestamp);
   const day = new Date(date).toLocaleDateString('fr-FR');
-  let hours = new Date(date).getUTCHours();
+  let hours = new Date(date).getHours();
   let minutes = new Date(date).getMinutes();
 
   hours = convertTime(hours);

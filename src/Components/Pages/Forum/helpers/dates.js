@@ -1,5 +1,5 @@
 
-function convertTime(time) {
+function getTwoDigits(time) {
   if (time < 10) {
     return `0${time}`;
   }
@@ -12,8 +12,8 @@ const timestampToDateString = (timestamp) => {
   let hours = new Date(date).getHours();
   let minutes = new Date(date).getMinutes();
 
-  hours = convertTime(hours);
-  minutes = convertTime(minutes);
+  hours = getTwoDigits(hours);
+  minutes = getTwoDigits(minutes);
 
   return `${day} - ${hours}:${minutes}`;
 };

@@ -7,7 +7,8 @@ export const TOPICS = gql`
       username
       subject
       body
-      date
+      createdAt
+      updatedAt
       url
       tags
       like
@@ -26,8 +27,8 @@ export const GET_TOPIC = gql`
       username
       subject
       body
-      date
-      lastUpdateDate
+      createdAt
+      updatedAt
       url
       tags
       like
@@ -37,10 +38,10 @@ export const GET_TOPIC = gql`
         author
         commentBody
         topicId
-        date
         like
         dislike
-        lastUpdateDate
+        createdAt
+        updatedAt
       }
     }
   }

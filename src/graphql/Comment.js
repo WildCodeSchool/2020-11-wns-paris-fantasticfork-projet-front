@@ -13,7 +13,7 @@ export const CREATE_COMMENT = gql`
 export const UPDATE_COMMENT = gql`
   mutation updateComment($commentId: ID!, $commentBody: String, $like: Int, $dislike: Int) {
     updateComment(commentId: $commentId, commentBody: $commentBody, like: $like, dislike: $dislike) {
-      lastUpdateDate
+      updatedAt
     }
   }
 `;

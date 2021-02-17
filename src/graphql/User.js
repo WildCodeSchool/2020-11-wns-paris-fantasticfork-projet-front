@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-// eslint-disable-next-line import/prefer-default-export
 export const REGISTER_USER = gql`
   mutation SignUp(
     $email: String!
@@ -11,12 +10,19 @@ export const REGISTER_USER = gql`
     $role: String
   ) {
     signUp(email: $email, password: $password, firstname: $firstname, lastname: $lastname, tags: $tags, role: $role) {
-      _id
-      email
-      password
-      firstname
-      lastname
-      role
+      userID
+      token
+      tokenExpiration
+    }
+  }
+`;
+
+export const LOGIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      userID
+      token
+      tokenExpiration
     }
   }
 `;

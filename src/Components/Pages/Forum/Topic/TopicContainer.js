@@ -75,6 +75,8 @@ function TopicContainer({ match }) {
         {toggle && sortedComments && (
           <>
             {sortedComments.map((comment) => {
+              // eslint-disable-next-line no-console
+              console.log(comment);
               if (!comment) {
                 return null;
               }
@@ -84,10 +86,10 @@ function TopicContainer({ match }) {
                     commentId={comment._id}
                     name={comment.author}
                     message={comment.commentBody}
-                    date={comment.date}
+                    createdAt={comment.createdAt}
                     like={comment.like}
                     dislike={comment.dislike}
-                    lastUpdateDate={comment.lastUpdateDate}
+                    updatedAt={comment.updatedAt}
                     refresh={() => refetch()}
                     best={comment._id === bestComment._id ? true : null}
                   />

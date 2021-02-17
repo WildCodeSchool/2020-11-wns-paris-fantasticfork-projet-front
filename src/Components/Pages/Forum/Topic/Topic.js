@@ -29,7 +29,7 @@ const Topic = (props) => {
                 <span className='lightgrey bold'> {getDateFromTimestamp(data.createdAt)}</span>
               </Typography>
 
-              {data.lastUpdateDate && (
+              {data.updatedAt && data.updatedAt !== data.createdAt && (
                 <Typography variant='caption' className='lightgrey'>
                   Last update
                   <span className='lightgrey bold'> {getDateFromTimestamp(data.updatedAt)}</span>

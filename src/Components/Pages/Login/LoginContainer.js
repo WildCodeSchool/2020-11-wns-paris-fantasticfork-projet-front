@@ -24,9 +24,9 @@ export default function LoginContainer({ history }) {
 
   const [loginUser] = useMutation(LOGIN, {
     onCompleted: ({ login }) => {
-      localStorage.setItem('userID', login.userID);
-      localStorage.setItem('token', login.token);
-      localStorage.setItem('tokenExpiration', login.tokenExpiration);
+      localStorage.setItem('stud-connect@userID', login.userID);
+      localStorage.setItem('stud-connect@token', login.token);
+      localStorage.setItem('stud-connect@tokenExpiration', login.tokenExpiration);
       // we can save user info (like username, profile photo etc) as a global value
       setUser({
         ...user,

@@ -13,15 +13,15 @@ const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000/graphql',
   cache: new InMemoryCache(),
   headers: {
-    authorization: localStorage.getItem('token') || '',
+    authorization: localStorage.getItem('stud-connect@token') || '',
   },
 });
 
 const initialState = {
-  isAuth: !!localStorage.getItem('userID'),
-  userID: localStorage.getItem('userID') || '',
-  token: localStorage.getItem('token') || '',
-  tokenExpiration: localStorage.getItem('tokenExpiration') || '',
+  isAuth: !!localStorage.getItem('stud-connect@userID'),
+  userID: localStorage.getItem('stud-connect@userID') || '',
+  token: localStorage.getItem('stud-connect@token') || '',
+  tokenExpiration: localStorage.getItem('stud-connect@tokenExpiration') || '',
 };
 
 function App() {
@@ -56,7 +56,7 @@ function RouteWrapper(props) {
   // eslint-disable-next-line no-unused-vars
   const { user } = useContext(UserContext);
   console.log(user);
-  if (protectedRoute && !user.isAuth) {
+  if (protectedRoute && !user?.isAuth) {
     return <Redirect to={{ pathname: '/login' }} />;
   }
 

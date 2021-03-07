@@ -26,13 +26,13 @@ const Topic = (props) => {
               </Typography>
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey bold'> {getDateFromTimestamp(data.date)}</span>
+                <span className='lightgrey bold'> {getDateFromTimestamp(data.createdAt)}</span>
               </Typography>
 
-              {data.lastUpdateDate && (
+              {data.updatedAt && data.updatedAt !== data.createdAt && (
                 <Typography variant='caption' className='lightgrey'>
                   Last update
-                  <span className='lightgrey bold'> {getDateFromTimestamp(data.lastUpdateDate)}</span>
+                  <span className='lightgrey bold'> {getDateFromTimestamp(data.updatedAt)}</span>
                 </Typography>
               )}
             </div>

@@ -6,7 +6,7 @@ import getDateFromTimestamp from '../helpers/dates';
 import './Comment.css';
 
 export default function Comment(props) {
-  const { commentId, date, name, message, like, dislike, best, lastUpdateDate, refresh } = props;
+  const { commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
   const [updateComment, { loading }] = useMutation(UPDATE_COMMENT);
   const [editMode, setEditMode] = useState(false);
   const [commentMessage, setCommentMessage] = useState(message);
@@ -43,11 +43,11 @@ export default function Comment(props) {
 
               <Typography variant='caption' className='lightgrey'>
                 Posted on
-                <span className='lightgrey'> {getDateFromTimestamp(date)} </span>
-                {lastUpdateDate && (
+                <span className='lightgrey'> {getDateFromTimestamp(createdAt)} </span>
+                {updatedAt && updatedAt !== createdAt && (
                   <>
                     | Modified on
-                    <span className='lightgrey'> {getDateFromTimestamp(lastUpdateDate)}</span>
+                    <span className='lightgrey'> {getDateFromTimestamp(updatedAt)}</span>
                   </>
                 )}
               </Typography>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Container, Avatar, Icon, Typography, TextField, Button, Grid, Link } from '@material-ui/core';
 import './Register.css';

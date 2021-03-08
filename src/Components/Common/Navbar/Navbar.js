@@ -5,7 +5,7 @@ import sampleImage from '../../../images/cat.jpg';
 import './Navbar.css';
 
 const menu = [
-  { text: 'Home', icon: 'home', link: '/' },
+  { text: 'Home', icon: 'home', link: '/home' },
   { text: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
   { text: 'My Class', icon: 'school', link: '/classroom' },
   { text: 'Forum', icon: 'forum', link: '/topics' },

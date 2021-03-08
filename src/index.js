@@ -1,18 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloLink, HttpLink, ApolloProvider, InMemoryCache, concat } from '@apollo/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const client = new ApolloClient({
+const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000/graphql',
-  // uri: 'http://localhost:4000/graphql',
+});
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('stud-connect@token') || null;
+  // add the authorization to the headers
+  if (token) {
+    operation.setContext({
+      headers: {
+        Authorization: `bearer ${token}` || null,
+      },
+    });
+  }
+
+  return forward(operation);
+});
+
+const link = concat(authMiddleware, httpLink);
+
+const client = new ApolloClient({
   cache: new InMemoryCache(),
-  headers: {
-    authorization: localStorage.getItem('stud-connect@token') || '',
-  },
+  link,
 });
 
 ReactDOM.render(

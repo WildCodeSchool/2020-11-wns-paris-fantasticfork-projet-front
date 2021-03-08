@@ -1,17 +1,30 @@
 import React from 'react';
-import { Typography, Badge, Icon, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { Typography, Badge, Icon, Button } from '@material-ui/core';
+import { useMutation } from '@apollo/client';
+import { LOGOUT } from '../../../graphql/User';
 import './SubNavbar.css';
 
 export default function SubNavbar({ title }) {
   const isAuth = !!localStorage.getItem('stud-connect@userID');
   const history = useHistory();
+  const [logoutUser, { client }] = useMutation(LOGOUT);
 
   const goToLogin = () => {
     history.push('/login');
   };
 
-  const handleLogout = () => {};
+  const handleLogout = async () => {
+    await logoutUser();
+
+    localStorage.setItem('stud-connect@userID', '');
+    localStorage.setItem('stud-connect@token', '');
+    localStorage.setItem('stud-connect@tokenExpiration', '');
+
+    await client.resetStore();
+
+    history.push('/');
+  };
 
   return (
     <div className='flex_ subNavbar'>

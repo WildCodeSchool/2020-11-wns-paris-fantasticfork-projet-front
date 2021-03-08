@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../../../graphql/User';
-import UserContext from '../../../Contexts/UserContext';
 import Register from './Register';
 import Notification from '../../Common/Notification/Notification';
 import { validMail } from '../../../helper/Auth';
@@ -21,20 +20,12 @@ const initialNotification = {
 };
 
 export default function RegisterContainer({ history }) {
-  const { user, setUser } = useContext(UserContext);
-
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: ({ signUp }) => {
       localStorage.setItem('stud-connect@userID', signUp.userID);
       localStorage.setItem('stud-connect@token', signUp.token);
       localStorage.setItem('stud-connect@tokenExpiration', signUp.tokenExpiration);
-      setUser({
-        ...user,
-        isAuth: true,
-        userID: signUp.userID,
-        token: signUp.token,
-        tokenExpiration: signUp.tokenExpiration,
-      });
+
       history.push('/home');
     },
   });

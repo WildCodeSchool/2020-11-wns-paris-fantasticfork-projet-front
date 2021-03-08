@@ -11,6 +11,7 @@ import './App.css';
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000/graphql',
+  // uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache(),
   headers: {
     authorization: localStorage.getItem('stud-connect@token') || '',

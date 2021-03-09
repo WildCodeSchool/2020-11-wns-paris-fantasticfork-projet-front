@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemIcon, ListItemText, Icon, Avatar, Typography } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
-import './Navbar.css';
+import './Navbar.scss';
 
 const menu = [
   { text: 'Home', icon: 'home', link: '/' },

@@ -5,7 +5,7 @@ import './SubNavbar.css';
 export default function SubNavbar({ title }) {
   const [Log, setLog] = useState(false);
   return (
-    <div className='flex_ subNavbar'>
+    <div className='subNavbar'>
       <Typography variant='h4' gutterBottom style={{ marginLeft: 60 }} className='blue'>
         {title}
       </Typography>

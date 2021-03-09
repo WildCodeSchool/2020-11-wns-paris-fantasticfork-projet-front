@@ -1,12 +1,18 @@
+@import '../../scss/breakpoints.scss';
+
 .Navbar {
   color: var(--blue);
-  position: fixed;
-  z-index: 5;
+  //position: fixed;
+  //z-index: 5;
   height: 100%;
   width: 200px;
   padding:0 !important;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    display: none;
+  }
 }
 
 .Navbar_profile {

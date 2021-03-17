@@ -72,10 +72,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  // credentials: 'include',
-  fetchOptions: {
-    credentials: 'include',
-  },
+  credentials: 'include',
   link: from([refreshToken, authMiddleware, httpLink]),
 });
 

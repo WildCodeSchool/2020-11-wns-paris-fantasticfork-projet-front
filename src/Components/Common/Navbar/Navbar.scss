@@ -1,14 +1,14 @@
-@import '../../scss/breakpoints.scss';
+@import '../../styles/breakpoints.scss';
 
 .Navbar {
-  color: var(--blue);
+  color: white;
   //position: fixed;
   //z-index: 5;
   height: 100%;
   width: 200px;
   padding:0 !important;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  // border: 1px solid rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: $mobile-breakpoint) {
     display: none;
@@ -16,16 +16,18 @@
 }
 
 .Navbar_profile {
-  height: 230px;
+  height: 220px;
   justify-content: center;
   align-items: center;
-  margin-top: -20px;
+  background-color: var(--blue);
+  // margin-top: -20px;
 }
 
 .Navbar_img{
   width: 80px !important; 
   height: 80px !important;
   margin-bottom: 10px;
+  border: 5px solid white;
 }
 
 
@@ -33,8 +35,24 @@
 .Navbar_menu_item {
   height: 50px;
   margin-bottom: 5px !important;
+
+  span {
+    color: var(--blue);
+  } 
 }
 
 .Navbar_menu_icon {
   margin-left: 20px;
+}
+
+.Navbar_logo {
+  margin: 0 auto;
+  margin-top: -35px;
+  margin-bottom: 35px;
+  justify-content: center;
+  display: flex;
+  
+  img {
+    height: 70px;
+  }
 }

@@ -21,16 +21,17 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Switch>
-        <ThemeProvider theme={theme}>
-          <RouteWrapper exact path='/' component={ForumContainer} layout={Visitor} />
-          <RouteWrapper exact path='/home' component={RegisterContainer} layout={Authenticated} text='home' />
-          <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
-          <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
-          <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
-          <RouteWrapper path='/topics/:id' component={TopicContainer} layout={Authenticated} />
-        </ThemeProvider>
-      </Switch>
+      <ThemeProvider theme={theme}>
+        <Switch>
+            <RouteWrapper exact path='/' component={ForumContainer} layout={Visitor} />
+            <RouteWrapper exact path='/home' component={RegisterContainer} layout={Authenticated} text='home' />
+            <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
+            <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
+            <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
+            <RouteWrapper path='/topics/:id' component={TopicContainer} layout={Authenticated} />
+        </Switch>
+      </ThemeProvider>
+
     </ApolloProvider>
   );
 }

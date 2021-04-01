@@ -1,29 +1,45 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemIcon, ListItemText, Icon, Avatar, Typography, Badge } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
 import logo from '../../../images/stud-connect-logo-primary-bg-white.svg';
 import './Navbar.scss';
-import menu from './menu';
+import { navigationMenu } from './menus';
+import UserMenu from './UserMenu';
 
 export default function Navbar() {
+  const [isUserMenuOpened, toggleUserMenu] = useState(false);
+  const userMenuArrow = useRef(null);
+
   return (
     <div className='Navbar'>
       <div className='flex_column Navbar_profile'>
         <Badge badgeContent={3} color='secondary' style={{alignSelf:'flex-start', marginLeft:'20px'}}>
           <Icon>notifications</Icon>
         </Badge>
+        
         <Avatar src={sampleImage} className='Navbar_img' />
-        <Typography variant='h6' gutterBottom className="Navbar_username">
-          John Stud
-          <Icon>chevron_right</Icon>
+        <Typography 
+          onClick={() => toggleUserMenu(!isUserMenuOpened)} 
+          variant='h6' 
+          gutterBottom 
+          className="Navbar_username nav_user_menu_btn"
+        >John Stud
+          <Icon ref={userMenuArrow} className="user_menu_arrow">expand_more</Icon>
         </Typography>
+
+        <UserMenu 
+          isOpened={isUserMenuOpened} 
+          showMenu={toggleUserMenu} 
+          anchorClassName=".nav_user_menu_btn"
+          anchorRef={userMenuArrow}
+        />
       </div>
       <div className="Navbar_logo">
         <img src={logo} alt="logo"/>
       </div>
       <List disablePadding dense>
-        {menu.map((elem) => (
+        {navigationMenu.map((elem) => (
           <ListItem key={elem.text} button className='Navbar_menu_item' component={Link} to={elem.link}>
             <ListItemIcon>
               <Icon fontSize='default' className='Navbar_menu_icon'>

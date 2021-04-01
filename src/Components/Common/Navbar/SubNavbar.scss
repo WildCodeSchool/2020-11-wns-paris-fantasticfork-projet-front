@@ -36,8 +36,37 @@
   margin-right: 20px;
   display: none;
   color: var(--blue);
+  &:hover {
+    cursor: pointer;
+  }
   
   @media screen and (max-width: $mobile-breakpoint) {
     display: block;
+  }
+}
+.Subnavbar_img {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    display: none !important;
+
+    img {
+      display: none !important;
+    }
+  }
+}
+
+.Subnavbar_title {
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.user_menu_button {
+  &:hover {
+    cursor: pointer;
   }
 }

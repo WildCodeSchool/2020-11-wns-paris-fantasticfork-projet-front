@@ -56,3 +56,11 @@
     height: 70px;
   }
 }
+
+.user_menu_arrow {
+  transition: all 0.5s ease;
+}
+
+.rotate {
+  transform: rotate(-180deg);
+}

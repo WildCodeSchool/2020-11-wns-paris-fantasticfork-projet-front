@@ -36,13 +36,18 @@ const refreshToken = new TokenRefreshLink({
   },
   fetchAccessToken: () => {
     const token = localStorage.getItem('stud-connect@token') || null;
-    return fetch('http://localhost:4000/refresh_token' || 'https://stud-connect.herokuapp.com/refresh_token', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        Authorization: `bearer ${token}` || null,
-      },
-    });
+    return fetch(
+      process.env.ENV === 'dev'
+        ? 'http://localhost:4000/refresh_token'
+        : 'https://stud-connect.herokuapp.com/refresh_token',
+      {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          Authorization: token ? `bearer ${token}` : null,
+        },
+      }
+    );
   },
   handleFetch: (accessToken) => {
     localStorage.setItem('stud-connect@token', accessToken);
@@ -62,7 +67,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   if (token) {
     operation.setContext({
       headers: {
-        Authorization: `bearer ${token}` || null,
+        Authorization: token ? `bearer ${token}` : null,
       },
     });
   }

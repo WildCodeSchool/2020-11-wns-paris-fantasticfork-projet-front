@@ -75,8 +75,6 @@ function TopicContainer({ match }) {
         {toggle && sortedComments && (
           <>
             {sortedComments.map((comment) => {
-              // eslint-disable-next-line no-console
-              console.log(comment);
               if (!comment) {
                 return null;
               }

@@ -22,9 +22,10 @@ const initialNotification = {
 export default function RegisterContainer({ history }) {
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: ({ signUp }) => {
-      localStorage.setItem('userID', signUp.userID);
-      localStorage.setItem('token', signUp.token);
-      localStorage.setItem('tokenExpiration', signUp.tokenExpiration);
+      localStorage.setItem('stud-connect@userID', signUp.userID);
+      localStorage.setItem('stud-connect@token', signUp.token);
+      localStorage.setItem('stud-connect@tokenExpiration', signUp.tokenExpiration);
+
       history.push('/home');
     },
   });

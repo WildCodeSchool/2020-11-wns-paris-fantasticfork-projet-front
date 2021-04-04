@@ -1,43 +1,61 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Authenticated, Visitor } from './Layouts';
+import LandingPage from './Components/Pages/LandingPage/LandingPage';
+import Home from './Components/Pages/Home/Home';
+import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import MyClass from './Components/Pages/MyClass/MyClass';
+import Daily from './Components/Pages/Daily/Daily';
 import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
 import TopicContainer from './Components/Pages/Forum/Topic/TopicContainer';
 import ForumContainer from './Components/Pages/Forum/ForumContainer';
 import './App.css';
 
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000/graphql',
-  cache: new InMemoryCache(),
-  headers: {
-    authorization: localStorage.getItem('token') || '',
-  },
-});
+// const initialState = {
+//   isAuth: !!localStorage.getItem('stud-connect@userID'),
+//   userID: localStorage.getItem('stud-connect@userID') || '',
+//   token: localStorage.getItem('stud-connect@token') || '',
+//   tokenExpiration: localStorage.getItem('stud-connect@tokenExpiration') || '',
+// };
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Switch>
-        <RouteWrapper exact path='/' component={ForumContainer} layout={Visitor} />
-        <RouteWrapper exact path='/home' component={RegisterContainer} layout={Authenticated} text='home' />
-        <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
-        <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
-        <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
-        <RouteWrapper path='/topics/:id' component={TopicContainer} layout={Authenticated} />
-      </Switch>
-    </ApolloProvider>
+    <Switch>
+      <RouteWrapper exact path='/' component={LandingPage} layout={Visitor} />
+      <RouteWrapper exact path='/home' component={Home} protectedRoute layout={Authenticated} text='Home' />
+      <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
+      <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
+      <RouteWrapper
+        exact
+        path='/dashboard'
+        component={Dashboard}
+        protectedRoute
+        layout={Authenticated}
+        text='Dashboard'
+      />
+      <RouteWrapper exact path='/classroom' component={MyClass} protectedRoute layout={Authenticated} text='My Class' />
+      <RouteWrapper exact path='/daily' component={Daily} protectedRoute layout={Authenticated} text='Daily' />
+      <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
+      <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
+    </Switch>
   );
 }
 
-function RouteWrapper({ component: Component, layout: Layout, text, ...rest }) {
+function RouteWrapper(props) {
+  const { component: Component, layout: Layout, text, protectedRoute, ...rest } = props;
+  const isAuth = !!localStorage.getItem('stud-connect@userID');
+
+  if (protectedRoute && !isAuth) {
+    return <Redirect to={{ pathname: '/login' }} />;
+  }
+
   return (
     <Route
       {...rest}
-      render={(props) => (
-        <Layout title={text} {...props}>
-          <Component {...props} />
+      render={(_props) => (
+        <Layout title={text} {..._props}>
+          <Component {..._props} />
         </Layout>
       )}
     />

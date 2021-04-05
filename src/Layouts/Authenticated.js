@@ -4,14 +4,14 @@ import SubNavbar from '../Components/Common/Navbar/SubNavbar';
 
 export default function Authenticated({ children, title }) {
   return (
-    <div className='flex_ lightgreyBackground'>
-      <div style={{ width: 200 }}>
-        <Navbar />
+    <>
+      <div style={{flexShink: 0, height: '100%', flexDirection: 'column', display: 'flex'}}>
+        <Navbar className='lightgreyBackground'/>
       </div>
-      <div className='lightgreyBackground' style={{ width: 'calc(100% - 200px)' }}>
+      <div className='lightgreyBackground' style={{ width: '100%', flexDirection:'column' }}>
         <SubNavbar title={title} />
         <div className='pageContainer'>{children}</div>
       </div>
-    </div>
+    </>
   );
 }

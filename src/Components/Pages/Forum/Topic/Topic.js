@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import sampleImage from '../../../../images/cat.jpg';
 import getDateFromTimestamp from '../helpers/dates';
-import './Topic.css';
+import './Topic.scss';
 
 const Topic = (props) => {
   const { data, toggle, setToggle, toggleWrite, setToggleWrite, handleTopicLike, setModifyFormOpened } = props;

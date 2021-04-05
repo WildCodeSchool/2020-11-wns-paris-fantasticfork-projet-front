@@ -2,7 +2,7 @@ import { React, useEffect } from 'react';
 import { Menu, MenuItem } from '@material-ui/core';
 import { userMenu } from './menus';
 
-export default function UserMenu ({ isOpened, showMenu, anchorRef }) {
+export default function UserMenu ({ isOpened, showMenu, anchorRef, logoutFunc }) {
 
   useEffect(() => {
     if(anchorRef) {
@@ -23,8 +23,10 @@ export default function UserMenu ({ isOpened, showMenu, anchorRef }) {
         anchorOrigin={{  vertical: "bottom", horizontal: "right" }}
         getContentAnchorEl={null}
       >
-        {userMenu.map((item) => 
-            <MenuItem key={item.link} onClick={() => showMenu(false)}>{item.text}</MenuItem>
+        {userMenu.map((item) =>
+            item.text === 'Logout'
+            ? <MenuItem key={item.link} onClick={() => { showMenu(false); logoutFunc() }}>{item.text}</MenuItem>
+            : <MenuItem key={item.link} onClick={() => showMenu(false)}>{item.text}</MenuItem>
         )}
       </Menu>
     </div>

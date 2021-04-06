@@ -10,6 +10,15 @@
   top: 0;
   z-index: 4;
   display: inline-flex;
+  position: relative;
+}
+
+.SubNavbar-desktop-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 15px;
 }
 
 .logButton {
@@ -68,5 +77,19 @@
 .user_menu_button {
   &:hover {
     cursor: pointer;
+  }
+}
+
+.MuiButtonBase-root.filter-icon-desktop {
+  background-color: var(--blue);
+  color: white;
+  width: 90px;
+
+  &:hover {
+    background-color: #28399d;
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    display: none;
   }
 }

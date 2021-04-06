@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { 
@@ -9,7 +9,8 @@ import {
   List, 
   ListItem, 
   ListItemIcon, 
-  ListItemText,  
+  ListItemText,
+  Button 
 } from '@material-ui/core';
 
 import UserMenu from './UserMenu';
@@ -22,6 +23,18 @@ export default function SubNavbar({ title, handleLogout }) {
   const [isMenuOpened, showMenu] = useState(false);
   const [isUserMenuOpened, toggleUserMenu] = useState(false);
   const userMenuArrow = useRef(null);
+
+  const [toolsOpened, toggleTools] = useState(false);
+
+  useEffect(() => {
+    const searchTools = document.querySelector('.SearchTools');
+
+      if(toolsOpened) {
+        searchTools.classList.add('show-search-tools');
+      } else if (searchTools) {
+        searchTools.classList.remove('show-search-tools');
+      }
+  }, [toolsOpened]);
 
   return (
     <div className='subNavbar'>
@@ -38,15 +51,19 @@ export default function SubNavbar({ title, handleLogout }) {
         logoutFunc={handleLogout}
       />
 
+      <div className="SubNavbar-desktop-content">
+        <Typography 
+            variant='h4' 
+            gutterBottom 
+            style={{ marginLeft: 20, fontWeight: 1000 }} 
+            className='blue Subnavbar_title'
+        >
+          {title}
+        </Typography>
 
-      <Typography 
-          variant='h4' 
-          gutterBottom 
-          style={{ marginLeft: 20, fontWeight: 1000 }} 
-          className='blue Subnavbar_title'
-      >
-        {title}
-      </Typography>
+        <Button onClick={() => toggleTools(!toolsOpened)} className="filter-icon-desktop">Search</Button>
+      </div>
+
 
 
       <div style={{ flex: 1 }}/>

@@ -7,7 +7,7 @@ function Forum({ data, goToPage, modalOpen }) {
     <>
       <div
         className='flex_'
-        style={{ alignItems: 'center', justifyContent: 'flex-end', marginRight: 20, marginBottom: 20 }}
+        style={{ alignItems: 'center', justifyContent: 'flex-start', marginLeft: 20, marginBottom: 20 }}
       >
         <Button variant='contained' color='primary' onClick={() => modalOpen(true)}>
           Ask a question

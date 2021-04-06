@@ -7,10 +7,13 @@ import { TOPICS } from '../../../graphql/Topic';
 function ForumContainer({ history }) {
   const [open, setOpen] = React.useState(false);
   const { loading, error, data, refetch } = useQuery(TOPICS);
+  const [isRefetching, setIsRefetching] = React.useState(true);
 
   useEffect(() => {
-    refetch();
-  }, [open, refetch]);
+    if (isRefetching) refetch();
+
+    return () => setIsRefetching(false);
+  }, [open, refetch, isRefetching]);
 
   const goToPage = (topicId) => {
     history.push(`/topics/${topicId}`);

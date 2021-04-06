@@ -1,9 +1,13 @@
 import React from 'react';
+import ChatRoomList from './ChatRoomList';
+import ChatRoom from './ChatRoom';
+import './Chat.scss';
 
 export default function Chat() {
   return (
-    <div>
-      <h1>THIS IS CHAT</h1>
+    <div className='Chat_container'>
+      <ChatRoomList />
+      <ChatRoom />
     </div>
   );
 }

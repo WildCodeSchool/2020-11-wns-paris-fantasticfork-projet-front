@@ -1,3 +1,5 @@
+@import '../../../styles/breakpoints.scss';
+
 .Article{
   width: 100%;
   background-color: var(--background);
@@ -8,6 +10,11 @@
   display: flex;
   margin: 20px;
   padding: 40px;
+  @media screen and (max-width: $mobile-breakpoint) {
+    h2 {
+      font-size: 2.5em;
+    }
+  }
 }
 
 .Article_header{

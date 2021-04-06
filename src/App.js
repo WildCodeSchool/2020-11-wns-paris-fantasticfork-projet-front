@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { ThemeProvider } from "@material-ui/core";
+import theme from './Components/theme';
 import { Authenticated, Visitor } from './Layouts';
 import LandingPage from './Components/Pages/LandingPage/LandingPage';
 import Home from './Components/Pages/Home/Home';
@@ -10,7 +12,7 @@ import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
 import TopicContainer from './Components/Pages/Forum/Topic/TopicContainer';
 import ForumContainer from './Components/Pages/Forum/ForumContainer';
-import './App.css';
+import './App.scss';
 
 // const initialState = {
 //   isAuth: !!localStorage.getItem('stud-connect@userID'),
@@ -21,6 +23,7 @@ import './App.css';
 
 function App() {
   return (
+  <ThemeProvider theme={theme}>
     <Switch>
       <RouteWrapper exact path='/' component={LandingPage} layout={Visitor} />
       <RouteWrapper exact path='/home' component={Home} protectedRoute layout={Authenticated} text='Home' />
@@ -39,6 +42,7 @@ function App() {
       <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
       <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
     </Switch>
+  </ThemeProvider>
   );
 }
 

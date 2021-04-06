@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function ChatRoom() {
+export default function ChatMessages() {
   return (
-    <div className='ChatRoom'>
+    <div className='ChatMessages'>
       <h1>THIS IS CHAT</h1>
     </div>
   );

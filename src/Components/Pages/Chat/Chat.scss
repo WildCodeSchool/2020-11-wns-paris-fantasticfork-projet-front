@@ -25,9 +25,64 @@
   }
 }
 
+.ChatRoomList_header{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  .ChatRoomList_searchbar{
+    height: 40px;
+    width: 50%;
+    min-width: 250px;
+    max-width: 400px;
+    display: flex;
+    margin: 15px 20px;
+    border-radius: 20px;
+  }
+  .ChatRoomList_searchbar_input{
+    padding-left: 20px;
+    flex-grow: 5;
+  }
+}
 
-//ChatRoom
-.ChatRoom{
+
+//ChatRoomBox
+.ChatRoomBox{
+  padding: 15px 20px;
+  border: 1px solid white;
+  border-width: 1px 0;
+  display: flex;
+  align-items: center;
+
+  .ChatRoomBox_texts{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  .second{
+    align-items: flex-end;
+    span:first-child{
+      color:grey;
+    }
+  }
+
+  .badge{
+    height: 20px;
+    max-width: 30px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 0 6px;
+    color: #fff;
+    background-color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+}
+
+//ChatMessages
+.ChatMessages{
   flex: 2;
   height:100%;
   @media screen and (max-width: $mobile-breakpoint) {

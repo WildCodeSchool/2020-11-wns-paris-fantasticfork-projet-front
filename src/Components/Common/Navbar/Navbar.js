@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemIcon, ListItemText, Icon, Avatar, Typography, Badge } from '@material-ui/core';
+
 import sampleImage from '../../../images/cat.jpg';
 import logo from '../../../images/stud-connect-logo-primary-bg-white.svg';
 import './Navbar.scss';
 import { navigationMenu } from './menus';
 import UserMenu from './UserMenu';
 
-export default function Navbar() {
+export default function Navbar({handleLogout}) {
   const [isUserMenuOpened, toggleUserMenu] = useState(false);
   const userMenuArrow = useRef(null);
 
@@ -33,6 +34,7 @@ export default function Navbar() {
           showMenu={toggleUserMenu} 
           anchorClassName=".nav_user_menu_btn"
           anchorRef={userMenuArrow}
+          logoutFunc={handleLogout}
         />
       </div>
       <div className="Navbar_logo">

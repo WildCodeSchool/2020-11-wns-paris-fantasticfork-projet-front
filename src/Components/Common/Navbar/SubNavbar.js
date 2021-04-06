@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import { 
   Avatar, 
   Typography, 
@@ -8,41 +9,19 @@ import {
   List, 
   ListItem, 
   ListItemIcon, 
-  ListItemText, 
-  Button 
+  ListItemText,  
 } from '@material-ui/core';
-import { useMutation } from '@apollo/client';
-import { LOGOUT } from '../../../graphql/User';
+
 import UserMenu from './UserMenu';
 import { navigationMenu } from './menus';
 import sampleImage from '../../../images/cat.jpg';
 import './SubNavbar.scss';
 
 
-export default function SubNavbar({ title }) {
+export default function SubNavbar({ title, handleLogout }) {
   const [isMenuOpened, showMenu] = useState(false);
   const [isUserMenuOpened, toggleUserMenu] = useState(false);
   const userMenuArrow = useRef(null);
-
-  const isAuth = !!localStorage.getItem('stud-connect@userID');
-  const history = useHistory();
-  const [logoutUser, { client }] = useMutation(LOGOUT);
-
-  const goToLogin = () => {
-    history.push('/login');
-  };
-
-  const handleLogout = async () => {
-    await logoutUser();
-
-    localStorage.setItem('stud-connect@userID', '');
-    localStorage.setItem('stud-connect@token', '');
-    localStorage.setItem('stud-connect@tokenExpiration', '');
-
-    await client.resetStore();
-
-    history.push('/');
-  };
 
   return (
     <div className='subNavbar'>
@@ -68,14 +47,6 @@ export default function SubNavbar({ title }) {
       >
         {title}
       </Typography>
-
-      <div className='logButton'>
-        {isAuth &&
-          <Button variant='contained' color='primary' onClick={goToLogin}>
-            Login
-          </Button>
-        }
-      </div>
 
 
       <div style={{ flex: 1 }}/>

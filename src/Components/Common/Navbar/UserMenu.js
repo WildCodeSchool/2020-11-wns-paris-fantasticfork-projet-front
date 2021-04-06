@@ -25,7 +25,7 @@ export default function UserMenu ({ isOpened, showMenu, anchorRef, logoutFunc })
       >
         {userMenu.map((item) =>
             item.text === 'Logout'
-            ? <MenuItem key={item.link} onClick={() => { showMenu(false); logoutFunc() }}>{item.text}</MenuItem>
+            ? <MenuItem key={item.link} onClick={() =>  logoutFunc() }>{item.text}</MenuItem>
             : <MenuItem key={item.link} onClick={() => showMenu(false)}>{item.text}</MenuItem>
         )}
       </Menu>

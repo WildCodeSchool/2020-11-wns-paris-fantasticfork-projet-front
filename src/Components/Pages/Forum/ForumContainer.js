@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Forum from './Forum';
 import TopicForm from './TopicEditor/TopicForm';
+import SearchTools from './SearchTools/SearchTools';
 import { TOPICS } from '../../../graphql/Topic';
 
 function ForumContainer({ history }) {
@@ -24,6 +25,7 @@ function ForumContainer({ history }) {
 
   return (
     <div>
+      <SearchTools/>
       <Forum data={data} modalOpen={setOpen} goToPage={(TopicId) => goToPage(TopicId)} />
       <TopicForm open={open} close={() => setOpen(false)} />
     </div>

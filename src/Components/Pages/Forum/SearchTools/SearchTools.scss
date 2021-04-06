@@ -1,0 +1,114 @@
+
+@import '../../../styles/breakpoints.scss';
+
+.ToolbarContainer {
+    padding: 0;
+    position: fixed;
+    width: calc(100% - 200px);
+    z-index: 3;
+    transform: translateY(-100%);
+
+    @media screen and (max-width: $mobile-breakpoint) {
+        width: 100%;
+    }
+}
+
+.SearchTools {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.105);
+    position: fixed;
+    transition: transform 0.5s ease;
+}
+
+.show-search-tools {
+    transform: translateY(100%);
+}
+
+.SearchTools-row1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .chip-filters {
+        display:flex;
+        justify-content: center;
+    }
+
+    .chip-active {
+        color: white !important;
+        background-color: var(--blue) !important;
+        border: none !important;
+    }
+
+    .MuiChip-root {
+        background-color: white;
+        color: var(--blue);
+        font-weight: 600;
+        font-size: 1em;
+        border: 2px solid var(--blue);
+        margin-right: 5px;
+    }
+
+    @media screen and (max-width: 750px) {
+        flex-direction: column;
+    }
+    
+}
+
+.Tabs {
+    color: var(--blue);
+
+    .MuiTabs-indicator {
+        background-color: var(--blue);
+    }
+
+    @media screen and (max-width: 750px) {
+        .MuiTabs-flexContainer {
+            width:100%;
+        }
+    }
+}
+
+.SearchBar {
+    color: var(--blue) !important;
+    border: 1px solid var(--blue);
+    border-radius: 4px;
+    padding: 5px;
+    height: 40px;
+    margin-right: 10px;
+    z-index: 15;
+
+    @media screen and (max-width: 750px) {
+        margin: 10px;
+        width: 100%;
+    }
+}
+
+.filter-icon-mobile {
+    position: fixed;
+    right: 0;
+    width: 50px;
+    margin-right: 20px ;
+    margin-top: 20px ;
+    color: white ;
+    background-color: var(--blue) ;
+    border-radius: 50px ;
+    border: 0;
+    padding: 10px ;
+    outline: none;
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.5));
+    transition: transform 0.5s ease;
+
+
+    @media screen and (min-width: $mobile-breakpoint) {
+        display: none;
+    }
+
+    .MuiIcon-root {
+        font-size: 2em;
+    }
+}

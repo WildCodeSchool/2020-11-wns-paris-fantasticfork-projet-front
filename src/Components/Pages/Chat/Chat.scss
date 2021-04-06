@@ -11,13 +11,11 @@
 
 
 
-
-
 //ChatRoomList
 .ChatRoomList{
   flex:1;
   height:100%;
-  border-right: 1px solid var(--blue);
+  // border-right: 1px solid var(--blue);
   @media screen and (max-width: $mobile-breakpoint) {
     height:30%;
     border-right: unset;
@@ -28,7 +26,7 @@
 .ChatRoomList_header{
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   .ChatRoomList_searchbar{
     height: 40px;
     width: 50%;
@@ -45,14 +43,17 @@
 }
 
 
+
 //ChatRoomBox
 .ChatRoomBox{
   height: 40px;
   padding: 15px 20px;
-  border: 1px solid white;
-  border-width: 1px 0;
+  margin: 5px 5px 5px 15px;
+  border-radius: 5px;
+  // border-bottom: 1px solid var(--background);
   display: flex;
   align-items: center;
+  background-color: white;
 
   .ChatRoomBox_texts{
     display: flex;
@@ -84,6 +85,8 @@
   }
 }
 
+
+
 //ChatMessages
 .ChatMessages{
   flex: 2;
@@ -91,4 +94,15 @@
   @media screen and (max-width: $mobile-breakpoint) {
     height:60%;
   }
+}
+
+.ChatMessages_container{
+  height: calc(100% - 40px);
+  margin: 20px 10px;
+  overflow: hidden;
+}
+.ChatMessages_header{
+  height: 55px;
+  background-color: #efefef;
+  border-bottom: 1px solid var(--background);
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
 
-export default function ChatRoomBox({ name, message, time, unread }) {
+export default function ChatRoomBox({ name, message, time, unread, index, setSelectedRoom }) {
   return (
-    <div className='ChatRoomBox'>
+    <div className='ChatRoomBox' onClick={() => setSelectedRoom(index)}>
       <Avatar src={sampleImage} />
       <div className='ChatRoomBox_texts'>
         <Typography variant='subtitle2'>{name}</Typography>

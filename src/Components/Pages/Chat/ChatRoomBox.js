@@ -8,7 +8,7 @@ export default function ChatRoomBox({ name, message, time, unread }) {
       <Avatar src={sampleImage} />
       <div className='ChatRoomBox_texts'>
         <Typography variant='subtitle2'>{name}</Typography>
-        <Typography variant='caption'>{message}</Typography>
+        <Typography variant='caption'>{message.length > 50 ? `${message.slice(0, 50)}...` : message}</Typography>
       </div>
 
       <div className='flex1' />

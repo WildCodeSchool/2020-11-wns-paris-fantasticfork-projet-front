@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { 
@@ -10,7 +10,6 @@ import {
   ListItem, 
   ListItemIcon, 
   ListItemText,
-  Button 
 } from '@material-ui/core';
 
 import UserMenu from './UserMenu';
@@ -23,21 +22,6 @@ export default function SubNavbar({ title, handleLogout }) {
   const [isMenuOpened, showMenu] = useState(false);
   const [isUserMenuOpened, toggleUserMenu] = useState(false);
   const userMenuArrow = useRef(null);
-
-  const [toolsOpened, toggleTools] = useState(false);
-
-  useEffect(() => {
-    const searchTools = document.querySelector('.SearchTools');
-    const forum = document.querySelector('.Forum');
-
-      if(toolsOpened) {
-        searchTools.classList.add('show-search-tools');
-        forum.classList.add('forum-translate');
-      } else if (searchTools) {
-        searchTools.classList.remove('show-search-tools');
-        forum.classList.remove('forum-translate');
-      }
-  }, [toolsOpened]);
 
   return (
     <div className='subNavbar'>
@@ -63,8 +47,6 @@ export default function SubNavbar({ title, handleLogout }) {
         >
           {title}
         </Typography>
-
-        <Button onClick={() => toggleTools(!toolsOpened)} className="filter-icon-desktop">Search</Button>
       </div>
 
 

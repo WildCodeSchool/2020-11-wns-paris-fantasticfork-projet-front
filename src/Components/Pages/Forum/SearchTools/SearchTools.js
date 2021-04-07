@@ -14,12 +14,12 @@ function SearchTools({ topics }) {
         if(toolsOpened) {
             if (searchTools && filterIcon) {
                 searchTools.classList.add('show-search-tools');
-                filterIcon.classList.add('show-search-tools');
+                filterIcon.classList.add('move-filter-icon');
                 forum.classList.add('forum-translate');
             }
         } else if (searchTools && filterIcon) {
             searchTools.classList.remove('show-search-tools');
-            filterIcon.classList.remove('show-search-tools');
+            filterIcon.classList.remove('move-filter-icon');
             forum.classList.remove('forum-translate');
 
         }

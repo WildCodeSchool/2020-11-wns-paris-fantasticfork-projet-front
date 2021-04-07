@@ -28,11 +28,14 @@ export default function SubNavbar({ title, handleLogout }) {
 
   useEffect(() => {
     const searchTools = document.querySelector('.SearchTools');
+    const forum = document.querySelector('.Forum');
 
       if(toolsOpened) {
         searchTools.classList.add('show-search-tools');
+        forum.classList.add('forum-translate');
       } else if (searchTools) {
         searchTools.classList.remove('show-search-tools');
+        forum.classList.remove('forum-translate');
       }
   }, [toolsOpened]);
 

@@ -16,7 +16,6 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
             className='ChatRoomList_searchbar_input'
             placeholder='Search'
             value={searchInput}
-            inputProps={{ 'aria-label': 'recherche routes' }}
             onChange={(e) => setSearchInput(e.target.value)}
           />
           {searchInput && (
@@ -28,7 +27,7 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
       </div>
 
       {data.map((msg, index) => (
-        <ChatRoomBox {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
+        <ChatRoomBox key={msg.id} {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
       ))}
     </div>
   );

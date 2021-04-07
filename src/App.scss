@@ -2,6 +2,7 @@
 
 :root {
   --blue: #3f51b5;
+  --bgBlue: #aab6fe;
   --red: #DC004E;
   --lightgrey: #9e9e9e;
   --background: #F5F6F8;
@@ -29,6 +30,7 @@
 
 .flex_ {
   display: flex;
+  align-items: center;
 }
 
 .flex_column{

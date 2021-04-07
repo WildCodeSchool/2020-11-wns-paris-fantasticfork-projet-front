@@ -8,6 +8,7 @@ import { TOPICS } from '../../../graphql/Topic';
 function ForumContainer({ history }) {
   const [open, setOpen] = React.useState(false);
   const { loading, error, data, refetch } = useQuery(TOPICS);
+  const [topics, setTopics] = React.useState([]);
   const [isRefetching, setIsRefetching] = React.useState(true);
 
   useEffect(() => {
@@ -15,6 +16,10 @@ function ForumContainer({ history }) {
 
     return () => setIsRefetching(false);
   }, [open, refetch, isRefetching]);
+
+  useEffect(() => {
+    if (!loading) setTopics(data.topics);
+  }, [loading, data])
 
   const goToPage = (topicId) => {
     history.push(`/topics/${topicId}`);
@@ -25,8 +30,8 @@ function ForumContainer({ history }) {
 
   return (
     <div>
-      <SearchTools/>
-      <Forum data={data} modalOpen={setOpen} goToPage={(TopicId) => goToPage(TopicId)} />
+      <SearchTools topics={{ get: topics, set: setTopics }}/>
+      <Forum topics={topics} modalOpen={setOpen} goToPage={(TopicId) => goToPage(TopicId)} />
       <TopicForm open={open} close={() => setOpen(false)} />
     </div>
   );

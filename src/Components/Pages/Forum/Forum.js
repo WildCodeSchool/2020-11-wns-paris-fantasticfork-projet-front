@@ -1,10 +1,11 @@
 import React from 'react';
 import { Avatar, Chip, Icon, Typography, Button, Paper } from '@material-ui/core';
 import getDateFromTimestamp from './helpers/dates';
+import './Forum.scss'
 
-function Forum({ data, goToPage, modalOpen }) {
+function Forum({ topics, goToPage, modalOpen }) {
   return (
-    <>
+    <div className="Forum">
       <div
         className='flex_'
         style={{ alignItems: 'center', justifyContent: 'flex-start', marginLeft: 20, marginBottom: 20 }}
@@ -13,8 +14,8 @@ function Forum({ data, goToPage, modalOpen }) {
           Ask a question
         </Button>
       </div>
-      {data.topics &&
-        data.topics.map((topic) => (
+      {topics &&
+        topics.map((topic) => (
           /* eslint no-underscore-dangle: 0 */
           <div key={topic._id} style={{ margin: 20 }}>
             <Paper
@@ -67,7 +68,7 @@ function Forum({ data, goToPage, modalOpen }) {
             </Paper>
           </div>
         ))}
-    </>
+    </div>
   );
 }
 

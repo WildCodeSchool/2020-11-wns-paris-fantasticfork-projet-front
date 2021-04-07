@@ -21,6 +21,9 @@ export default function ChatMessages({ data }) {
 
   const [messageInput, setMessageInput] = useState('');
 
+  if (!data) {
+    return null;
+  }
   return (
     <div className='ChatMessages'>
       <Paper className='ChatMessages_container' elevation={0}>

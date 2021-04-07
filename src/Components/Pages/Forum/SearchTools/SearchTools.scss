@@ -21,6 +21,7 @@
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.105);
     position: fixed;
     transition: transform 0.5s ease;
+    border-bottom: 1px solid var(--blue);
 }
 
 .show-search-tools {

@@ -6,17 +6,15 @@ export default function ChatRoomBox({ index, participants, lastMessage, unreadMe
   if (!lastMessage) {
     return null;
   }
-  let participantsNames = participants[0].name;
-  if (participants?.length > 1) {
-    participants.forEach((p) => {
-      participantsNames += ` | ${p.name}`;
-    });
-  }
+
   return (
     <div className='ChatRoomBox' onClick={() => setSelectedRoom(index)}>
       <Avatar src={sampleImage} />
       <div className='ChatRoomBox_texts'>
-        <Typography variant='subtitle2'>{participantsNames}</Typography>
+        <Typography variant='subtitle2'>
+          {participants[0].name}
+          {participants?.length > 1 && <span style={{ color: 'grey' }}> + {participants?.length}</span>}
+        </Typography>
 
         <Typography variant='caption'>
           {lastMessage?.text?.length > 50 ? `${lastMessage.text.slice(0, 50)}...` : lastMessage.text}

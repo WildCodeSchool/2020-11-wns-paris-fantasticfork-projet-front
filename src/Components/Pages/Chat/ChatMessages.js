@@ -4,24 +4,17 @@ import sampleImage from '../../../images/cat.jpg';
 import ChatMessageBox from './ChatMessageBox';
 
 export default function ChatMessages({ data }) {
-  const dummyMessages = {
-    chatRoom: { ...data },
-    messages: [
-      { id: '1-1', message: 'Hey', username: 'John', userId: '6021a23d07591c28b6614d19', createdAt: '06/04' },
-      { id: '1-2', message: 'Hey there', username: 'Tom', userId: '6021a23d07591c28b6614d190', createdAt: '11:50' },
-      {
-        id: '1-3',
-        message: 'This is a message more than 50 letters. I am long very long',
-        username: 'John',
-        userId: '6021a23d07591c28b6614d19',
-        createdAt: '06/04',
-      },
-    ],
-  };
-
   const [messageInput, setMessageInput] = useState('');
 
-  if (!data) {
+  let messages = data?.messages;
+  if (messages && data?.participants) {
+    messages = messages.map((msg) => {
+      const username = data.participants.find((p) => p.userId === msg.userId).name;
+      return { ...msg, username };
+    });
+  }
+
+  if (!data.messages) {
     return null;
   }
   return (
@@ -29,12 +22,15 @@ export default function ChatMessages({ data }) {
       <Paper className='ChatMessages_container' elevation={0}>
         <div className='ChatMessages_header'>
           <Avatar src={sampleImage} />
-          <Typography variant='subtitle2'>{data.name}</Typography>
+          <Typography variant='subtitle2'>
+            {' '}
+            {data.participants[0].name}
+            {data.participants?.length > 1 && <span style={{ color: 'grey' }}> + {data.participants?.length}</span>}
+          </Typography>
         </div>
 
         <div className='ChatMessages_body'>
-          {dummyMessages.messages &&
-            dummyMessages.messages.map((msg) => <ChatMessageBox key={msg.id} {...msg} img={sampleImage} />)}
+          {messages && messages.map((msg) => <ChatMessageBox key={msg.createdAt} {...msg} img={sampleImage} />)}
         </div>
 
         <div className='ChatMessages_input'>

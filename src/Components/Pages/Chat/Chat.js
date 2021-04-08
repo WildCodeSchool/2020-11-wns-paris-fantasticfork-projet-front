@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CHAT_ROOMS } from '../../../graphql/Chat';
 import ChatRoomList from './ChatRoomList';
-// import ChatMessages from './ChatMessages';
+import ChatMessages from './ChatMessages';
 import './Chat.scss';
 
 export default function Chat() {
@@ -10,7 +10,6 @@ export default function Chat() {
   const [selectedRoom, setSelectedRoom] = useState([]);
   const { loading, data } = useQuery(GET_CHAT_ROOMS, { variables: { userId: global.userId } });
 
-  console.log(chatRooms);
   useEffect(() => {
     if (data?.myChatRooms) {
       setChatRooms(data.myChatRooms);
@@ -25,7 +24,7 @@ export default function Chat() {
   return (
     <div className='Chat_container'>
       <ChatRoomList data={chatRooms} setSelectedRoom={(idx) => setSelectedRoom(chatRooms[idx])} />
-      {/* <ChatMessages data={selectedRoom} /> */}
+      <ChatMessages data={selectedRoom} />
     </div>
   );
 }

@@ -1,11 +1,8 @@
 import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
 
-export default function ChatMessageBox({ message, username, userId, createdAt, img }) {
-  const isMyMessage = () => {
-    const myId = localStorage.getItem('stud-connect@userID') || '';
-    return userId === myId;
-  };
+export default function ChatMessageBox({ text, userId, createdAt, username, img }) {
+  const isMyMessage = () => userId === global.userId;
 
   if (isMyMessage()) {
     return (
@@ -14,7 +11,7 @@ export default function ChatMessageBox({ message, username, userId, createdAt, i
 
         <div className='ChatMessageBox_msg_container'>
           <div className='ChatMessageBox_chat'>
-            <Typography>{message}</Typography>
+            <Typography>{text}</Typography>
           </div>
           <Typography className='ChatMessageBox_date' variant='caption'>
             {createdAt}
@@ -37,7 +34,7 @@ export default function ChatMessageBox({ message, username, userId, createdAt, i
           </Typography>
         </div>
         <div className='ChatMessageBox_chat not_my_chat'>
-          <Typography>{message}</Typography>
+          <Typography>{text}</Typography>
         </div>
       </div>
 

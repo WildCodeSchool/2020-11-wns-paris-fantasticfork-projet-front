@@ -1,29 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Toolbar, InputBase, Tab, Tabs, Chip, Icon } from '@material-ui/core';
+import { Toolbar, InputBase, Tab, Tabs, Icon, Fab, Button } from '@material-ui/core';
 import './SearchTools.scss';
 
-function SearchTools({ topics }) {
+function SearchTools({ topics, modalOpen }) {
     const [tabsValue, setTabsValue] = useState(0);
-    const [toolsOpened, toggleTools] = useState(false);
-
-    useEffect(() => {
-        const searchTools = document.querySelector('.SearchTools');
-        const filterIcon = document.querySelector('.filter-icon-mobile');
-        const forum = document.querySelector('.Forum');
-
-        if(toolsOpened) {
-            if (searchTools && filterIcon) {
-                searchTools.classList.add('show-search-tools');
-                filterIcon.classList.add('move-filter-icon');
-                forum.classList.add('forum-translate');
-            }
-        } else if (searchTools && filterIcon) {
-            searchTools.classList.remove('show-search-tools');
-            filterIcon.classList.remove('move-filter-icon');
-            forum.classList.remove('forum-translate');
-
-        }
-    }, [toolsOpened]);
+    const [toolsOpened, toggleTools] = useState(true);
 
     function sortByDate() {
         const _topics = [...topics.get].sort((a, b) => b.createdAt - a.createdAt);
@@ -54,17 +35,39 @@ function SearchTools({ topics }) {
         }
     }
 
+    function toggleSearchTools(opened) {
+        const searchTools = document.querySelector('.SearchTools');
+        const filterIcon = document.querySelector('.filter-icon-mobile');
+        const forum = document.querySelector('.Forum');
+
+        if(opened) {
+            if (searchTools && filterIcon) {
+                searchTools.classList.add('show-search-tools');
+                filterIcon.classList.add('move-filter-icon');
+                forum.classList.add('forum-translate');
+            }
+        } else if (searchTools && filterIcon) {
+            searchTools.classList.remove('show-search-tools');
+            filterIcon.classList.remove('move-filter-icon');
+            forum.classList.remove('forum-translate');
+
+        }
+    }
+
+
+    useEffect(() => {
+        toggleSearchTools(toolsOpened);
+    }, [toolsOpened]);
+
     return (
         <div className='ToolbarContainer'>
 
             <Toolbar className='SearchTools'>
 
                 <div className='SearchTools-row1'>
-                    <div className='chip-filters'>
-                        <Chip label='Mongo'/>
-                        <Chip label='Node' className='chip-active'/>
-                        <Chip label='Javascript'/>
-                    </div> 
+                    <Button variant='contained' color='primary' onClick={() => modalOpen(true)}>
+                    Ask a question
+                    </Button>
                     <InputBase 
                         onChange={filterTopics} 
                         className='SearchBar' 
@@ -74,15 +77,15 @@ function SearchTools({ topics }) {
                 </div> 
 
                 <Tabs className='Tabs' value={tabsValue} onChange={(e, newValue) => setTabsValue(newValue)}>
-                    <Tab label='Recent topcis' onClick={sortByDate}/>
+                    <Tab label='Recent topics' onClick={sortByDate}/>
                     <Tab label='Popular topics' onClick={sortByPopularity}/>
                 </Tabs>
 
             </Toolbar>
 
-            <button type='button' className='filter-icon-mobile' onClick={() => toggleTools(!toolsOpened)}>
+            <Fab className='filter-icon-mobile' onClick={() => toggleTools(!toolsOpened)}>
                 <Icon>{ toolsOpened ? 'close' : 'filter_list'}</Icon>
-            </button>
+            </Fab>
         </div>
     );
 }

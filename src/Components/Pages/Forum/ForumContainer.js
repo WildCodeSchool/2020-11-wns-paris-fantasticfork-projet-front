@@ -29,9 +29,9 @@ function ForumContainer({ history }) {
   if (error) return <p>{`ERROR: ${error}`}</p>;
 
   return (
-    <div>
-      <SearchTools topics={{ get: topics, set: setTopics, list: data.topics }}/>
-      <Forum topics={topics} modalOpen={setOpen} goToPage={(TopicId) => goToPage(TopicId)} />
+    <div className='ForumContainer'>
+      <SearchTools modalOpen={setOpen} topics={{ get: topics, set: setTopics, list: data.topics }}/>
+      <Forum topics={topics} goToPage={(TopicId) => goToPage(TopicId)} />
       <TopicForm open={open} close={() => setOpen(false)} />
     </div>
   );

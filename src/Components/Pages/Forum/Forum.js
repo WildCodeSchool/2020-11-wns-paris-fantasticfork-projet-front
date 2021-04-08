@@ -3,17 +3,10 @@ import { Avatar, Chip, Icon, Typography, Button, Paper } from '@material-ui/core
 import getDateFromTimestamp from './helpers/dates';
 import './Forum.scss'
 
-function Forum({ topics, goToPage, modalOpen }) {
+function Forum({ topics, goToPage }) {
   return (
     <div className='Forum'>
-      <div
-        className='flex_'
-        style={{ alignItems: 'center', justifyContent: 'flex-start', marginLeft: 20, marginBottom: 20 }}
-      >
-        <Button variant='contained' color='primary' onClick={() => modalOpen(true)}>
-          Ask a question
-        </Button>
-      </div>
+
       {topics &&
         topics.map((topic) => (
           /* eslint no-underscore-dangle: 0 */

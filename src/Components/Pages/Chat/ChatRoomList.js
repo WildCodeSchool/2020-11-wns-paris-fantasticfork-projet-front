@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Paper, IconButton, InputBase, Icon, Fab } from '@material-ui/core';
-import { GET_USERS_TO_CREATE_CHAT } from '../../../graphql/Chat';
+import { GET_USERS, CREATE_CHAT } from '../../../graphql/Chat';
 import ChatRoomBox from './ChatRoomBox';
 import ModalNewChatRoom from './ModalNewChatRoom';
 
 export default function ChatRoomList({ data, setSelectedRoom }) {
   const [searchInput, setSearchInput] = useState('');
   const [openNewRoomModal, setOpenNewRoomModal] = useState(false);
-  const { data: allUsers } = useQuery(GET_USERS_TO_CREATE_CHAT);
+  const { data: allUsers } = useQuery(GET_USERS);
+  const [createChat, { data: createdChat, error: mutationError }] = useMutation(CREATE_CHAT);
 
   const createChatRoom = (users) => {
-    console.log(users);
+    const participants = users.map((user) => ({ userId: user._id }));
+    participants.push({ userId: global.userId });
+    createChat({ variables: { participants } });
+
     setOpenNewRoomModal(false);
   };
 
@@ -44,8 +48,8 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
         </Fab>
       </div>
 
-      {data.map((msg, index) => (
-        <ChatRoomBox key={msg.id} {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
+      {data?.map((msg, index) => (
+        <ChatRoomBox key={msg._id || index} {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
       ))}
 
       <ModalNewChatRoom

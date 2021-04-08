@@ -38,7 +38,7 @@ function SearchTools({ topics }) {
     function filterTopics(e) {
         const searchedString = e.target.value.toLowerCase();
 
-        if (e.target.value === "") topics.set(topics.list);
+        if (e.target.value === '') topics.set(topics.list);
         else {
             const displayedTopics = [];
 
@@ -55,32 +55,32 @@ function SearchTools({ topics }) {
     }
 
     return (
-        <div className="ToolbarContainer">
+        <div className='ToolbarContainer'>
 
-            <Toolbar className="SearchTools">
+            <Toolbar className='SearchTools'>
 
-                <div className="SearchTools-row1">
-                    <div className="chip-filters">
-                        <Chip label="Mongo"/>
-                        <Chip label="Node" className="chip-active"/>
-                        <Chip label="Javascript"/>
+                <div className='SearchTools-row1'>
+                    <div className='chip-filters'>
+                        <Chip label='Mongo'/>
+                        <Chip label='Node' className='chip-active'/>
+                        <Chip label='Javascript'/>
                     </div> 
                     <InputBase 
                         onChange={filterTopics} 
-                        className="SearchBar" 
-                        placeholder="Search..." 
+                        className='SearchBar' 
+                        placeholder='Search...' 
                         inputProps={{'aria-label': 'search'}} 
                     />
                 </div> 
 
-                <Tabs className="Tabs" value={tabsValue} onChange={(e, newValue) => setTabsValue(newValue)}>
-                    <Tab label="Recent topcis" onClick={sortByDate}/>
-                    <Tab label="Popular topics" onClick={sortByPopularity}/>
+                <Tabs className='Tabs' value={tabsValue} onChange={(e, newValue) => setTabsValue(newValue)}>
+                    <Tab label='Recent topcis' onClick={sortByDate}/>
+                    <Tab label='Popular topics' onClick={sortByPopularity}/>
                 </Tabs>
 
             </Toolbar>
 
-            <button type="button" className="filter-icon-mobile" onClick={() => toggleTools(!toolsOpened)}>
+            <button type='button' className='filter-icon-mobile' onClick={() => toggleTools(!toolsOpened)}>
                 <Icon>{ toolsOpened ? 'close' : 'filter_list'}</Icon>
             </button>
         </div>

@@ -25,20 +25,20 @@ export default function SubNavbar({ title, handleLogout }) {
 
   return (
     <div className='subNavbar'>
-      <div onClick={() => toggleUserMenu(!isUserMenuOpened)} className="Subnavbar_img sub_nav_user_menu_btn">
+      <div onClick={() => toggleUserMenu(!isUserMenuOpened)} className='Subnavbar_img sub_nav_user_menu_btn'>
         <Avatar src={sampleImage} />
-        <Icon ref={userMenuArrow} className="user_menu_arrow" color="primary">expand_more</Icon> 
+        <Icon ref={userMenuArrow} className='user_menu_arrow' color='primary'>expand_more</Icon> 
       </div>
 
       <UserMenu 
         isOpened={isUserMenuOpened} 
         showMenu={toggleUserMenu} 
-        anchorClassName=".sub_nav_user_menu_btn"
+        anchorClassName='.sub_nav_user_menu_btn'
         anchorRef={userMenuArrow}
         logoutFunc={handleLogout}
       />
 
-      <div className="SubNavbar-desktop-content">
+      <div className='SubNavbar-desktop-content'>
         <Typography 
             variant='h4' 
             gutterBottom 
@@ -53,9 +53,9 @@ export default function SubNavbar({ title, handleLogout }) {
 
       <div style={{ flex: 1 }}/>
 
-      <Icon onClick={() => showMenu(true)}  className="menu_icon" fontSize="large">menu</Icon>
+      <Icon onClick={() => showMenu(true)}  className='menu_icon' fontSize='large'>menu</Icon>
 
-      <Drawer anchor="left" open={ isMenuOpened } onClose={() => showMenu(false)}>
+      <Drawer anchor='left' open={ isMenuOpened } onClose={() => showMenu(false)}>
         <List style={{width: '200px'}} dense>
           {navigationMenu.map((elem) => (
             <ListItem key={elem.text} button className='Navbar_menu_item' component={Link} to={elem.link}>

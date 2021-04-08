@@ -5,7 +5,7 @@ import './Forum.scss'
 
 function Forum({ topics, goToPage, modalOpen }) {
   return (
-    <div className="Forum">
+    <div className='Forum'>
       <div
         className='flex_'
         style={{ alignItems: 'center', justifyContent: 'flex-start', marginLeft: 20, marginBottom: 20 }}

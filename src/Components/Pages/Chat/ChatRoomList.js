@@ -14,9 +14,7 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
   const createChatRoom = (users) => {
     const participants = users.map((user) => ({ userId: user._id, name: `${user.firstname} ${user.lastname}` }));
     const me = allUsers?.users.find((user) => user._id === global.userId);
-
     participants.push({ userId: global.userId, name: `${me.firstname} ${me.lastname}` });
-
     createChat({ variables: { participants } });
 
     setOpenNewRoomModal(false);
@@ -52,7 +50,7 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
       </div>
 
       {data?.map((msg, index) => (
-        <ChatRoomBox key={msg._id || index} {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
+        <ChatRoomBox key={msg._id} {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
       ))}
 
       <ModalNewChatRoom

@@ -14,6 +14,13 @@ export const GET_CHAT_ROOMS = gql`
         text
         createdAt
       }
+      lastMessage {
+        userId
+        text
+        createdAt
+      }
+      unreadMessages
+      updatedAt
     }
   }
 `;

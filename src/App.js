@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from '@material-ui/core';
 import theme from './Components/theme';
 import { Authenticated, Visitor } from './Layouts';
 import LandingPage from './Components/Pages/LandingPage/LandingPage';
@@ -8,6 +8,7 @@ import Home from './Components/Pages/Home/Home';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import MyClass from './Components/Pages/MyClass/MyClass';
 import Daily from './Components/Pages/Daily/Daily';
+import Chat from './Components/Pages/Chat/Chat';
 import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
 import TopicContainer from './Components/Pages/Forum/Topic/TopicContainer';
@@ -23,26 +24,34 @@ import './App.scss';
 
 function App() {
   return (
-  <ThemeProvider theme={theme}>
-    <Switch>
-      <RouteWrapper exact path='/' component={LandingPage} layout={Visitor} />
-      <RouteWrapper exact path='/home' component={Home} protectedRoute layout={Authenticated} text='Home' />
-      <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
-      <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
-      <RouteWrapper
-        exact
-        path='/dashboard'
-        component={Dashboard}
-        protectedRoute
-        layout={Authenticated}
-        text='Dashboard'
-      />
-      <RouteWrapper exact path='/classroom' component={MyClass} protectedRoute layout={Authenticated} text='My Class' />
-      <RouteWrapper exact path='/daily' component={Daily} protectedRoute layout={Authenticated} text='Daily' />
-      <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
-      <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
-    </Switch>
-  </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Switch>
+        <RouteWrapper exact path='/' component={LandingPage} layout={Visitor} />
+        <RouteWrapper exact path='/home' component={Home} protectedRoute layout={Authenticated} text='Home' />
+        <RouteWrapper exact path='/register' component={RegisterContainer} layout={Visitor} />
+        <RouteWrapper exact path='/login' component={LoginContainer} layout={Visitor} />
+        <RouteWrapper
+          exact
+          path='/dashboard'
+          component={Dashboard}
+          protectedRoute
+          layout={Authenticated}
+          text='Dashboard'
+        />
+        <RouteWrapper
+          exact
+          path='/classroom'
+          component={MyClass}
+          protectedRoute
+          layout={Authenticated}
+          text='My Class'
+        />
+        <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
+        <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
+        <RouteWrapper exact path='/daily' component={Daily} protectedRoute layout={Authenticated} text='Daily' />
+        <RouteWrapper exact path='/chat' component={Chat} protectedRoute layout={Authenticated} text='Chat' />
+      </Switch>
+    </ThemeProvider>
   );
 }
 

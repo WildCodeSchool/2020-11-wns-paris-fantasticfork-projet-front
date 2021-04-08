@@ -1,22 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
-import { 
-  Avatar, 
-  Typography, 
-  Icon, 
-  Drawer, 
-  List, 
-  ListItem, 
-  ListItemIcon, 
-  ListItemText,
-} from '@material-ui/core';
-
+import { Avatar, Typography, Icon, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import UserMenu from './UserMenu';
 import { navigationMenu } from './menus';
 import sampleImage from '../../../images/cat.jpg';
 import './SubNavbar.scss';
-
 
 export default function SubNavbar({ title, handleLogout }) {
   const [isMenuOpened, showMenu] = useState(false);
@@ -38,25 +26,18 @@ export default function SubNavbar({ title, handleLogout }) {
         logoutFunc={handleLogout}
       />
 
-      <div className='SubNavbar-desktop-content'>
-        <Typography 
-            variant='h4' 
-            gutterBottom 
-            style={{ marginLeft: 20, fontWeight: 1000 }} 
-            className='blue Subnavbar_title'
-        >
-          {title}
-        </Typography>
-      </div>
+      <Typography variant='h5' className='blue Subnavbar_title'>
+        {title}
+      </Typography>
 
+      <div style={{ flex: 1 }} />
 
+      <Icon onClick={() => showMenu(true)} className='menu_icon' fontSize='large'>
+        menu
+      </Icon>
 
-      <div style={{ flex: 1 }}/>
-
-      <Icon onClick={() => showMenu(true)}  className='menu_icon' fontSize='large'>menu</Icon>
-
-      <Drawer anchor='left' open={ isMenuOpened } onClose={() => showMenu(false)}>
-        <List style={{width: '200px'}} dense>
+      <Drawer anchor='left' open={isMenuOpened} onClose={() => showMenu(false)}>
+        <List style={{ width: 200 }} dense>
           {navigationMenu.map((elem) => (
             <ListItem key={elem.text} button className='Navbar_menu_item' component={Link} to={elem.link}>
               <ListItemIcon>

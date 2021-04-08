@@ -1,0 +1,39 @@
+@import '../../styles/breakpoints.scss';
+
+.user-card-container {
+    padding: 4px; 
+    width  : 100%;
+    padding: 5px;
+    display: flex;
+    align-self: center;
+}
+
+.user-card-bloc {
+    overflow-x: auto;
+    margin: 5px;
+
+}
+
+.user-card {
+    display    : inline-block;
+    width      : 200px;
+    height     : 90%;
+    align-items: center;
+    margin-top : 5px;
+    margin-right: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.user-card-name,
+.user-card-school {
+    margin   : 0;
+    padding  : 3px;
+    font-size: 12px;
+}
+
+.user-card-avatar {
+    width : 75px;
+    height: 75px;
+    margin: 15px;
+}

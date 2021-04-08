@@ -12,6 +12,7 @@ import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
 import TopicContainer from './Components/Pages/Forum/Topic/TopicContainer';
 import ForumContainer from './Components/Pages/Forum/ForumContainer';
+import Profile from './Components/Pages/Profile/Profile';
 import './App.scss';
 
 // const initialState = {
@@ -39,6 +40,7 @@ function App() {
       />
       <RouteWrapper exact path='/classroom' component={MyClass} protectedRoute layout={Authenticated} text='My Class' />
       <RouteWrapper exact path='/daily' component={Daily} protectedRoute layout={Authenticated} text='Daily' />
+      <RouteWrapper exact path='/profile' component={Profile} protectedRoute layout={Authenticated} text='Profile' />
       <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
       <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
     </Switch>

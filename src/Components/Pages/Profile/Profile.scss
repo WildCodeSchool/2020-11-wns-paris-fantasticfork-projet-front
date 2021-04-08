@@ -1,0 +1,60 @@
+@import '../../styles/breakpoints.scss';
+
+.profile-container {
+    display         : flex;
+    flex-direction  : row;
+    align-content   : center;
+    justify-content : space-around;
+    background-color: #ffffff;
+}
+
+.profile-middle-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.profile-bottom-container {
+    margin-top: 25px;
+    width: 90%;
+    display: flex;
+}
+
+.profile-bloc-container {
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+    height: 230px;
+}
+
+.profile-my-avatar {
+    width: 180px;
+    height: 180px;
+    margin-top: 20px;
+}
+
+.profile-h4 {
+    margin: 0;
+}
+
+.profile-description {
+    padding: 5px;
+    overflow-y: auto;
+}
+
+.profile-top-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.profile-my-tags {
+    align-self: center;
+    margin: 5px;
+}
+
+.profile-topic-container {
+    width: 100%;
+    padding: 4px;
+    overflow-y: auto;
+}

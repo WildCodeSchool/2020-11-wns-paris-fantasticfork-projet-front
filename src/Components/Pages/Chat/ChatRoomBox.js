@@ -9,7 +9,7 @@ export default function ChatRoomBox({ name, lastMessage, time, unread, index, se
       <div className='ChatRoomBox_texts'>
         <Typography variant='subtitle2'>{name}</Typography>
         <Typography variant='caption'>
-          {lastMessage.length > 50 ? `${lastMessage.slice(0, 50)}...` : lastMessage}
+          {lastMessage?.length > 50 ? `${lastMessage.slice(0, 50)}...` : lastMessage}
         </Typography>
       </div>
 

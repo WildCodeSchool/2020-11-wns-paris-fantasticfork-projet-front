@@ -30,7 +30,7 @@ function ForumContainer({ history }) {
 
   return (
     <div>
-      <SearchTools topics={{ get: topics, set: setTopics }}/>
+      <SearchTools topics={{ get: topics, set: setTopics, list: data.topics }}/>
       <Forum topics={topics} modalOpen={setOpen} goToPage={(TopicId) => goToPage(TopicId)} />
       <TopicForm open={open} close={() => setOpen(false)} />
     </div>

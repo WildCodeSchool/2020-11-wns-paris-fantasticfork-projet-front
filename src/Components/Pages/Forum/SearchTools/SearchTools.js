@@ -35,6 +35,25 @@ function SearchTools({ topics }) {
         topics.set(_topics);
     }
 
+    function filterTopics(e) {
+        const searchedString = e.target.value.toLowerCase();
+
+        if (e.target.value === "") topics.set(topics.list);
+        else {
+            const displayedTopics = [];
+
+            topics.list.forEach((topic) => {
+                const subject = topic.subject.toLowerCase();
+                const body = topic.body.toLowerCase();
+
+                if (subject.includes(searchedString) || body.includes(searchedString)) {
+                    displayedTopics.push(topic);
+                }
+            });
+            topics.set(displayedTopics);
+        }
+    }
+
     return (
         <div className="ToolbarContainer">
 
@@ -46,7 +65,12 @@ function SearchTools({ topics }) {
                         <Chip label="Node" className="chip-active"/>
                         <Chip label="Javascript"/>
                     </div> 
-                    <InputBase className="SearchBar" placeholder="Search..." inputProps={{'aria-label': 'search'}} />
+                    <InputBase 
+                        onChange={filterTopics} 
+                        className="SearchBar" 
+                        placeholder="Search..." 
+                        inputProps={{'aria-label': 'search'}} 
+                    />
                 </div> 
 
                 <Tabs className="Tabs" value={tabsValue} onChange={(e, newValue) => setTabsValue(newValue)}>

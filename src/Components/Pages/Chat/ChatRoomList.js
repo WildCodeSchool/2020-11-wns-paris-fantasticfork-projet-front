@@ -9,11 +9,14 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
   const [searchInput, setSearchInput] = useState('');
   const [openNewRoomModal, setOpenNewRoomModal] = useState(false);
   const { data: allUsers } = useQuery(GET_USERS);
-  const [createChat, { data: createdChat, error: mutationError }] = useMutation(CREATE_CHAT);
+  const [createChat] = useMutation(CREATE_CHAT);
 
   const createChatRoom = (users) => {
-    const participants = users.map((user) => ({ userId: user._id }));
-    participants.push({ userId: global.userId });
+    const participants = users.map((user) => ({ userId: user._id, name: `${user.firstname} ${user.lastname}` }));
+    const me = allUsers?.users.find((user) => user._id === global.userId);
+
+    participants.push({ userId: global.userId, name: `${me.firstname} ${me.lastname}` });
+
     createChat({ variables: { participants } });
 
     setOpenNewRoomModal(false);

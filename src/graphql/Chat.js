@@ -6,6 +6,7 @@ export const GET_CHAT_ROOMS = gql`
       _id
       participants {
         userId
+        name
         lastConnected
       }
       messages {

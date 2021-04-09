@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
+import timestampFormatter from '../../../helper/dates';
 
 export default function ChatMessageBox({ text, userId, createdAt, username, img }) {
   const isMyMessage = () => userId === global.userId;
@@ -14,7 +15,7 @@ export default function ChatMessageBox({ text, userId, createdAt, username, img 
             <Typography>{text}</Typography>
           </div>
           <Typography className='ChatMessageBox_date' variant='caption'>
-            {createdAt}
+            {timestampFormatter(createdAt)}
           </Typography>
         </div>
       </div>
@@ -30,7 +31,7 @@ export default function ChatMessageBox({ text, userId, createdAt, username, img 
             {username}
           </Typography>
           <Typography className='not_my_chat ChatMessageBox_date' variant='caption'>
-            {createdAt}
+            {timestampFormatter(createdAt)}
           </Typography>
         </div>
         <div className='ChatMessageBox_chat not_my_chat'>

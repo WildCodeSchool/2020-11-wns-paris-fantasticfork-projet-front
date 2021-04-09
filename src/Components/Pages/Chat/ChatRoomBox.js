@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
+import timestampFormatter from '../../../helper/dates';
 
 export default function ChatRoomBox({ index, participants, lastMessage, unreadMessages, setSelectedRoom }) {
   if (!lastMessage) {
@@ -25,7 +26,7 @@ export default function ChatRoomBox({ index, participants, lastMessage, unreadMe
 
       <div className='ChatRoomBox_texts second'>
         <Typography variant='caption' display='block'>
-          {lastMessage?.createdAt}
+          {timestampFormatter(lastMessage.createdAt)}
         </Typography>
 
         {unreadMessages && <div className='badge'>{unreadMessages}</div>}

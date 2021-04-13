@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Paper, Avatar, Typography, InputBase, Button } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
 import ChatMessageBox from './ChatMessageBox';
 
-export default function ChatMessages({ data }) {
+export default function ChatMessages({ data, submitMessage }) {
   const [messageInput, setMessageInput] = useState('');
+  const chatContainerEl = useRef(null);
+
+  useEffect(() => {
+    if (chatContainerEl.current) {
+      const scroll = chatContainerEl.current.scrollHeight - chatContainerEl.current.clientHeight;
+      chatContainerEl.current.scrollTo(0, scroll);
+    }
+  }, [data, chatContainerEl]);
 
   let messages = data?.messages;
   if (messages && data?.participants) {
@@ -13,6 +21,12 @@ export default function ChatMessages({ data }) {
       return { ...msg, username };
     });
   }
+
+  const sendMessage = () => {
+    const variables = { text: messageInput, userId: global.userId, chatRoomId: data._id };
+    submitMessage(variables);
+    setMessageInput('');
+  };
 
   if (!data.messages) {
     return null;
@@ -29,7 +43,7 @@ export default function ChatMessages({ data }) {
           </Typography>
         </div>
 
-        <div className='ChatMessages_body'>
+        <div className='ChatMessages_body' ref={chatContainerEl}>
           {messages && messages.map((msg) => <ChatMessageBox key={msg.createdAt} {...msg} img={sampleImage} />)}
         </div>
 
@@ -40,7 +54,7 @@ export default function ChatMessages({ data }) {
             value={messageInput}
             onChange={(e) => setMessageInput(e.target.value)}
           />
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='primary' onClick={() => sendMessage()}>
             send
           </Button>
         </div>

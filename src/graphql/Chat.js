@@ -59,3 +59,14 @@ export const CREATE_CHAT = gql`
     }
   }
 `;
+
+export const NEW_MESSAGE = gql`
+  mutation NewMessage($text: String!, $userId: String!, $chatRoomId: String!) {
+    newMessage(text: $text, userId: $userId, chatRoomId: $chatRoomId) {
+      text
+      userId
+      chatRoomId
+      createdAt
+    }
+  }
+`;

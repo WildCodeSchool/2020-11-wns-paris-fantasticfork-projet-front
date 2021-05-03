@@ -13,8 +13,9 @@ export default function Chat() {
   const { data: subData, loading: subLoading, error } = useSubscription(CHAT_FEED);
 
   useEffect(() => {
-    if (data?.myChatRooms) {
-      setChatRooms(data.myChatRooms);
+    if (data?.myChatRooms?.length) {
+      const sortedChatRooms = Array.from(data.myChatRooms)?.sort((a, b) => b.updatedAt - a.updatedAt);
+      setChatRooms(sortedChatRooms);
       setSelectedRoom(data.myChatRooms[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

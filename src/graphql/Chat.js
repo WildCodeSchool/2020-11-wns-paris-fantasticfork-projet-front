@@ -70,3 +70,14 @@ export const NEW_MESSAGE = gql`
     }
   }
 `;
+
+export const CHAT_FEED = gql`
+  subscription {
+    chatFeed {
+      text
+      userId
+      chatRoomId
+      createdAt
+    }
+  }
+`;

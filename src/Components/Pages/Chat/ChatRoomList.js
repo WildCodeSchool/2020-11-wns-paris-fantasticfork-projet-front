@@ -5,7 +5,7 @@ import { GET_USERS, CREATE_CHAT } from '../../../graphql/Chat';
 import ChatRoomBox from './ChatRoomBox';
 import ModalNewChatRoom from './ModalNewChatRoom';
 
-export default function ChatRoomList({ data, setSelectedRoom }) {
+export default function ChatRoomList({ data, setSelectedRoom, refetch }) {
   const [searchInput, setSearchInput] = useState('');
   const [openNewRoomModal, setOpenNewRoomModal] = useState(false);
   const { data: allUsers } = useQuery(GET_USERS);
@@ -16,7 +16,7 @@ export default function ChatRoomList({ data, setSelectedRoom }) {
     const me = allUsers?.users.find((user) => user._id === global.userId);
     participants.push({ userId: global.userId, name: `${me.firstname} ${me.lastname}` });
     createChat({ variables: { participants } });
-
+    refetch();
     setOpenNewRoomModal(false);
   };
 

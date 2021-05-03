@@ -4,31 +4,30 @@ import sampleImage from '../../../images/cat.jpg';
 import timestampFormatter from '../../../helper/dates';
 
 export default function ChatRoomBox({ index, participants, lastMessage, unreadMessages, setSelectedRoom }) {
-  if (!lastMessage) {
-    return null;
-  }
-
   return (
     <div className='ChatRoomBox' onClick={() => setSelectedRoom(index)}>
       <Avatar src={sampleImage} />
       <div className='ChatRoomBox_texts'>
         <Typography variant='subtitle2'>
           {participants[0].name}
-          {participants?.length > 1 && <span style={{ color: 'grey' }}> + {participants?.length}</span>}
+          {participants?.length > 2 && <span style={{ color: 'grey' }}> + {participants?.length}</span>}
         </Typography>
 
-        <Typography variant='caption'>
-          {lastMessage?.text?.length > 50 ? `${lastMessage.text.slice(0, 50)}...` : lastMessage.text}
-        </Typography>
+        {lastMessage && (
+          <Typography variant='caption'>
+            {lastMessage?.text?.length > 50 ? `${lastMessage?.text.slice(0, 50)}...` : lastMessage.text}
+          </Typography>
+        )}
       </div>
 
       <div className='flex1' />
 
       <div className='ChatRoomBox_texts second'>
-        <Typography variant='caption' display='block'>
-          {timestampFormatter(lastMessage.createdAt)}
-        </Typography>
-
+        {lastMessage && (
+          <Typography variant='caption' display='block'>
+            {timestampFormatter(lastMessage.createdAt)}
+          </Typography>
+        )}
         {unreadMessages && <div className='badge'>{unreadMessages}</div>}
       </div>
     </div>

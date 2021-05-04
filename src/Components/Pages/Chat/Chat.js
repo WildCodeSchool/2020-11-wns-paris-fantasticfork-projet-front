@@ -16,13 +16,12 @@ export default function Chat() {
     if (data?.myChatRooms?.length) {
       const sortedChatRooms = Array.from(data.myChatRooms)?.sort((a, b) => b.updatedAt - a.updatedAt);
       setChatRooms(sortedChatRooms);
-      setSelectedRoom(data.myChatRooms[0]);
+      setSelectedRoom(sortedChatRooms[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, data?.myChatRooms, loading]);
 
   useEffect(() => {
-    console.log(subData, subLoading, error);
     if (!subLoading && subData) {
       refetch();
     }

@@ -1,0 +1,460 @@
+.banner-style {
+  width: 100%;
+  height: 100%;
+  margin-left: 0%;
+  margin-top: 0%;
+}
+
+.Studconnect-style {
+  position: "fixed";
+  width: 400;
+  margin-left: 500;
+  margin-bottom: 20;
+}
+
+.HomePicture-style {
+  width: 100%;
+  height: 110%;
+  margin-left: 0%;
+  margin-top: -34%;
+}
+
+.HomePicture-style_2 {
+  width: 60%;
+  margin-left: 68%;
+  margin-top: -10%;
+}
+
+.HomePicture-style_3 {
+  width: 36%;
+  margin-left: -40%;
+  margin-top: -10%;
+}
+
+.title-color {
+  color: #3f51b5;
+  padding-left: -2%;
+  font-size: 1.8em;
+}
+
+.title-color_2 {
+  color: #3f51b5;
+  margin-left: -48%;
+  font-size: 1.8em;
+}
+
+.first-font-styles {
+  font-family: "Roboto";
+  text-align: left;
+  margin-left: 3.8%;
+}
+
+.second-font-styles {
+  margin-top: 10%;
+  font-family: "Roboto";
+  text-align: left;
+  margin-left: 62%;
+}
+
+.Card-information {
+  border-radius: 2px;
+  color: #3f51b5;
+  margin-top: 8%;
+  width: 42%;
+  padding-left: 4%;
+  position: relative;
+  height: 100px;
+}
+
+.Card-information-2 {
+  border-radius: 2px;
+  color: #3f51b5;
+  margin-top: -8.2%;
+  width: 42%;
+  padding-left: 52%;
+  position: relative;
+  height: 100px;
+}
+
+.Card-information-3 {
+  border-radius: 2px;
+  color: #3f51b5;
+  margin-top: 14%;
+  width: 42%;
+  padding-left: 4%;
+  position: relative;
+  height: 100px;
+}
+
+.Card-information-4 {
+  border-radius: 2px;
+  color: #3f51b5;
+  margin-top: -8.2%;
+  width: 42%;
+  padding-left: 52%;
+  position: relative;
+  height: 100px;
+}
+
+.Button-style {
+  color: #3f51b5;
+}
+
+.Block-container-2 {
+  margin-top: 20%;
+  padding-left: 6%;
+  width: 70%;
+}
+
+.Block-container-3 {
+  width: 120%;
+  margin-top: 12%;
+  padding-left: 54%;
+}
+
+.Block-container-4 {
+  padding-left: 18%;
+  margin-top: 4%;
+}
+
+.paragraph-center {
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 120%;
+  padding-left: 6%;
+}
+
+.Harvard-styles {
+  width: 20%;
+}
+
+.Yale-styles {
+  width: 20%;
+}
+
+.JohnHopkins-styles {
+  width: 20%;
+}
+
+@media (min-width: 560px) {
+  .banner-style {
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+}
+
+@media (max-width: 1120px) {
+  .HomePicture-style {
+    width: 100%;
+    height: 60%;
+    margin-left: 0%;
+    margin-top: -20%;
+  }
+}
+
+@media (max-width: 1060px) {
+  .Studconnect-style {
+    position: "fixed";
+    width: 400;
+    margin-left: 500;
+    margin-bottom: 20;
+  }
+}
+
+@media (max-width: 1030px) {
+  .HomePicture-style {
+    width: 100%;
+    height: 56%;
+    margin-left: 0%;
+    margin-top: -19.6%;
+  }
+}
+
+@media (max-width: 875px) {
+  .HomePicture-style {
+    width: 110%;
+    height: 58%;
+    margin-left: 0%;
+    margin-top: -20%;
+  }
+}
+
+@media (max-width: 875px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 75%;
+  }
+}
+
+@media (max-width: 770px) {
+  .HomePicture-style {
+    width: 76%;
+    height: 42%;
+    margin-left: 0%;
+    margin-top: -26%;
+  }
+}
+
+@media (max-width: 770px) {
+  .subNavbar {
+    width: 90%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 770px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 77%;
+  }
+}
+
+@media (max-width: 700px) {
+  .HomePicture-style {
+    width: 100%;
+    height: 50%;
+    margin-left: 0%;
+    margin-top: -28%;
+  }
+}
+
+@media (max-width: 590px) {
+  .HomePicture-style {
+    width: 100%;
+    height: 50%;
+    margin-left: 0%;
+    margin-top: -48.8%;
+  }
+}
+
+@media (max-width: 590px) {
+  .subNavbar {
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 590px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: -10%;
+  }
+}
+
+@media (max-width: 590px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 50%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 520px) {
+  .HomePicture-style {
+    width: 130%;
+    height: 60%;
+    margin-left: -10%;
+    margin-top: -64%;
+  }
+}
+
+@media (max-width: 520px) {
+  .subNavbar {
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: -10%;
+  }
+}
+
+@media (max-width: 520px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 50%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 420px) {
+  .HomePicture-style {
+    width: 106%;
+    height: 46%;
+    margin-left: 0%;
+    margin-top: -62.6%;
+  }
+}
+
+@media (max-width: 420px) {
+  .subNavbar {
+    width: 122%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 420px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+}
+
+@media (max-width: 420px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 375px) {
+  .HomePicture-style {
+    width: 120%;
+    height: 44%;
+    margin-left: 0%;
+    margin-top: -68.2%;
+  }
+}
+
+@media (max-width: 375px) {
+  .subNavbar {
+    width: 138%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 375px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+}
+
+@media (max-width: 375px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 345px) {
+  .HomePicture-style {
+    width: 110%;
+    height: 40%;
+    margin-left: 0%;
+    margin-top: -72.8%;
+  }
+}
+
+@media (max-width: 345px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 345px) {
+  .subNavbar {
+    width: 150%;
+    height: 68px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 345px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 56%;
+  }
+}
+
+@media (max-width: 320px) {
+  .HomePicture-style {
+    width: 176%;
+    height: 70%;
+    margin-left: 0%;
+    margin-top: -77.4%;
+  }
+}
+
+@media (max-width: 320px) {
+  .subNavbar {
+    width: 162%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 320px) {
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 56%;
+  }
+}
+
+@media (min-width: 560px) {
+  .banner-style {
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+}

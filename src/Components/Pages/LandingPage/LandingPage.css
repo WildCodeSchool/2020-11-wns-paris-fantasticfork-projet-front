@@ -1,34 +1,36 @@
 .banner-style {
-  width: 100%;
+  text-align: center;
+  width: 88%;
   height: 100%;
   margin-left: 0%;
   margin-top: 0%;
 }
 
 .Studconnect-style {
-  position: "fixed";
-  width: 400;
-  margin-left: 500;
-  margin-bottom: 20;
+  width: 30%;
+  margin-bottom: 22.8%;
+  margin-top: 18.2%;
+  margin-left: -113%;
+  margin-right: -24%;
+  position: relative;
 }
 
 .HomePicture-style {
   width: 100%;
-  height: 110%;
-  margin-left: 0%;
-  margin-top: -34%;
+  height: 100%;
+  margin-top: -50.8%;
 }
 
 .HomePicture-style_2 {
   width: 60%;
-  margin-left: 68%;
-  margin-top: -10%;
+  margin-left: 80%;
+  margin-top: -16%;
 }
 
 .HomePicture-style_3 {
   width: 36%;
-  margin-left: -40%;
-  margin-top: -10%;
+  margin-left: -88%;
+  margin-top: -12%;
 }
 
 .title-color {
@@ -102,14 +104,14 @@
 
 .Block-container-2 {
   margin-top: 20%;
-  padding-left: 6%;
+  margin-left: -4%;
   width: 70%;
 }
 
 .Block-container-3 {
   width: 120%;
-  margin-top: 12%;
-  padding-left: 54%;
+  margin-top: 8%;
+  padding-left: 20%;
 }
 
 .Block-container-4 {
@@ -136,15 +138,6 @@
   width: 20%;
 }
 
-@media (min-width: 560px) {
-  .banner-style {
-    width: 100%;
-    height: 100%;
-    margin-left: 0%;
-    margin-top: 0%;
-  }
-}
-
 @media (max-width: 1120px) {
   .HomePicture-style {
     width: 100%;
@@ -155,52 +148,29 @@
 }
 
 @media (max-width: 1060px) {
-  .Studconnect-style {
-    position: "fixed";
-    width: 400;
-    margin-left: 500;
-    margin-bottom: 20;
-  }
-}
-
-@media (max-width: 1030px) {
   .HomePicture-style {
+    width: 139%;
+    height: 94%;
+    margin-left: -10%;
+    margin-top: -34.2%;
+  }
+
+  .banner-style {
     width: 100%;
-    height: 56%;
+    height: 100%;
     margin-left: 0%;
-    margin-top: -19.6%;
+    margin-top: 0%;
   }
-}
-
-@media (max-width: 875px) {
-  .HomePicture-style {
-    width: 110%;
-    height: 58%;
-    margin-left: 0%;
-    margin-top: -20%;
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
+    width: 100%;
+    font-size: 140%;
   }
-}
-
-@media (max-width: 875px) {
-  .MuiIcon-fontSizeLarge {
-    font-size: 2.25rem;
-    margin-left: 75%;
-  }
-}
-
-@media (max-width: 770px) {
-  .HomePicture-style {
-    width: 76%;
-    height: 42%;
-    margin-left: 0%;
-    margin-top: -26%;
-  }
-}
-
-@media (max-width: 770px) {
   .subNavbar {
-    width: 90%;
-    height: 70px;
+    width: 100%;
+    height: 80px;
     align-items: center;
     background-color: white;
     border-bottom: 1px solid #3f51b5;
@@ -208,36 +178,823 @@
     z-index: 4;
     display: inline-flex;
   }
+  .Studconnect-style {
+    width: 60%;
+    margin-top: 7.8%;
+    margin-left: -126%;
+    margin-right: -44%;
+    margin-bottom: 5%;
+  }
+
+  .Card-information {
+    margin-left: 4%;
+    width: 80%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 20%;
+    width: 80%;
+  }
+  .Card-information-3 {
+    margin-top: 20%;
+    margin-left: 4%;
+    width: 80%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 20%;
+    width: 80%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 20%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 70%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -14%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -12%;
+    width: 70%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 50%;
+    margin-left: -22%;
+  }
+  .Stanford-styles {
+    width: 50%;
+    margin-left: 4%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
+}
+
+@media (max-width: 1020px) {
+  .HomePicture-style {
+    height: 80%;
+    margin-top: -32.2%;
+  }
+  .banner-style {
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
+    width: 100%;
+    font-size: 140%;
+  }
+  .subNavbar {
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    width: 60%;
+    margin-top: 7.8%;
+    margin-left: -126%;
+    margin-right: -44%;
+    margin-bottom: 5%;
+  }
+
+  .Card-information {
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -46%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
+}
+
+@media (max-width: 990px) {
+  .HomePicture-style {
+    width: 160%;
+    height: 90%;
+    margin-left: -10%;
+    margin-top: -39.2%;
+  }
+  .banner-style {
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
+    width: 100%;
+    font-size: 140%;
+  }
+  .subNavbar {
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    width: 60%;
+    margin-top: 7.8%;
+    margin-left: -14%;
+    margin-right: -44%;
+    margin-bottom: 5%;
+  }
+
+  .Card-information {
+    margin-left: 0%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -48%;
+    margin-top: 16%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 16%;
+    margin-left: 0%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -48%;
+    margin-top: 16%;
+    width: 92%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-left: -7%;
+    margin-top: 20%;
+    width: 70%;
+  }
+  .HomePicture-style_2 {
+    width: 60%;
+    margin-left: 84%;
+    margin-top: -16%;
+  }
+  .Block-container-3 {
+    width: 120%;
+    margin-top: 10%;
+    padding-left: 18%;
+  }
+  .HomePicture-style_3 {
+    width: 36%;
+    margin-left: -88%;
+    margin-top: -12%;
+  }
+  .title-color_2 {
+    margin-left: -50%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 50%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 54%;
+    margin-left: 7%;
+    margin-right: 18%;
+  }
+  .Yale-styles {
+    width: 50%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 78%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
+}
+
+@media (max-width: 875px) {
+  .HomePicture-style {
+    width: 160%;
+    height: 90%;
+    margin-left: -10%;
+    margin-top: -40.2%;
+  }
+  .banner-style {
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
+    width: 100%;
+    font-size: 140%;
+  }
+  .subNavbar {
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    width: 60%;
+    margin-top: 7.8%;
+    margin-left: -14%;
+    margin-right: -44%;
+    margin-bottom: 5%;
+  }
+
+  .Card-information {
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -46%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
 }
 
 @media (max-width: 770px) {
+  .HomePicture-style {
+    width: 160%;
+    height: 68%;
+    margin-left: -10%;
+    margin-top: -55.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
+    width: 100%;
+    font-size: 140%;
+  }
+  .subNavbar {
+    width: 106%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 6%;
+  }
+  .Card-information {
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
   .MuiIcon-fontSizeLarge {
     font-size: 2.25rem;
-    margin-left: 77%;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 30%;
+    margin-left: 18%;
+    width: 80%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -2%;
+    width: 80%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
   }
 }
 
 @media (max-width: 700px) {
   .HomePicture-style {
+    width: 160%;
+    height: 68%;
+    margin-left: -10%;
+    margin-top: -44.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
     width: 100%;
-    height: 50%;
-    margin-left: 0%;
-    margin-top: -28%;
+    font-size: 140%;
+  }
+  .subNavbar {
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5.6%;
+  }
+  .Card-information {
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -46%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
+}
+
+@media (max-width: 645px) {
+  .HomePicture-style {
+    width: 160%;
+    height: 68%;
+    margin-left: -10%;
+    margin-top: -44.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
+    width: 100%;
+    font-size: 140%;
+  }
+  .subNavbar {
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 8%;
+    margin-right: 3%;
+    margin-bottom: 5.4%;
+  }
+  .Card-information {
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -46%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
   }
 }
 
 @media (max-width: 590px) {
   .HomePicture-style {
+    width: 160%;
+    height: 62%;
+    margin-left: -10%;
+    margin-top: -44.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 6%;
     width: 100%;
-    height: 50%;
-    margin-left: 0%;
-    margin-top: -48.8%;
+    font-size: 130%;
+  }
+  .subNavbar {
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-right: 20%;
+    margin-bottom: 5%;
+  }
+  .Card-information {
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .Card-information-3 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 92%;
+  }
+  .Card-information-4 {
+    margin-left: -44%;
+    margin-top: 30%;
+    width: 92%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 30%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 10%;
+    margin-left: -10%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 10%;
+    margin-left: -46%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 10%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -60%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
   }
 }
 
-@media (max-width: 590px) {
-  .subNavbar {
+@media (max-width: 520px) {
+  .HomePicture-style {
+    width: 180%;
+    height: 52%;
+    margin-left: -10%;
+    margin-top: -46.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 9.8%;
     width: 100%;
+    font-size: 150%;
+  }
+  .subNavbar {
+    width: 116%;
     height: 70px;
     align-items: center;
     background-color: white;
@@ -246,115 +1003,307 @@
     z-index: 4;
     display: inline-flex;
   }
-}
-
-@media (max-width: 590px) {
-  .MuiIcon-fontSizeLarge {
-    font-size: 2.25rem;
-    margin-left: -10%;
-  }
-}
-
-@media (max-width: 590px) {
   .Studconnect-style {
     position: relative;
     width: 70%;
     margin-top: 14.8%;
-    margin-left: 50%;
+    margin-left: 17%;
     margin-bottom: 5%;
+  }
+  .Card-information {
+    margin-left: 7.2%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .Card-information-3 {
+    margin-top: 50%;
+    margin-left: 7.6%;
+    width: 90%;
+  }
+  .Card-information-4 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 50%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 20%;
+    margin-left: -44%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -80%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 475px) {
   .HomePicture-style {
-    width: 130%;
+    width: 176%;
+    height: 62%;
+    margin-left: -10%;
+    margin-top: -46.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 9.8%;
+    width: 100%;
+    font-size: 150%;
+  }
+  .subNavbar {
+    width: 116%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
+  .Card-information {
+    margin-left: 7.2%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .Card-information-3 {
+    margin-top: 50%;
+    margin-left: 7.6%;
+    width: 90%;
+  }
+  .Card-information-4 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 50%;
+    margin-left: 4%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 20%;
+    margin-left: -44%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -80%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
+}
+
+@media (max-width: 420px) {
+  .HomePicture-style {
+    width: 176%;
+    height: 62%;
+    margin-left: -10%;
+    margin-top: -46.2%;
+  }
+  .first-font-styles {
+    font-family: "Roboto";
+    text-align: left;
+    margin-left: 9.8%;
+    width: 100%;
+    font-size: 150%;
+  }
+  .subNavbar {
+    width: 116%;
+    height: 70px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #3f51b5;
+    top: 0;
+    z-index: 4;
+    display: inline-flex;
+  }
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
+  .Card-information {
+    margin-left: 7.2%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .Card-information-3 {
+    margin-top: 50%;
+    margin-left: 7.6%;
+    width: 90%;
+  }
+  .Card-information-4 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .MuiIcon-fontSizeLarge {
+    font-size: 2.25rem;
+    margin-left: 30%;
+  }
+  .Block-container-2 {
+    margin-top: 50%;
+    margin-left: 12%;
+    width: 100%;
+  }
+  .HomePicture-style_2 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .Block-container-3 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 100%;
+  }
+  .HomePicture-style_3 {
+    margin-top: 20%;
+    margin-left: -6%;
+    width: 90%;
+  }
+  .title-color_2 {
+    margin-left: -80%;
+    font-size: 150%;
+  }
+  .Harvard-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Stanford-styles {
+    width: 70%;
+    margin-left: -10%;
+  }
+  .Yale-styles {
+    width: 60%;
+    margin-left: -10%;
+  }
+  .JohnHopkins-styles {
+    width: 90%;
+    margin-left: -10%;
+  }
+  .footer {
+    color: var(--blue);
+    width: 110%;
+  }
+}
+
+@media (max-width: 375px) {
+  .HomePicture-style {
+    width: 186%;
+    height: 76%;
+    margin-left: -21%;
+    margin-top: -47.2%;
+  }
+}
+
+@media (max-width: 375px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
+  .HomePicture-style {
+    width: 188%;
     height: 60%;
-    margin-left: -10%;
-    margin-top: -64%;
+    margin-left: -21%;
+    margin-top: -47.2%;
   }
-}
-
-@media (max-width: 520px) {
   .subNavbar {
-    width: 100%;
-    height: 70px;
-    align-items: center;
-    background-color: white;
-    border-bottom: 1px solid #3f51b5;
-    top: 0;
-    z-index: 4;
-    display: inline-flex;
-  }
-}
-
-@media (max-width: 520px) {
-  .MuiIcon-fontSizeLarge {
-    font-size: 2.25rem;
-    margin-left: -10%;
-  }
-}
-
-@media (max-width: 520px) {
-  .Studconnect-style {
-    position: relative;
-    width: 70%;
-    margin-top: 14.8%;
-    margin-left: 50%;
-    margin-bottom: 5%;
-  }
-}
-
-@media (max-width: 420px) {
-  .HomePicture-style {
-    width: 106%;
-    height: 46%;
-    margin-left: 0%;
-    margin-top: -62.6%;
-  }
-}
-
-@media (max-width: 420px) {
-  .subNavbar {
-    width: 122%;
-    height: 70px;
-    align-items: center;
-    background-color: white;
-    border-bottom: 1px solid #3f51b5;
-    top: 0;
-    z-index: 4;
-    display: inline-flex;
-  }
-}
-
-@media (max-width: 420px) {
-  .MuiIcon-fontSizeLarge {
-    font-size: 2.25rem;
-    margin-left: 30%;
-  }
-}
-
-@media (max-width: 420px) {
-  .Studconnect-style {
-    position: relative;
-    width: 70%;
-    margin-top: 14.8%;
-    margin-left: 17%;
-    margin-bottom: 5%;
-  }
-}
-
-@media (max-width: 375px) {
-  .HomePicture-style {
     width: 120%;
-    height: 44%;
-    margin-left: 0%;
-    margin-top: -68.2%;
-  }
-}
-
-@media (max-width: 375px) {
-  .subNavbar {
-    width: 138%;
     height: 70px;
     align-items: center;
     background-color: white;
@@ -363,47 +1312,21 @@
     z-index: 4;
     display: inline-flex;
   }
-}
-
-@media (max-width: 375px) {
   .MuiIcon-fontSizeLarge {
     font-size: 2.25rem;
     margin-left: 30%;
-  }
-}
-
-@media (max-width: 375px) {
-  .Studconnect-style {
-    position: relative;
-    width: 70%;
-    margin-top: 14.8%;
-    margin-left: 17%;
-    margin-bottom: 5%;
   }
 }
 
 @media (max-width: 345px) {
   .HomePicture-style {
-    width: 110%;
+    width: 152%;
     height: 40%;
     margin-left: 0%;
-    margin-top: -72.8%;
+    margin-top: -47.8%;
   }
-}
-
-@media (max-width: 345px) {
-  .Studconnect-style {
-    position: relative;
-    width: 70%;
-    margin-top: 14.8%;
-    margin-left: 17%;
-    margin-bottom: 5%;
-  }
-}
-
-@media (max-width: 345px) {
   .subNavbar {
-    width: 150%;
+    width: 100%;
     height: 68px;
     align-items: center;
     background-color: white;
@@ -412,11 +1335,15 @@
     z-index: 4;
     display: inline-flex;
   }
-}
-
-@media (max-width: 345px) {
+  .Studconnect-style {
+    position: relative;
+    width: 70%;
+    margin-top: 14.8%;
+    margin-left: 17%;
+    margin-bottom: 5%;
+  }
   .MuiIcon-fontSizeLarge {
-    font-size: 2.25rem;
+    font-size: 1.25rem;
     margin-left: 56%;
   }
 }
@@ -424,15 +1351,15 @@
 @media (max-width: 320px) {
   .HomePicture-style {
     width: 176%;
-    height: 70%;
+    height: 50%;
     margin-left: 0%;
-    margin-top: -77.4%;
+    margin-top: -48%;
   }
-}
-
-@media (max-width: 320px) {
+  img.Studconnect-style {
+    margin-left: 25%;
+  }
   .subNavbar {
-    width: 162%;
+    width: 120%;
     height: 70px;
     align-items: center;
     background-color: white;
@@ -441,20 +1368,31 @@
     z-index: 4;
     display: inline-flex;
   }
-}
-
-@media (max-width: 320px) {
+  .Card-information {
+    margin-left: 7.2%;
+    width: 92%;
+  }
+  .Card-information-2 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .Card-information-3 {
+    margin-top: 50%;
+    margin-left: 7.6%;
+    width: 90%;
+  }
+  .Card-information-4 {
+    margin-left: -40%;
+    margin-top: 50%;
+    width: 90%;
+  }
+  .title-color {
+    font-size: 1.2em;
+    margin-left: 20%;
+  }
   .MuiIcon-fontSizeLarge {
     font-size: 2.25rem;
     margin-left: 56%;
-  }
-}
-
-@media (min-width: 560px) {
-  .banner-style {
-    width: 100%;
-    height: 100%;
-    margin-left: 0%;
-    margin-top: 0%;
   }
 }

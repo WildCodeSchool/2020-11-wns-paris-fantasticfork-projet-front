@@ -27,16 +27,14 @@ export default function LandingPage({ history }) {
         src={studconnectlogo}
         className="Studconnect-style"
         alt="studconnect-style"
-        style={{
-          position: "relative",
-          width: 400,
-          marginLeft: 500,
-          marginBottom: 20,
-        }}
       />
       <Button
         className="loginButton"
-        style={{ marginLeft: 600, width: 200 }}
+        style={{
+          marginLeft: 30,
+          width: 200,
+          marginBottom: -44,
+        }}
         variant="contained"
         color="primary"
         onClick={() => {

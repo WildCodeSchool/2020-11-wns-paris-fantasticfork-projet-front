@@ -10,7 +10,7 @@ export default function LandingPage({ history }) {
           history.push('/home');
         }}
       >
-        GO TO HOME WE'RE DEPLOYED!
+        GO TO HOME DEPLOYED
       </Button>
     </div>
   );

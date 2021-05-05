@@ -10,8 +10,7 @@ import App from './App';
 import './index.css';
 
 const httpLink = new HttpLink({
-  // uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000/graphql',
-  uri: process.env.REACT_APP_GRAPHQL_URI,
+  uri: process.env.REACT_APP_ENV === 'DEV' ? 'http://localhost:4000/graphql' : process.env.REACT_APP_GRAPHQL_URI,
   credentials: 'include',
 });
 
@@ -37,7 +36,7 @@ const refreshToken = new TokenRefreshLink({
   fetchAccessToken: () => {
     const token = localStorage.getItem('stud-connect@token') || null;
     return fetch(
-      process.env.REACT_APP_ENV === 'dev'
+      process.env.REACT_APP_ENV === 'DEV'
         ? 'http://localhost:4000/refresh_token'
         : 'https://stud-connect.herokuapp.com/refresh_token',
       {

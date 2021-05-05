@@ -1,6 +1,5 @@
 services:
   app:
-    command: sh -c "npm run build"
     volumes:
       - app-build:/app/build
     environment:

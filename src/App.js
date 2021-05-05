@@ -7,7 +7,7 @@ import LandingPage from './Components/Pages/LandingPage/LandingPage';
 import Home from './Components/Pages/Home/Home';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import MyClass from './Components/Pages/MyClass/MyClass';
-import Daily from './Components/Pages/Daily/Daily';
+// import Daily from './Components/Pages/Daily/Daily';
 import Chat from './Components/Pages/Chat/Chat';
 import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
@@ -48,7 +48,8 @@ function App() {
         />
         <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
         <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
-        <RouteWrapper exact path='/daily' component={Daily} protectedRoute layout={Authenticated} text='Daily' />
+        {/* <RouteWrapper exact path='/daily' component={Daily} protectedRoute 
+        layout={Authenticated} text='Daily' /> */}
         <RouteWrapper exact path='/chat' component={Chat} protectedRoute layout={Authenticated} text='Chat' />
       </Switch>
     </ThemeProvider>

@@ -1,0 +1,10 @@
+services:
+  web-client:
+    command: sh -c "npm run build"
+    volumes:
+      - web-client-build:/app/build
+    environment:
+      - NODE_ENV=prod
+      
+volumes:
+  web-client-build:

@@ -8,7 +8,7 @@ services:
       - REACT_APP_SUB_URI=wss://stagingback.studconnect.wns.wilders.dev/subscribe
       - REACT_APP_SUB_URI_DEV_MODE=ws://localhost:4000/subscribe
     ports: 
-      - 3000:3001
+      - 3001:3001
     volumes:
       - ./src:/app/src
       - ./public:/app/public

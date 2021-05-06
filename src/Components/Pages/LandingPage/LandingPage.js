@@ -10,7 +10,7 @@ export default function LandingPage({ history }) {
           history.push('/home');
         }}
       >
-        GO TO STAGING HOME
+        GO TO HOME (staging)
       </Button>
     </div>
   );

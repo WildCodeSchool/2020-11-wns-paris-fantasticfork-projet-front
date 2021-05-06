@@ -10,7 +10,7 @@ export default function LandingPage({ history }) {
           history.push('/home');
         }}
       >
-        GO TO HOMEPAGE
+        GO TO HOME SWEET HOME
       </Button>
     </div>
   );

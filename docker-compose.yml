@@ -3,9 +3,9 @@ services:
     build: . 
     environment:
       - REACT_APP_ENV=DEV
-      - REACT_APP_GRAPHQL_URI=https://stud-connect.herokuapp.com/graphql
+      - REACT_APP_GRAPHQL_URI=https://stagingback.studconnect.wns.wilders.dev/graphql
       - REACT_APP_GRAPHQL_URI_DEV_MODE=http://localhost:4000/graphql
-      - REACT_APP_SUB_URI=wss://stud-connect.herokuapp.com/subscribe
+      - REACT_APP_SUB_URI=wss://stagingback.studconnect.wns.wilders.dev/subscribe
       - REACT_APP_SUB_URI_DEV_MODE=ws://localhost:4000/subscribe
     ports: 
       - 3000:3000

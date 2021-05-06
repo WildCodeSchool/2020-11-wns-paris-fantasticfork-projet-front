@@ -11,6 +11,7 @@ package-lock.json
 
 # production
 /build
+deploy_branch_main.sh
 
 # misc
 .DS_Store

@@ -1,7 +1,5 @@
 services:
   app:
-    expose:
-      - 3001
     volumes:
       - app-build:/app/build
     environment:

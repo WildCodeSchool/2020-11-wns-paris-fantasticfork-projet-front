@@ -70,17 +70,23 @@ function TopicContainer({ match }) {
         )}
 
         {toggleWrite && (
-          <NewComment topic_id={data.topic._id} uploaded={() => refetch()} cancel={() => setToggleWrite(false)} />
+          <NewComment 
+            topic_id={data.topic._id} 
+            uploaded={() => refetch()} 
+            cancel={() => setToggleWrite(false)} 
+          />
         )}
         {toggle && sortedComments && (
           <>
             {sortedComments.map((comment) => {
               if (!comment) {
                 return null;
-              }
+              } 
               return (
                 <div key={comment._id}>
                   <Comment
+                    authorID={comment.authorID}
+                    author={comment.author}
                     commentId={comment._id}
                     name={comment.author}
                     message={comment.commentBody}

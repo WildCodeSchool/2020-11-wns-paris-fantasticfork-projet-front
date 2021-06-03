@@ -25,7 +25,7 @@ export default function Navbar({handleLogout}) {
           variant='h6' 
           gutterBottom 
           className="Navbar_username nav_user_menu_btn"
-        >John Stud
+        >{localStorage.getItem('stud-connect@firstname')} {localStorage.getItem('stud-connect@lastname')}
           <Icon ref={userMenuArrow} className="user_menu_arrow">expand_more</Icon>
         </Typography>
 

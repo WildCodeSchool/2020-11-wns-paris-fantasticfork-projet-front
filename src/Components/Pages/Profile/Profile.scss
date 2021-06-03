@@ -9,52 +9,84 @@
 }
 
 .profile-middle-container {
-    display: flex;
+    display        : flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top     : 20px;
 }
 
 .profile-bottom-container {
     margin-top: 25px;
-    width: 90%;
-    display: flex;
+    margin: 10px;
+    width     : auto;
+    display   : flex;
+    align-self: center;
 }
 
 .profile-bloc-container {
-    width: 48%;
-    display: flex;
+    width         : 48%;
+    display       : flex;
     flex-direction: row;
-    height: 230px;
+    height        : 230px;
 }
 
 .profile-my-avatar {
-    width: 180px;
-    height: 180px;
+    width     : 150px !important;
+    height    : 150px !important;
     margin-top: 20px;
 }
 
 .profile-h4 {
+    text-decoration: underline overline;
     margin: 0;
 }
 
+.profile-h5 {
+    margin    : 0;
+    margin-top: 4px;
+}
+
 .profile-description {
-    padding: 5px;
+    padding   : 5px;
     overflow-y: auto;
 }
 
 .profile-top-container {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    padding: 5px;
+    padding       : 5px;
 }
 
 .profile-my-tags {
     align-self: center;
-    margin: 5px;
+    margin    : 5px;
 }
 
 .profile-topic-container {
-    width: 100%;
-    padding: 4px;
+    width     : 100%;
+    padding   : 5px;
     overflow-y: auto;
+}
+
+.my-topics-date {
+    margin    : 0;
+    font-size : 12px;
+    text-align: end;
+}
+
+.my-topics-tag {
+    font-size   : 12px;
+    margin-right: 5px;
+}
+
+.my-topics-tag span {
+    font-size: 10px;
+}
+
+.my-topics-container {
+    padding: 2px;
+    border-bottom: thin ridge var(--blue);
+}
+
+.topic-title {
+    text-decoration: underline;
 }

@@ -7,10 +7,10 @@ export default function PersonnalInformations() {
         <>
             <div className='personnal-information-container'>
                 <h1 className='blue'>John Stud</h1>
-                <h3>Harvard</h3>
-                <h3>10/12/2000</h3>
-                <h3>Intérêts</h3>
-                <p>Le vélo, les animés, les balades sur la plage</p>
+                <h4 style={{ margin: 5 }}>Harvard</h4>
+                <h5 style={{ margin: 0 }}>10/12/2000</h5>
+                <h4 style={{ margin: 5 }}>Intérêts</h4>
+                <p style={{ margin: 0 }}>Le vélo, les animés, les balades sur la plage</p>
             </div>
             <div>
                 <Avatar className='profile-my-avatar' />

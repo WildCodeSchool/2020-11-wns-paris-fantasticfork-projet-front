@@ -1,5 +1,6 @@
 import React from 'react';
-import { Chip, Paper } from '@material-ui/core';
+import { Chip } from '@material-ui/core';
+import CommentIcon from '@material-ui/icons/Comment';
 import './Profile.scss';
 
 export default function MyTopics() {
@@ -7,24 +8,31 @@ export default function MyTopics() {
         <>
             <div className='profile-topic-container'>
                 <h4 className='blue profile-h4'>My Topics</h4>
-                <Paper>
-                    <h5 className='blue'>It is a topic subject</h5>
-                    <p>Mon 18 march 2020</p>
-                    <Chip label='tag' variant='outlined' />
-                    <Chip label='tag' variant='outlined' />
-                    <Chip label='tag' variant='outlined' />
-                </Paper>
-                <Paper>
-                    <h5 className='blue'>It is a topic subject</h5>
-                    <p>Mon 18 march 2020</p>
-                    <Chip label='tag' variant='outlined' />
-                </Paper>
-                <Paper>
-                    <h5 className='blue'>It is a topic subject</h5>
-                    <p>Mon 18 march 2020</p>
-                    <Chip label='tag' variant='outlined' />
-                    <Chip label='tag' variant='outlined' />
-                </Paper>
+                <div className='my-topics-container'>
+                    <h5 className='blue profile-h5 topic-title'>It is a topic subject</h5>
+                    <p className='my-topics-date'>Mon 18 march 2020</p>
+                    <CommentIcon>12</CommentIcon>
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                </div>
+                <div className='my-topics-container'>
+                    <h5 className='blue profile-h5 topic-title'>It is a topic subject</h5>
+                    <p className='my-topics-date'>Mon 18 march 2020</p>
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                </div>
+                <div className='my-topics-container'>
+                    <h5 className='blue profile-h5 topic-title'>It is a topic subject</h5>
+                    <p className='my-topics-date'>Mon 18 march 2020</p>
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                </div>
+                <div className='my-topics-container'>
+                    <h5 className='blue profile-h5 topic-title'>It is a topic subject</h5>
+                    <p className='my-topics-date'>Mon 18 march 2020</p>
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                    <Chip className='my-topics-tag' label='tag' variant='outlined' />
+                </div>
             </div>
         </>
     )

@@ -38,6 +38,7 @@ export const GET_TOPIC = gql`
         author
         commentBody
         topicId
+        authorID
         like
         dislike
         createdAt

@@ -6,7 +6,7 @@ import getDateFromTimestamp from '../helpers/dates';
 import './Comment.css';
 
 export default function Comment(props) {
-  const { commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
+  const { authorID, commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
   const [updateComment, { loading }] = useMutation(UPDATE_COMMENT);
   const [editMode, setEditMode] = useState(false);
   const [commentMessage, setCommentMessage] = useState(message);
@@ -99,12 +99,14 @@ export default function Comment(props) {
                 Send
               </Button>
             ) : (
-              <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
-                <Icon fontSize='small' className='Comment_editbutton_icon'>
+              authorID === localStorage.getItem('stud-connect@userID') && (
+                <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
+                  <Icon fontSize='small' className='Comment_editbutton_icon'>
+                    edit
+                  </Icon>
                   edit
-                </Icon>
-                edit
-              </Button>
+                </Button>
+              )
             )}
           </div>
         </Paper>

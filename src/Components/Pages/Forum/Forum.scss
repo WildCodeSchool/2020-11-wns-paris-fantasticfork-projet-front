@@ -1,0 +1,8 @@
+.Forum {
+    transition: transform 0.5s ease;
+}
+
+.forum-translate {
+    transform: translateY(100px);
+    height: calc(100% + 50px);
+}

@@ -60,9 +60,7 @@ const refreshToken = new TokenRefreshLink({
   fetchAccessToken: () => {
     const token = localStorage.getItem('stud-connect@token') || null;
     return fetch(
-      process.env.REACT_APP_ENV === 'DEV'
-        ? 'http://localhost:4000/refresh_token'
-        : 'https://stud-connect.herokuapp.com/refresh_token',
+      process.env.REACT_APP_ENV === 'DEV' ? 'http://localhost:4000/refresh_token' : process.env.REACT_APP_TOKEN_URI,
       {
         method: 'GET',
         credentials: 'include',

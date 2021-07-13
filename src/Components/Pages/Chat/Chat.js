@@ -44,14 +44,22 @@ export default function Chat() {
     });
   };
 
+  const roomCreated = (newRoom) => {
+    setChatRooms([newRoom, ...chatRooms])
+    setSelectedRoom(newRoom)
+  }
+
   return (
     <div className='Chat_container'>
       <ChatRoomList
         data={chatRooms}
         setSelectedRoom={(idx) => setSelectedRoom(chatRooms[idx])}
+        roomCreated={(newRoom)=>roomCreated(newRoom)}
         refetch={() => refetch()}
       />
-      {chatRooms && selectedRoom && <ChatMessages data={selectedRoom} submitMessage={submitMessage} />}
+      {chatRooms && selectedRoom && 
+        <ChatMessages data={selectedRoom} submitMessage={submitMessage} />
+      }
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Avatar, Typography } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
 import timestampFormatter from '../../../helper/dates';
 
+// eslint-disable-next-line max-len
 export default function ChatRoomBox({ index, participants, lastMessage, unreadMessages, setSelectedRoom }) {
   return (
     <div className='ChatRoomBox' onClick={() => setSelectedRoom(index)}>

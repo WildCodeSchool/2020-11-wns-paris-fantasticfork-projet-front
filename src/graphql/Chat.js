@@ -54,8 +54,21 @@ export const CREATE_CHAT = gql`
       _id
       participants {
         userId
+        name
         lastConnected
       }
+      messages {
+        userId
+        text
+        createdAt
+      }
+      lastMessage {
+        userId
+        text
+        createdAt
+      }
+      unreadMessages
+      updatedAt
     }
   }
 `;

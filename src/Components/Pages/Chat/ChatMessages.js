@@ -28,7 +28,7 @@ export default function ChatMessages({ data, submitMessage }) {
     setMessageInput('');
   };
 
-  if (!data.messages) {
+  if (Array.isArray(data) && !data.length) {
     return null;
   }
   return (
@@ -38,8 +38,8 @@ export default function ChatMessages({ data, submitMessage }) {
           <Avatar src={sampleImage} />
           <Typography variant='subtitle2'>
             {' '}
-            {data.participants[0].name}
-            {data.participants?.length > 1 && <span style={{ color: 'grey' }}> + {data.participants?.length}</span>}
+            {data.participants[0].name || ""}
+            {data.participants?.length > 1 && <span style={{ color: 'grey' }}> + {data.participants.length}</span>}
           </Typography>
         </div>
 

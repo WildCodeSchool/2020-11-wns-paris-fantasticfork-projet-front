@@ -5,17 +5,22 @@ import { GET_USERS, CREATE_CHAT } from '../../../graphql/Chat';
 import ChatRoomBox from './ChatRoomBox';
 import ModalNewChatRoom from './ModalNewChatRoom';
 
-export default function ChatRoomList({ data, setSelectedRoom, refetch }) {
+export default function ChatRoomList({ data, setSelectedRoom, refetch, roomCreated }) {
   const [searchInput, setSearchInput] = useState('');
   const [openNewRoomModal, setOpenNewRoomModal] = useState(false);
   const { data: allUsers } = useQuery(GET_USERS);
   const [createChat] = useMutation(CREATE_CHAT);
 
-  const createChatRoom = (users) => {
-    const participants = users.map((user) => ({ userId: user._id, name: `${user.firstname} ${user.lastname}` }));
+  const createChatRoom = async (users) => {
+    const participants = users.map((user) => 
+      ({ userId: user._id, name: `${user.firstname} ${user.lastname}` })
+    );
     const me = allUsers?.users.find((user) => user._id === global.userId);
     participants.push({ userId: global.userId, name: `${me.firstname} ${me.lastname}` });
-    createChat({ variables: { participants } });
+
+    const { data:{ newChatRoom } } = await createChat({ variables: { participants } });
+    roomCreated(newChatRoom)
+
     refetch();
     setOpenNewRoomModal(false);
   };
@@ -50,14 +55,19 @@ export default function ChatRoomList({ data, setSelectedRoom, refetch }) {
       </div>
 
       {data?.map((msg, index) => (
-        <ChatRoomBox key={msg._id} {...msg} index={index} setSelectedRoom={(idx) => setSelectedRoom(idx)} />
+        <ChatRoomBox 
+          key={msg._id || "no_id"} 
+          {...msg} 
+          index={index} 
+          setSelectedRoom={(idx) => setSelectedRoom(idx)}
+        />
       ))}
 
       <ModalNewChatRoom
         open={openNewRoomModal}
         onClose={() => setOpenNewRoomModal(false)}
         onSelected={(users) => createChatRoom(users)}
-        users={allUsers?.users}
+        users={allUsers?.users?.filter(u=> u._id !== global.userId)}
       />
     </div>
   );

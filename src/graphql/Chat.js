@@ -37,8 +37,8 @@ export const GET_USERS = gql`
 `;
 
 export const READ_CHAT = gql`
-  mutation ConnectedToChatRoom($chatRoomId: String!, $userId: String) {
-    connectedToChatRoom(chatRoomId: $chatRoomId, userId: $userId) {
+  mutation ConnectedToChatRoom($chatRoomId: String!) {
+    connectedToChatRoom(chatRoomId: $chatRoomId) {
       _id
       participants {
         userId

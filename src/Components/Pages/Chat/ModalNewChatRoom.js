@@ -38,7 +38,7 @@ export default function ModalNewChatRoom({ open, onClose, onSelected, users }) {
         <List dense>
           {users &&
             users.map((user) => (
-              <ListItem key={user._id} button>
+              <ListItem key={user._id} button onClick={() => handleToggle(user)}>
                 <ListItemAvatar>
                   <Avatar alt={user.lastname} src={sampleImage} />
                 </ListItemAvatar>

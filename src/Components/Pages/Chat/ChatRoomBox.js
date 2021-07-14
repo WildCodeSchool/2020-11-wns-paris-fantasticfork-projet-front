@@ -30,7 +30,7 @@ export default function ChatRoomBox({ index, participants, lastMessage, unreadMe
             {timestampFormatter(lastMessage.createdAt)}
           </Typography>
         )}
-        {unreadMessages && <div className='badge'>{unreadMessages}</div>}
+        {unreadMessages>0 && <div className='badge'>{unreadMessages}</div>}
       </div>
     </div>
   );

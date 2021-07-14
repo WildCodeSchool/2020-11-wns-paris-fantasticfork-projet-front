@@ -10,7 +10,7 @@ export default function Chat() {
   const [selectedRoom, setSelectedRoom] = useState([]);
   const { loading, data:rooms, refetch } = useQuery(GET_CHAT_ROOMS, { variables: { userId: global.userId } });
   const [sendMsg] = useMutation(NEW_MESSAGE);
-  const [checkChatRoom] = useMutation(READ_CHAT);
+  const [updateLastConnected] = useMutation(READ_CHAT);
   const { data:newMsg, loading: subLoading } = useSubscription(CHAT_FEED);
 
   useEffect(() => {
@@ -28,8 +28,7 @@ export default function Chat() {
 
   const changeSelectedRoom = async(chatroom) => {
     await setSelectedRoom(chatroom)
-    console.log(chatroom)
-    checkChatRoom({
+    updateLastConnected({
       variables: { chatRoomId: chatroom._id },
     })
   }
@@ -45,6 +44,9 @@ export default function Chat() {
         },
       ],
     });
+    updateLastConnected({
+      variables: { chatRoomId: selectedRoom._id },
+    })
   };
 
   const roomCreated = (newRoom) => {

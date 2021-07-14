@@ -10,8 +10,9 @@ export default function ChatRoomBox({ index, participants, lastMessage, unreadMe
       <Avatar src={sampleImage} />
       <div className='ChatRoomBox_texts'>
         <Typography variant='subtitle2'>
-          {participants[0].name}
-          {participants?.length > 2 && <span style={{ color: 'grey' }}> + {participants?.length}</span>}
+          {participants?.filter(p=>p.userId!==global.userId)[0].name}
+          {participants?.length > 2 && 
+          <span style={{ color: 'grey' }}> + {participants?.length-1}</span>}
         </Typography>
 
         {lastMessage && (

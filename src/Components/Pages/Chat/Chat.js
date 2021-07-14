@@ -40,7 +40,7 @@ export default function Chat() {
   };
 
   const roomCreated = (newRoom) => {
-    setChatRooms([newRoom, ...chatRooms])
+    refetch()
     setSelectedRoom(newRoom)
   }
 

@@ -8,28 +8,23 @@ import './Chat.scss';
 export default function Chat() {
   const [chatRooms, setChatRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState([]);
-  const { loading, data, refetch } = useQuery(GET_CHAT_ROOMS, { variables: { userId: global.userId } });
+  const { loading, data:rooms, refetch } = useQuery(GET_CHAT_ROOMS, { variables: { userId: global.userId } });
   const [sendMsg] = useMutation(NEW_MESSAGE);
-  const { data: subData, loading: subLoading, error } = useSubscription(CHAT_FEED);
+  const { data:newMsg, loading: subLoading } = useSubscription(CHAT_FEED);
 
   useEffect(() => {
-    if (data?.myChatRooms?.length) {
-      const sortedChatRooms = Array.from(data.myChatRooms)?.sort((a, b) => b.updatedAt - a.updatedAt);
+      refetch();
+  }, [refetch, subLoading, newMsg]);
+
+  useEffect(() => {
+    if (rooms?.myChatRooms?.length) {
+      const sortedChatRooms = Array.from(rooms.myChatRooms)?.sort((a, b) => b.updatedAt - a.updatedAt);
       setChatRooms(sortedChatRooms);
       setSelectedRoom(sortedChatRooms[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, data?.myChatRooms, loading]);
+  }, [rooms?.myChatRooms, loading]);
 
-  useEffect(() => {
-    if (!subLoading && subData) {
-      refetch();
-    }
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
-  }, [error, refetch, subData, subLoading]);
 
   const submitMessage = (variables) => {
     sendMsg({

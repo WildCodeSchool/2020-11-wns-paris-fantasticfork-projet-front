@@ -17,6 +17,7 @@ const TopicForm = ({ open, close, mode, topicData }) => {
           body: '',
           url: [],
           tags: [],
+          authorID: localStorage.getItem('stud-connect@userID'),
         }
   );
 

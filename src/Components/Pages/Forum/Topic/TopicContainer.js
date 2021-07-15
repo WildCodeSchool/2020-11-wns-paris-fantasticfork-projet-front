@@ -55,7 +55,7 @@ function TopicContainer({ match }) {
           data={data.topic}
           handleTopicLike={handleTopicLike}
           toggle={toggle}
-          setToggle={setToggle}
+          setToggle={()=>setToggle(!toggle)}
           toggleWrite={toggleWrite}
           setToggleWrite={setToggleWrite}
           setModifyFormOpened={setModifyFormOpened}
@@ -72,12 +72,9 @@ function TopicContainer({ match }) {
         {toggleWrite && (
           <NewComment topic_id={data.topic._id} uploaded={() => refetch()} cancel={() => setToggleWrite(false)} />
         )}
-        {toggle && sortedComments && (
-          <>
-            {sortedComments.map((comment) => {
-              if (!comment) {
-                return null;
-              }
+        {toggle && sortedComments?.map((comment) => {
+          console.log(sortedComments)
+              if (!comment) { return null; }
               return (
                 <div key={comment._id}>
                   <Comment
@@ -93,9 +90,8 @@ function TopicContainer({ match }) {
                   />
                 </div>
               );
-            })}
-          </>
-        )}
+            })
+        }
       </div>
     </>
   );

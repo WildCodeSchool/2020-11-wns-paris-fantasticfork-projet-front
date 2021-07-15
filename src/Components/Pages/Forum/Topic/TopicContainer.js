@@ -73,25 +73,23 @@ function TopicContainer({ match }) {
           <NewComment topic_id={data.topic._id} uploaded={() => refetch()} cancel={() => setToggleWrite(false)} />
         )}
         {toggle && sortedComments?.map((comment) => {
-          console.log(sortedComments)
-              if (!comment) { return null; }
-              return (
-                <div key={comment._id}>
-                  <Comment
-                    commentId={comment._id}
-                    name={comment.author}
-                    message={comment.commentBody}
-                    createdAt={comment.createdAt}
-                    like={comment.like}
-                    dislike={comment.dislike}
-                    updatedAt={comment.updatedAt}
-                    refresh={() => refetch()}
-                    best={comment._id === bestComment._id ? true : null}
-                  />
-                </div>
-              );
-            })
-        }
+          if (!comment) { return null; }
+          return (
+            <div key={comment._id}>
+              <Comment
+                commentId={comment._id}
+                name={comment.author}
+                message={comment.commentBody}
+                createdAt={comment.createdAt}
+                like={comment.like}
+                dislike={comment.dislike}
+                updatedAt={comment.updatedAt}
+                refresh={() => refetch()}
+                best={comment._id === bestComment._id ? true : null}
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );

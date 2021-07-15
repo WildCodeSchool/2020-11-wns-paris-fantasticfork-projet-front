@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloClient, ApolloLink, HttpLink, ApolloProvider, InMemoryCache, from } from '@apollo/client';
+import { ApolloClient, ApolloLink, HttpLink, ApolloProvider, InMemoryCache, split, from } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import { WebSocketLink } from '@apollo/client/link/ws';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import './index.css';
 
-const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_ENV === 'DEV' ? 'http://localhost:4000/graphql' : process.env.REACT_APP_GRAPHQL_URI,
-  credentials: 'include',
-});
 
 const refreshToken = new TokenRefreshLink({
   accessTokenField: 'token',
@@ -48,6 +46,7 @@ const refreshToken = new TokenRefreshLink({
   },
   handleFetch: (accessToken) => {
     localStorage.setItem('stud-connect@token', accessToken);
+
   },
   handleError: (err) => {
     // eslint-disable-next-line no-console
@@ -72,10 +71,38 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
+const httpLink = new HttpLink({
+  uri:
+    process.env.REACT_APP_ENV === 'DEV'
+      ? process.env.REACT_APP_GRAPHQL_URI_DEV_MODE
+      : process.env.REACT_APP_GRAPHQL_URI,
+  credentials: 'include',
+});
+
+const wsLink = new WebSocketLink({
+  uri: process.env.REACT_APP_ENV === 'DEV' ? process.env.REACT_APP_SUB_URI_DEV_MODE : process.env.REACT_APP_SUB_URI,
+  options: {
+    reconnect: true,
+    connectionParams: {
+      authToken: localStorage.getItem('stud-connect@token')
+    },
+  },
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+  },
+  wsLink,
+  httpLink
+);
+
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include',
-  link: from([refreshToken, authMiddleware, httpLink]),
+  link: from([refreshToken, authMiddleware, splitLink]),
 });
 
 ReactDOM.render(

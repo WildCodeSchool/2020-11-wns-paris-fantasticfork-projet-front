@@ -58,6 +58,7 @@ function App() {
 function RouteWrapper(props) {
   const { component: Component, layout: Layout, text, protectedRoute, ...rest } = props;
   const isAuth = !!localStorage.getItem('stud-connect@userID');
+  global.userId = localStorage.getItem('stud-connect@userID');
 
   if (protectedRoute && !isAuth) {
     return <Redirect to={{ pathname: '/login' }} />;

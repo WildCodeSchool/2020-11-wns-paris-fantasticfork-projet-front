@@ -1,37 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Paper, Avatar, Typography, InputBase, Button } from '@material-ui/core';
 import sampleImage from '../../../images/cat.jpg';
 import ChatMessageBox from './ChatMessageBox';
 
-export default function ChatMessages({ data }) {
-  const dummyMessages = {
-    chatRoom: { ...data },
-    messages: [
-      { id: '1-1', message: 'Hey', username: 'John', userId: '6021a23d07591c28b6614d19', createdAt: '06/04' },
-      { id: '1-2', message: 'Hey there', username: 'Tom', userId: '6021a23d07591c28b6614d190', createdAt: '11:50' },
-      {
-        id: '1-3',
-        message: 'This is a message more than 50 letters. I am long very long',
-        username: 'John',
-        userId: '6021a23d07591c28b6614d19',
-        createdAt: '06/04',
-      },
-    ],
+export default function ChatMessages({ data, submitMessage }) {
+  const [messageInput, setMessageInput] = useState('');
+  const chatContainerEl = useRef(null);
+
+  useEffect(() => {
+    if (chatContainerEl.current) {
+      const scroll = chatContainerEl.current.scrollHeight - chatContainerEl.current.clientHeight;
+      chatContainerEl.current.scrollTo(0, scroll);
+    }
+  }, [data, chatContainerEl]);
+
+  let messages = data?.messages;
+  if (messages && data?.participants) {
+    messages = messages.map((msg) => {
+      const username = data.participants.find((p) => p.userId === msg.userId).name;
+      return { ...msg, username };
+    });
+  }
+
+  const sendMessage = () => {
+    const variables = { text: messageInput, userId: global.userId, chatRoomId: data._id };
+    submitMessage(variables);
+    setMessageInput('');
   };
 
-  const [messageInput, setMessageInput] = useState('');
-
+  if (Array.isArray(data) && !data.length) {
+    return null;
+  }
   return (
     <div className='ChatMessages'>
       <Paper className='ChatMessages_container' elevation={0}>
         <div className='ChatMessages_header'>
           <Avatar src={sampleImage} />
-          <Typography variant='subtitle2'>{data.name}</Typography>
+          <Typography variant='subtitle2'>
+            {' '}
+            {data.participants[0].name || ""}
+            {data.participants?.length > 1 && <span style={{ color: 'grey' }}> + {data.participants.length}</span>}
+          </Typography>
         </div>
 
-        <div className='ChatMessages_body'>
-          {dummyMessages.messages &&
-            dummyMessages.messages.map((msg) => <ChatMessageBox key={msg.id} {...msg} img={sampleImage} />)}
+        <div className='ChatMessages_body' ref={chatContainerEl}>
+          {messages && messages.map((msg) => <ChatMessageBox key={msg.createdAt} {...msg} img={sampleImage} />)}
         </div>
 
         <div className='ChatMessages_input'>
@@ -41,7 +54,7 @@ export default function ChatMessages({ data }) {
             value={messageInput}
             onChange={(e) => setMessageInput(e.target.value)}
           />
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='primary' onClick={() => sendMessage()}>
             send
           </Button>
         </div>

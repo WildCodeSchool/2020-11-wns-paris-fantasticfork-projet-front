@@ -2,11 +2,11 @@ import React from 'react';
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../Components/Common/Navbar/Navbar';
-import SubNavbar from '../Components/Common/Navbar/SubNavbar';
+// import SubNavbar from '../Components/Common/Navbar/SubNavbar';
 import { LOGOUT } from '../graphql/User';
 
 
-export default function Authenticated({ children, title }) {
+export default function Authenticated({ children }) {
   const history = useHistory();
   const [logoutUser, { client }] = useMutation(LOGOUT);
   const handleLogout = async () => {
@@ -26,7 +26,7 @@ export default function Authenticated({ children, title }) {
         <Navbar className='lightgreyBackground' handleLogout={handleLogout} />
       </div>
       <div className='lightgreyBackground' style={{ width: '100%', flexDirection:'column' }}>
-        <SubNavbar title={title} handleLogout={handleLogout} />
+        {/* <SubNavbar title={title} handleLogout={handleLogout} /> */}
         <div className='pageContainer'>{children}</div>
       </div>
     </>

@@ -48,12 +48,11 @@
 }
 
 .pageContainer{
-  /* margin-top: 85px;
-  height: calc(100vh - 85px); */
   flex-grow: 1;
   overflow-y: auto;
   position: absolute;
-  height: calc(100% - 70px);
+  // height: calc(100% - 70px);
+  height: 100%;
   width: calc(100% - 200px);
   background-color: var(--background);
 

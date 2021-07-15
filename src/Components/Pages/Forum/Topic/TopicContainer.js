@@ -11,6 +11,7 @@ function TopicContainer({ match }) {
   const { loading, error, data, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
+  if(!loading) console.log(data);
   // eslint-disable-next-line no-unused-vars
   const [addLikeTopic, { addLikeError, addLikeLoading }] = useMutation(ADD_LIKE_TOPIC, {
     refetchQueries: [{ query: GET_TOPIC, variables: { topicId } }],

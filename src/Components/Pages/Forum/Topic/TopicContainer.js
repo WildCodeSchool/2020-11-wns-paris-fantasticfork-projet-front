@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { CircularProgress } from '@material-ui/core'
@@ -19,7 +20,7 @@ function TopicContainer({ match }) {
   const [sortedComments, setSortedComments] = useState(null);
 
   useEffect(() => {
-    if (!data?.topic.comments?.length) { return null }
+    if (!data?.topic?.comments?.length) { return null }
     const _bestComment = data.topic.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
     const _sortedComments = Array.from(data.topic.comments);
     const indexBestComment = data.topic.comments.indexOf(_bestComment);
@@ -62,13 +63,19 @@ function TopicContainer({ match }) {
         )}
 
         {toggleWrite && (
-          <NewComment topic_id={data.topic._id} uploaded={() => refetch()} cancel={() => setToggleWrite(false)} />
+          <NewComment 
+            topic_id={data.topic._id} 
+            uploaded={() => refetch()} 
+            cancel={() => setToggleWrite(false)} 
+          />
         )}
         {toggle && sortedComments?.length && sortedComments?.map((comment, idx) => {
           if (!comment) { return null; }
           return (
             <div key={comment._id}>
               <Comment
+                authorID={comment.authorID}
+                author={comment.author}
                 commentId={comment._id}
                 name={comment.author}
                 message={comment.commentBody}

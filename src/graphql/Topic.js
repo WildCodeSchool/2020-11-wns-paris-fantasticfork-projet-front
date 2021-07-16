@@ -25,6 +25,7 @@ export const GET_TOPIC = gql`
     topic(_id: $topicId) {
       _id
       username
+      authorID
       subject
       body
       createdAt
@@ -38,6 +39,7 @@ export const GET_TOPIC = gql`
         author
         commentBody
         topicId
+        authorID
         like
         dislike
         createdAt
@@ -48,8 +50,22 @@ export const GET_TOPIC = gql`
 `;
 
 export const ADD_TOPIC = gql`
-  mutation CreateTopic($username: String!, $subject: String!, $body: String!, $url: [String], $tags: [String]) {
-    createTopic(username: $username, subject: $subject, body: $body, url: $url, tags: $tags) {
+  mutation CreateTopic(
+    $username: String!, 
+    $authorID: ID!, 
+    $subject: String!, 
+    $body: String!, 
+    $url: [String], 
+    $tags: [String]
+  ) {
+    createTopic(
+      username: $username, 
+      authorID: $authorID, 
+      subject: $subject,
+      body: $body, 
+      url: $url, 
+      tags: $tags
+    ) {
       subject
     }
   }

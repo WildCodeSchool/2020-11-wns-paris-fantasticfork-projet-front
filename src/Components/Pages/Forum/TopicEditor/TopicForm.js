@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_TOPIC, UPDATE_TOPIC } from '../../../../graphql/Topic';
 import './TopicForm.css';
 
-const TopicForm = ({ open, close, mode, topicData }) => {
+const TopicForm = ({ open, close, mode, topicData, setIsRefetching }) => {
   const [addTopic, { loading }] = useMutation(ADD_TOPIC);
   const [updateTopic, { updateLoading }] = useMutation(UPDATE_TOPIC);
 
@@ -12,11 +12,13 @@ const TopicForm = ({ open, close, mode, topicData }) => {
     mode === 'update_topic'
       ? topicData
       : {
-          username: 'Student',
+          // eslint-disable-next-line max-len
+          username: `${localStorage.getItem('stud-connect@firstname')} ${localStorage.getItem('stud-connect@lastname')}`,
           subject: '',
           body: '',
           url: [],
           tags: [],
+          authorID: localStorage.getItem('stud-connect@userID'),
         }
   );
 
@@ -58,8 +60,10 @@ const TopicForm = ({ open, close, mode, topicData }) => {
   const handleSubmit = () => {
     if (mode === 'update_topic') {
       updateTopic({ variables: inputFields });
+      setIsRefetching(true);
     } else {
       addTopic({ variables: inputFields });
+      setIsRefetching(true);
     }
     close();
   };

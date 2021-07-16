@@ -25,6 +25,9 @@ export default function LoginContainer({ history }) {
       localStorage.setItem('stud-connect@userID', login.userID);
       localStorage.setItem('stud-connect@token', login.token);
       localStorage.setItem('stud-connect@tokenExpiration', login.tokenExpiration);
+      localStorage.setItem('stud-connect@firstname', login.firstname);
+      localStorage.setItem('stud-connect@lastname', login.lastname);
+      localStorage.setItem('stud-connect@role', login.role);
       history.push('/home');
     },
   });

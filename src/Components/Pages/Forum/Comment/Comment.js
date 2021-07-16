@@ -6,7 +6,7 @@ import getDateFromTimestamp from '../helpers/dates';
 import './Comment.css';
 
 export default function Comment(props) {
-  const { commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
+  const { authorID, commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
   const [updateComment] = useMutation(UPDATE_COMMENT);
   const [editMode, setEditMode] = useState(false);
   const [commentMessage, setCommentMessage] = useState(message);
@@ -76,19 +76,23 @@ export default function Comment(props) {
         )}
       </div>
       <div className='Comment_like'>
-        <Button onClick={() => updateLikeDislike('like')}>
-          <Icon className='blue' style={{ marginRight: 5 }}>
-            thumb_up
-          </Icon>
-          {like && like}
-        </Button>
-        <Button onClick={() => updateLikeDislike('dislike')}>
-          <Icon className='blue' style={{ marginRight: 5 }}>
-            thumb_down
-          </Icon>
-          {dislike && dislike}
-        </Button>
-        <div className='flex1' />
+        {authorID !== localStorage.getItem('stud-connect@userID') && (
+          <>
+            <Button onClick={() => updateLikeDislike('like')}>
+              <Icon className='blue' style={{ marginRight: 5 }}>
+                thumb_up
+              </Icon>
+              {like && like}
+            </Button>
+            <Button onClick={() => updateLikeDislike('dislike')}>
+              <Icon className='blue' style={{ marginRight: 5 }}>
+                thumb_down
+              </Icon>
+              {dislike && dislike}
+            </Button>
+            <div className='flex1' />
+          </>
+        )}
         {editMode ? (
           <Button size='small' className='Comment_sendbutton' onClick={() => updateMessage()}>
             <Icon fontSize='small' className='Comment_editbutton_icon'>
@@ -97,12 +101,14 @@ export default function Comment(props) {
             Send
           </Button>
         ) : (
-          <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
-            <Icon fontSize='small' className='Comment_editbutton_icon'>
+          authorID === localStorage.getItem('stud-connect@userID') && (
+            <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
+              <Icon fontSize='small' className='Comment_editbutton_icon'>
+                edit
+              </Icon>
               edit
-            </Icon>
-            edit
-          </Button>
+            </Button>
+          )
         )}
       </div>
     </Paper>

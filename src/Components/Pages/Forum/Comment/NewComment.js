@@ -6,17 +6,28 @@ import './NewComment.css';
 
 // eslint-disable-next-line camelcase
 export default function NewComment({ reply, topic_id, uploaded, cancel }) {
+  console.log(topic_id)
+  const firstname = localStorage.getItem('stud-connect@firstname');
+  const lastname = localStorage.getItem('stud-connect@lastname');
+  const authorID = localStorage.getItem('stud-connect@userID');
+
   const [message, setMessage] = useState('');
 
   // eslint-disable-next-line no-empty-pattern
   const [createComment, {}] = useMutation(CREATE_COMMENT);
 
-  const submitCommment = () => {
+  const submitCommment = async () => {
     try {
-      createComment({ variables: { topicId: topic_id, author: 'author', commentBody: message } });
-      uploaded();
+      await createComment({ 
+        variables: { 
+          topicId: topic_id, 
+          author: `${firstname} ${lastname}`, 
+          authorID, 
+          commentBody: message 
+        } });
       cancel();
-    } catch {
+      uploaded();
+    } catch (e) {
       cancel();
     }
   };

@@ -6,8 +6,6 @@ import { Authenticated, Visitor } from './Layouts';
 import LandingPage from './Components/Pages/LandingPage/LandingPage';
 import Home from './Components/Pages/Home/Home';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
-import MyClass from './Components/Pages/MyClass/MyClass';
-import Daily from './Components/Pages/Daily/Daily';
 import Chat from './Components/Pages/Chat/Chat';
 import RegisterContainer from './Components/Pages/Register/RegisterContainer';
 import LoginContainer from './Components/Pages/Login/LoginContainer';
@@ -38,17 +36,8 @@ function App() {
           layout={Authenticated}
           text='Dashboard'
         />
-        <RouteWrapper
-          exact
-          path='/classroom'
-          component={MyClass}
-          protectedRoute
-          layout={Authenticated}
-          text='My Class'
-        />
         <RouteWrapper exact path='/topics' history component={ForumContainer} layout={Authenticated} text='Forum' />
         <RouteWrapper path='/topics/:id' component={TopicContainer} protectedRoute layout={Authenticated} />
-        <RouteWrapper exact path='/daily' component={Daily} protectedRoute layout={Authenticated} text='Daily' />
         <RouteWrapper exact path='/chat' component={Chat} protectedRoute layout={Authenticated} text='Chat' />
       </Switch>
     </ThemeProvider>
@@ -58,6 +47,7 @@ function App() {
 function RouteWrapper(props) {
   const { component: Component, layout: Layout, text, protectedRoute, ...rest } = props;
   const isAuth = !!localStorage.getItem('stud-connect@userID');
+  global.userId = localStorage.getItem('stud-connect@userID');
 
   if (protectedRoute && !isAuth) {
     return <Redirect to={{ pathname: '/login' }} />;

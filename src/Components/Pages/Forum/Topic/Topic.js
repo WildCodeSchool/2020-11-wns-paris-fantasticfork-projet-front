@@ -6,7 +6,6 @@ import './Topic.scss';
 
 const Topic = (props) => {
   const { data, toggle, setToggle, toggleWrite, setToggleWrite, handleTopicLike, setModifyFormOpened } = props;
-  console.log(data)
   const [heart, setHeart] = useState(false);
 
   if (!data) {
@@ -16,10 +15,6 @@ const Topic = (props) => {
     <div>
       <Paper className='Article_container' elevation={3}>
         <div className='Article_header'>
-          {data.authorID === localStorage.getItem('stud-connect@userID') && (
-            <Icon onClick={() => setModifyFormOpened(true)}>create</Icon>
-          )}
-
           <Typography variant='h2'>{data.subject}</Typography>
           <div className='Article_id'>
             <Avatar src={sampleImage} />
@@ -39,6 +34,11 @@ const Topic = (props) => {
                 </Typography>
               )}
             </div>
+            <div style={{flex:1}}/>
+            {data.authorID === localStorage.getItem('stud-connect@userID') && (
+              <Icon onClick={() => setModifyFormOpened(true)}>create</Icon>
+            )}
+
           </div>
           <div className='Article_borderline' />
           <Typography variant='body1' gutterBottom>

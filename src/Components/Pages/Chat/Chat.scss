@@ -28,6 +28,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   .ChatRoomList_searchbar{
     height: 40px;
     width: 50%;
@@ -40,6 +41,12 @@
   .ChatRoomList_searchbar_input{
     padding-left: 20px;
     flex-grow: 5;
+  }
+
+  .MuiFab-root{
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
   }
 }
 
@@ -65,6 +72,7 @@
   }
   .second{
     height: 100%;
+    min-width: 68px;
     align-items: flex-end;
     justify-content: flex-start;
     span:first-child{
@@ -185,4 +193,25 @@
   .ChatMessageBox_date.not_my_chat{
     margin-left: 20px;
   }
+}
+
+
+
+//ModalNewChatRoom
+.ModalNewChatRoom .MuiDialog-paper{
+  width: 300px;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    max-width: 90%;
+  }
+
+  .MuiDialogContent-dividers{
+    padding: 16px 0;
+  }
+}
+
+.ModalNewChatRoom_body{
+  height: 500px;
+  max-height: 80%;
+
 }

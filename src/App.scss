@@ -51,12 +51,12 @@
   flex-grow: 1;
   overflow-y: auto;
   position: absolute;
-  // height: calc(100% - 70px);
   height: 100%;
   width: calc(100% - 200px);
   background-color: var(--background);
 
   @media screen and (max-width: $mobile-breakpoint) {
     width: 100%;
+    // height: calc(100% - 70px);
   }
 }

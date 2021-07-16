@@ -26,7 +26,10 @@
 }
 
 .show-search-tools {
-    transform: translateY(100%);
+  transform: translateY(120px);
+  @media screen and (max-width: $mobile-breakpoint) {
+    transform: translateY(120px);
+  }
 }
 
 .SearchTools-row1 {
@@ -93,7 +96,7 @@
 .filter-icon-mobile {
     position: fixed !important;
     right: 15px !important;
-    top: 120px !important;
+    top: 145px !important;
     margin-right: 20px ;
     margin-top: 20px ;
     color: white !important;
@@ -107,8 +110,8 @@
         font-size: 2em;
     }
 
-    @media screen and (max-width: 750px) {
-        top: 170px !important;
+    @media screen and (max-width: $mobile-breakpoint) {
+      top: 27px !important;
     }
 }
 

@@ -29,11 +29,11 @@ function ForumContainer({ history }) {
   if (error) return <p>{`ERROR: ${error}`}</p>;
 
   return (
-    <div className='ForumContainer'>
+    <>
       <SearchTools modalOpen={setOpen} topics={{ get: topics, set: setTopics, list: data.topics }}/>
       <Forum topics={topics} goToPage={(TopicId) => goToPage(TopicId)} />
       <TopicForm open={open} close={() => setOpen(false)} />
-    </div>
+    </>
   );
 }
 

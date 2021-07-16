@@ -39,7 +39,8 @@ export default function SubNavbar({ title, handleLogout }) {
       <Drawer anchor='left' open={isMenuOpened} onClose={() => showMenu(false)}>
         <List style={{ width: 200 }} dense>
           {navigationMenu.map((elem) => (
-            <ListItem key={elem.text} button className='Navbar_menu_item' component={Link} to={elem.link}>
+            <ListItem key={elem.text} button className='Navbar_menu_item' 
+            component={Link} to={elem.link} onClick={() => showMenu(false)}>
               <ListItemIcon>
                 <Icon fontSize='default' className='Navbar_menu_icon'>
                   {elem.icon}

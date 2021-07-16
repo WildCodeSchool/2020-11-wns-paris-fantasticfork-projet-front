@@ -9,6 +9,8 @@ import { LOGOUT } from '../graphql/User';
 export default function Authenticated({ children, title }) {
   const history = useHistory();
   const [logoutUser, { client }] = useMutation(LOGOUT);
+  const showSubNav = window.innerWidth <= 700
+
   const handleLogout = async () => {
     await logoutUser();
 
@@ -26,7 +28,7 @@ export default function Authenticated({ children, title }) {
         <Navbar className='lightgreyBackground' handleLogout={handleLogout} />
       </div>
       <div className='lightgreyBackground' style={{ width: '100%', flexDirection:'column' }}>
-        <SubNavbar title={title} handleLogout={handleLogout} />
+        {showSubNav && <SubNavbar title={title} handleLogout={handleLogout} /> }
         <div className='pageContainer'>{children}</div>
       </div>
     </>

@@ -12,7 +12,8 @@ const TopicForm = ({ open, close, mode, topicData, setIsRefetching }) => {
     mode === 'update_topic'
       ? topicData
       : {
-          username: 'Student',
+          // eslint-disable-next-line max-len
+          username: `${localStorage.getItem('stud-connect@firstname')} ${localStorage.getItem('stud-connect@lastname')}`,
           subject: '',
           body: '',
           url: [],

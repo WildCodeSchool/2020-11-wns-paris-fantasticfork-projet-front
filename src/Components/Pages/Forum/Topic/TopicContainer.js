@@ -11,7 +11,6 @@ function TopicContainer({ match }) {
   const { loading, error, data, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
-  if(!loading) console.log(data);
   // eslint-disable-next-line no-unused-vars
   const [addLikeTopic, { addLikeError, addLikeLoading }] = useMutation(ADD_LIKE_TOPIC, {
     refetchQueries: [{ query: GET_TOPIC, variables: { topicId } }],
@@ -24,7 +23,7 @@ function TopicContainer({ match }) {
   const [sortedComments, setSortedComments] = useState(null);
 
   useEffect(() => {
-    if (data?.topic.comments?.length > 0) {
+    if (data?.topic?.comments?.length > 0) {
       const _bestComment = data.topic.comments.reduce((prev, current) => (prev.like > current.like ? prev : current));
 
       const _sortedComments = Array.from(data.topic.comments);

@@ -25,6 +25,7 @@ export default function Comment(props) {
   };
 
   const updateMessage = () => {
+    console.log(commentId)
     updateComment({ variables: { commentId, commentBody: commentMessage } });
     setEditMode(false);
     refresh();
@@ -78,19 +79,23 @@ export default function Comment(props) {
             )}
           </div>
           <div className='Comment_like'>
-            <Button onClick={() => updateLikeDislike('like')}>
-              <Icon className='blue' style={{ marginRight: 5 }}>
-                thumb_up
-              </Icon>
-              {like && like}
-            </Button>
-            <Button onClick={() => updateLikeDislike('dislike')}>
-              <Icon className='blue' style={{ marginRight: 5 }}>
-                thumb_down
-              </Icon>
-              {dislike && dislike}
-            </Button>
-            <div className='flex1' />
+            {authorID !== localStorage.getItem('stud-connect@userID') && (
+              <>
+                <Button onClick={() => updateLikeDislike('like')}>
+                  <Icon className='blue' style={{ marginRight: 5 }}>
+                    thumb_up
+                  </Icon>
+                  {like && like}
+                </Button>
+                <Button onClick={() => updateLikeDislike('dislike')}>
+                  <Icon className='blue' style={{ marginRight: 5 }}>
+                    thumb_down
+                  </Icon>
+                  {dislike && dislike}
+                </Button>
+                <div className='flex1' />
+              </>
+            )}
             {editMode ? (
               <Button size='small' className='Comment_sendbutton' onClick={() => updateMessage()}>
                 <Icon fontSize='small' className='Comment_editbutton_icon'>

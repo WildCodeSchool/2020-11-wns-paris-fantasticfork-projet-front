@@ -83,7 +83,7 @@ function SearchTools({ topics, modalOpen }) {
 
             </Toolbar>
 
-            <Fab className='filter-icon-mobile' onClick={() => toggleTools(!toolsOpened)}>
+            <Fab size='small' className='filter-icon-mobile' onClick={() => toggleTools(!toolsOpened)}>
                 <Icon>{ toolsOpened ? 'close' : 'filter_list'}</Icon>
             </Fab>
         </div>

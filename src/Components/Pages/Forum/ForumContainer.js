@@ -12,7 +12,10 @@ function ForumContainer({ history }) {
   const [isRefetching, setIsRefetching] = React.useState(true);
 
   useEffect(() => {
-    if (isRefetching) refetch();
+    async function reloadPage() {
+      await refetch();
+    }
+    if (isRefetching) reloadPage() ;
 
     return () => setIsRefetching(false);
   }, [open, refetch, isRefetching]);
@@ -32,7 +35,7 @@ function ForumContainer({ history }) {
     <div className='ForumContainer'>
       <SearchTools modalOpen={setOpen} topics={{ get: topics, set: setTopics, list: data.topics }}/>
       <Forum topics={topics} goToPage={(TopicId) => goToPage(TopicId)} />
-      <TopicForm open={open} close={() => setOpen(false)} />
+      <TopicForm setIsRefetching={setIsRefetching} open={open} close={() => setOpen(false)} />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_TOPIC, UPDATE_TOPIC } from '../../../../graphql/Topic';
 import './TopicForm.css';
 
-const TopicForm = ({ open, close, mode, topicData }) => {
+const TopicForm = ({ open, close, mode, topicData, setIsRefetching }) => {
   const [addTopic, { loading }] = useMutation(ADD_TOPIC);
   const [updateTopic, { updateLoading }] = useMutation(UPDATE_TOPIC);
 
@@ -59,8 +59,10 @@ const TopicForm = ({ open, close, mode, topicData }) => {
   const handleSubmit = () => {
     if (mode === 'update_topic') {
       updateTopic({ variables: inputFields });
+      setIsRefetching(true);
     } else {
       addTopic({ variables: inputFields });
+      setIsRefetching(true);
     }
     close();
   };

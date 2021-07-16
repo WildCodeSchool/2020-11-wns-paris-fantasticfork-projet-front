@@ -6,6 +6,7 @@ import './Topic.scss';
 
 const Topic = (props) => {
   const { data, toggle, setToggle, toggleWrite, setToggleWrite, handleTopicLike, setModifyFormOpened } = props;
+  console.log(data)
   const [heart, setHeart] = useState(false);
 
   if (!data) {
@@ -15,7 +16,9 @@ const Topic = (props) => {
     <div>
       <Paper className='Article_container' elevation={3}>
         <div className='Article_header'>
-          <Icon onClick={() => setModifyFormOpened(true)}>create</Icon>
+          {data.authorID === localStorage.getItem('stud-connect@userID') && (
+            <Icon onClick={() => setModifyFormOpened(true)}>create</Icon>
+          )}
 
           <Typography variant='h2'>{data.subject}</Typography>
           <div className='Article_id'>

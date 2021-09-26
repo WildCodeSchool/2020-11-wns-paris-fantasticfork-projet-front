@@ -7,7 +7,6 @@ import './Comment.css';
 
 export default function Comment(props) {
   const { authorID, commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
-  console.log(authorID);
   const [updateComment] = useMutation(UPDATE_COMMENT);
   const [editMode, setEditMode] = useState(false);
   const [commentMessage, setCommentMessage] = useState(message);

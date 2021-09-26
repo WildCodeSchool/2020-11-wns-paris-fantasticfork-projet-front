@@ -70,7 +70,6 @@ function TopicContainer({ match }) {
           />
         )}
         {toggle && sortedComments?.length && sortedComments?.map((comment, idx) => {
-          console.log(comment);
           if (!comment) { return null; }
           return (
             <div key={comment._id}>

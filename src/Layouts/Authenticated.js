@@ -17,6 +17,9 @@ export default function Authenticated({ children, title }) {
     localStorage.setItem('stud-connect@userID', '');
     localStorage.setItem('stud-connect@token', '');
     localStorage.setItem('stud-connect@tokenExpiration', '');
+    localStorage.setItem('stud-connect@firstname', '');
+    localStorage.setItem('stud-connect@lastname', '');
+    localStorage.setItem('stud-connect@role', '');
 
     await client.resetStore();
     history.push('/');

@@ -13,6 +13,9 @@ export const REGISTER_USER = gql`
       userID
       token
       tokenExpiration
+      firstname
+      lastname
+      role
     }
   }
 `;

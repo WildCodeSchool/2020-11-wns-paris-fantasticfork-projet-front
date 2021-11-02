@@ -44,6 +44,8 @@ export const GET_TOPIC = gql`
         dislike
         createdAt
         updatedAt
+        votersIdLikes
+        votersIdDislikes
       }
     }
   }

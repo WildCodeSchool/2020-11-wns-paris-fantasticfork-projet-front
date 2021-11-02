@@ -80,11 +80,12 @@ function TopicContainer({ match }) {
                 name={comment.author}
                 message={comment.commentBody}
                 createdAt={comment.createdAt}
-                like={comment.like}
-                dislike={comment.dislike}
+                like={comment.votersIdLikes}
+                dislike={comment.votersIdDislikes}
                 updatedAt={comment.updatedAt}
                 refresh={refetch}
                 best={idx===0}
+                votersID={{likes: comment.votersIdLikes, dislikes: comment.votersIdDislikes}}
               />
             </div>
           );

@@ -58,6 +58,7 @@ function Forum({ topics, goToPage }) {
                     />
                   ))}
               </div>
+              Comments : {topic.comments && topic.comments.length}
             </Paper>
           </div>
         ))}

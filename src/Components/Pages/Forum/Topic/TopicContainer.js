@@ -5,8 +5,8 @@ import { CircularProgress } from '@material-ui/core'
 import { GET_TOPIC, ADD_LIKE_TOPIC } from '../../../../graphql/Topic';
 import Topic from './Topic';
 import TopicForm from '../TopicEditor/TopicForm';
-import Comment from '../Comment/Comment';
-import NewComment from '../Comment/NewComment';
+import CommentContainer from '../Comment/CommentContainer';
+import NewComment from '../NewComment/NewComment'
 
 function TopicContainer({ match }) {
   const topicId = match.params.id;
@@ -73,7 +73,7 @@ function TopicContainer({ match }) {
           if (!comment) { return null; }
           return (
             <div key={comment._id}>
-              <Comment
+              <CommentContainer
                 authorID={comment.authorID}
                 author={comment.author}
                 commentId={comment._id}

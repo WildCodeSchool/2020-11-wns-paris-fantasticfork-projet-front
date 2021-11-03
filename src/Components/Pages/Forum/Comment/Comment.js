@@ -1,87 +1,33 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import React from 'react';
 import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@material-ui/core';
-import { UPDATE_COMMENT, LIKE_COMMENT, DISLIKE_COMMENT } from '../../../../graphql/Comment';
 import getDateFromTimestamp from '../helpers/dates';
 import './Comment.css';
 
 export default function Comment(props) {
-  const { authorID, 
-          commentId, 
-          createdAt, 
-          name, 
-          message, 
-          like, 
-          dislike, 
-          best, 
-          updatedAt, 
-          refresh, 
-          votersID, 
+  const { 
+    isBestComment, 
+    editMode, 
+    author, 
+    dates, 
+    setCommentMessage, 
+    votes, 
+    updateMessage, 
+    hasUserVotedComment,
+    message,
+    commentMessage
   } = props;
-
-  const [updateComment] = useMutation(UPDATE_COMMENT);
-  const [likeComment] = useMutation(LIKE_COMMENT);
-  const [dislikeComment] = useMutation(DISLIKE_COMMENT);
-  const [editMode, setEditMode] = useState(false);
-  const [commentMessage, setCommentMessage] = useState(message);
-
-  async function updateLike () {
-    const likeNumber = like ? like + 1 : 1;
-    const voterID = localStorage.getItem('stud-connect@userID');
-    const payload = { commentId, like: likeNumber, voterID, voteType: 'like' };
-
-    await likeComment({ variables: payload });
-    refresh();
-  }
-
-  async function updateDislike () {
-    const dislikeNumber = dislike ? dislike + 1 : 1;
-    const voterID = localStorage.getItem('stud-connect@userID');
-    const payload = { commentId, dislike: dislikeNumber, voterID, voteType: 'dislike' };
-    await dislikeComment({ variables: payload });
-    refresh();
-  }
-
-  const updateMessage = () => {
-    const userID = localStorage.getItem('stud-connect@userID');
-    updateComment({ variables: { commentId, userID, commentBody: commentMessage } });
-    setEditMode(false);
-    refresh();
-  };
-
-  const hasUserVotedComment = (type) => {
-    if (type === 'like') {
-      if (votersID.likes.length && votersID.likes.includes(localStorage.getItem('stud-connect@userID'))) {
-        return true;
-      } 
-      return false;    
-    }
-
-    if (type === 'dislike') {
-      if (votersID.dislikes.length && votersID.dislikes.includes(localStorage.getItem('stud-connect@userID'))) {
-        return true;
-      } 
-      return false;    
-    }
-
-    if (type === 'all') {
-      if (votersID.likes.length && votersID.likes.includes(localStorage.getItem('stud-connect@userID'))
-         || votersID.dislikes.length && votersID.dislikes.includes(localStorage.getItem('stud-connect@userID'))
-      ) {
-        return true;
-      } 
-      return false;    
-    }
-  }
-
+  
+  const { isInEditMode, setEditMode } = editMode;
+  const { like, dislike, updateLike, updateDislike } = votes;
+  const { createdAt, updatedAt } = dates;
 
   return (
     <Paper className='Comment_container' elevation={3}>
       <div className='flex_'>
-        <Avatar alt={name} />
+        <Avatar alt={author.name} />
         <div className='flex_column' style={{ marginLeft: 10 }}>
           <Typography variant='button' className='blue'>
-            {name}
+            {author.name}
           </Typography>
 
           <Typography variant='caption' className='lightgrey'>
@@ -95,7 +41,7 @@ export default function Comment(props) {
             )}
           </Typography>
         </div>
-        {best && (
+        {isBestComment && (
           <>
             <div style={{ flex: 1 }} />
             <Chip icon={<Icon fontSize='small'>thumb_up_alt</Icon>} label='Best answer' color='primary' />
@@ -103,7 +49,7 @@ export default function Comment(props) {
         )}
       </div>
       <div className='Comment_element'>
-        {!editMode ? (
+        {!isInEditMode ? (
           <Typography variant='body1' gutterBottom>
             {message}
           </Typography>
@@ -121,7 +67,7 @@ export default function Comment(props) {
         )}
       </div>
       <div className='Comment_like'>
-        {authorID !== localStorage.getItem('stud-connect@userID') && (
+        {author.id !== localStorage.getItem('stud-connect@userID') && (
           <>
             <Button 
               // disabled={hasUserVotedComment('all')} 
@@ -141,7 +87,7 @@ export default function Comment(props) {
             <div className='flex1' />
           </>
         )}
-        {editMode ? (
+        {isInEditMode ? (
           <Button size='small' className='Comment_sendbutton' onClick={() => updateMessage()}>
             <Icon fontSize='small' className='Comment_editbutton_icon'>
               send
@@ -149,7 +95,7 @@ export default function Comment(props) {
             Send
           </Button>
         ) : (
-          authorID === localStorage.getItem('stud-connect@userID') && (
+          author.id === localStorage.getItem('stud-connect@userID') && (
             <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
               <Icon fontSize='small' className='Comment_editbutton_icon'>
                 edit

@@ -12,7 +12,7 @@ function SearchTools({ topics, modalOpen }) {
   }
 
   function sortByPopularity() {
-      const _topics = [...topics.get].sort((a, b) => b.like - a.like);
+      const _topics = [...topics.get].sort((a, b) => b.likes.length - a.likes.length);
       topics.set(_topics);
   }
 

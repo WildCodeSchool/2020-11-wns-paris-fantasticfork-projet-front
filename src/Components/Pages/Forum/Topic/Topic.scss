@@ -47,6 +47,16 @@
 .Article_comment_info{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
   margin: 20px;
   padding: 10px; 
+}
+
+.comment-info-right {
+  display: flex;
+  height: 2em;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }

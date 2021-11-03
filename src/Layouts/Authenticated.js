@@ -30,7 +30,7 @@ export default function Authenticated({ children, title }) {
       <div style={{flexShink: 0, height: '100%', flexDirection: 'column', display: 'flex'}}>
         <Navbar className='lightgreyBackground' handleLogout={handleLogout} />
       </div>
-      <div className='lightgreyBackground' style={{ width: '100%', flexDirection:'column' }}>
+      <div className='lightgreyBackground pageWrapper'>
         {showSubNav && <SubNavbar title={title} handleLogout={handleLogout} /> }
         <div className='pageContainer'>{children}</div>
       </div>

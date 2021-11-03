@@ -26,3 +26,10 @@
 .Comment_sendbutton{
   color: var(--blue) !important;
 }
+
+
+.comment-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

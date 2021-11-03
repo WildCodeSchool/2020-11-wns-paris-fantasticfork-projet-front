@@ -23,9 +23,24 @@ export default function Comment(props) {
 
   return (
     <Paper className='Comment_container' elevation={3}>
+      <div className="comment-header">
+        <Avatar alt={author.name} style={{marginBottom: 5}} />
+        {isBestComment && (
+            <div style={{width:'100%', display: 'flex', justifyContent: 'flex-end'}}>
+              {/* <div style={{ flex: 1 }} /> */}
+              <Chip 
+                icon={<Icon fontSize='small'>thumb_up_alt</Icon>} 
+                label='Best answer' 
+                color='primary' 
+                style={{display: 'flex', justifyContent: 'center'}}
+              />
+            </div>
+          )}
+      </div>
+     
       <div className='flex_'>
-        <Avatar alt={author.name} />
-        <div className='flex_column' style={{ marginLeft: 10 }}>
+        
+        <div className='flex_column' >
           <Typography variant='button' className='blue'>
             {author.name}
           </Typography>
@@ -33,20 +48,16 @@ export default function Comment(props) {
           <Typography variant='caption' className='lightgrey'>
             Posted on
             <span className='lightgrey'> {getDateFromTimestamp(createdAt)} </span>
+            <br/>
             {updatedAt && updatedAt !== createdAt && (
               <>
-                | Modified on
+                Modified on
                 <span className='lightgrey'> {getDateFromTimestamp(updatedAt)}</span>
               </>
             )}
           </Typography>
         </div>
-        {isBestComment && (
-          <>
-            <div style={{ flex: 1 }} />
-            <Chip icon={<Icon fontSize='small'>thumb_up_alt</Icon>} label='Best answer' color='primary' />
-          </>
-        )}
+        
       </div>
       <div className='Comment_element'>
         {!isInEditMode ? (

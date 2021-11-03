@@ -11,7 +11,7 @@ export const TOPICS = gql`
       updatedAt
       url
       tags
-      like
+      likes
       dislike
       comments {
         commentBody
@@ -32,7 +32,7 @@ export const GET_TOPIC = gql`
       updatedAt
       url
       tags
-      like
+      likes
       dislike
       comments {
         _id
@@ -81,19 +81,16 @@ export const UPDATE_TOPIC = gql`
   }
 `;
 
-export const ADD_LIKE_TOPIC = gql`
-  mutation AddLikeTopic($_id: ID!, $like: Int) {
-    updateTopic(_id: $_id, like: $like) {
-      like
-      dislike
-    }
+export const HANDLE_LIKE_TOPIC = gql`
+  mutation HandleLikeTopic($topicID: ID!, $userID: ID!) {
+    handleLikeTopic(topicID: $topicID, userID: $userID) 
   }
 `;
 
 export const GET_LIKES_TOPIC = gql`
   query GetLikesTopic($_id: ID!) {
     topic(_id: $_id) {
-      like
+      likes
       dislike
     }
   }

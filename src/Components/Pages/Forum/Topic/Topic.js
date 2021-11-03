@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Paper, Button, Icon, Avatar, Chip, Typography, Link, IconButton } from '@material-ui/core';
 import sampleImage from '../../../../images/cat.jpg';
 import getDateFromTimestamp from '../helpers/dates';
@@ -6,7 +6,7 @@ import './Topic.scss';
 
 const Topic = (props) => {
   const { data, toggle, setToggle, toggleWrite, setToggleWrite, handleTopicLike, setModifyFormOpened } = props;
-  const [heart, setHeart] = useState(false);
+  // const [heart, setHeart] = useState(false);
 
   if (!data) {
     return null;
@@ -69,16 +69,19 @@ const Topic = (props) => {
             <div style={{ flex: 1 }} />
             <Button onClick={handleTopicLike}>
               <Icon className='blue' style={{ marginRight: 5 }}>
-                thumb_up
+                { data.likes.indexOf(localStorage.getItem('stud-connect@userID')) > -1
+                  ? 'thumb_up'
+                  : 'thumb_up_off_alt'
+                }
               </Icon>
-              <div className='likes-count'>{data.like || '0'}</div>
+              <div className='likes-count'>{data.likes.length || '0'}</div>
             </Button>
-            <Button>
+            {/* <Button>
               <Icon onClick={() => setHeart()} className='red' style={{ marginRight: 5 }}>
                 {heart ? 'favorite' : 'favorite_border'}
               </Icon>
               {heart ? '50' : '49'}
-            </Button>
+            </Button> */}
           </div>
         </div>
       </Paper>

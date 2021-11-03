@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { CircularProgress } from '@material-ui/core'
-import { GET_TOPIC, ADD_LIKE_TOPIC } from '../../../../graphql/Topic';
+import { GET_TOPIC, HANDLE_LIKE_TOPIC } from '../../../../graphql/Topic';
 import Topic from './Topic';
 import TopicForm from '../TopicEditor/TopicForm';
 import CommentContainer from '../Comment/CommentContainer';
@@ -13,7 +13,7 @@ function TopicContainer({ match }) {
   const { data, loading, error, refetch } = useQuery(GET_TOPIC, {
     variables: { topicId },
   });
-  const [addLikeTopic] = useMutation(ADD_LIKE_TOPIC);
+  const [addLikeTopic] = useMutation(HANDLE_LIKE_TOPIC);
   const [toggle, setToggle] = useState(true);
   const [toggleWrite, setToggleWrite] = useState(false);
   const [modifiyFormOpened, setModifyFormOpened] = useState(false);
@@ -32,7 +32,12 @@ function TopicContainer({ match }) {
   const handleTopicLike = async () => {
     const likes = data.topic.like + 1;
     try {
-      addLikeTopic({ variables: { _id: match.params.id, like: likes } });
+      await addLikeTopic({ variables: { 
+        topicID: match.params.id, 
+        userID: localStorage.getItem('stud-connect@userID'), 
+        likes 
+      }});
+      refetch();
     } catch (err) {
       // eslint-disable-next-line no-console
       console.err(err);

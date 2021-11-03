@@ -10,7 +10,7 @@ function Forum({ topics, goToPage }) {
       {topics &&
         topics.map((topic) => (
           /* eslint no-underscore-dangle: 0 */
-          <div key={topic._id} style={{ margin: 20 }}>
+          <div className="single-topic" key={topic._id} style={{ margin: 20 }}>
             <Paper
               onClick={() => goToPage(topic._id)}
               style={{ padding: 30, paddingRight: 50, paddingLeft: 50 }}
@@ -66,7 +66,7 @@ function Forum({ topics, goToPage }) {
                 <div className="buttons-container">
                   <div className="buttons">
                     <div className="like-count">
-                      <div style={{ marginRight: 5 }}>{topic.like ? topic.like : '0'}</div>
+                      <div style={{ marginRight: 5 }}>{topic.likes.length ? topic.likes.length : '0'}</div>
                       <Icon className='blue' style={{ height: '100%' }}>
                         thumb_up
                       </Icon>

@@ -17,8 +17,7 @@
 }
 
 .buttons {
-    border: 1px solid #CCC;
-    border-radius: 5px;
+    border-bottom: 3px solid var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,4 +52,8 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.single-topic:hover {
+    cursor: pointer;
 }

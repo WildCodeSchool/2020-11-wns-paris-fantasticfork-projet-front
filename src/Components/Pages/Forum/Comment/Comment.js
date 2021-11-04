@@ -1,114 +1,121 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import React from 'react';
 import { Paper, Icon, Avatar, Chip, Typography, Button, TextField } from '@material-ui/core';
-import { UPDATE_COMMENT } from '../../../../graphql/Comment';
 import getDateFromTimestamp from '../helpers/dates';
 import './Comment.css';
 
 export default function Comment(props) {
-  const { commentId, createdAt, name, message, like, dislike, best, updatedAt, refresh } = props;
-  const [updateComment, { loading }] = useMutation(UPDATE_COMMENT);
-  const [editMode, setEditMode] = useState(false);
-  const [commentMessage, setCommentMessage] = useState(message);
-
-  const updateLikeDislike = (mode) => {
-    const likeNumber = like ? like + 1 : 1;
-    const dislikeNumber = dislike ? dislike + 1 : 1;
-    let variables;
-    if (mode === 'like') {
-      variables = { commentId, like: likeNumber };
-    } else {
-      variables = { commentId, dislike: dislikeNumber };
-    }
-    updateComment({ variables });
-    refresh();
-  };
-
-  const updateMessage = () => {
-    updateComment({ variables: { commentId, commentBody: commentMessage } });
-    setEditMode(false);
-    refresh();
-  };
+  const { 
+    isBestComment, 
+    editMode, 
+    author, 
+    dates, 
+    setCommentMessage, 
+    votes, 
+    updateMessage, 
+    hasUserVotedComment,
+    message,
+    commentMessage
+  } = props;
+  
+  const { isInEditMode, setEditMode } = editMode;
+  const { like, dislike, updateLike, updateDislike } = votes;
+  const { createdAt, updatedAt } = dates;
 
   return (
-    !loading && (
-      <>
-        <Paper className='Comment_container' elevation={3}>
-          <div className='flex_'>
-            <Avatar alt={name} />
-            <div className='flex_column' style={{ marginLeft: 10 }}>
-              <Typography variant='button' className='blue'>
-                {name}
-              </Typography>
-
-              <Typography variant='caption' className='lightgrey'>
-                Posted on
-                <span className='lightgrey'> {getDateFromTimestamp(createdAt)} </span>
-                {updatedAt && updatedAt !== createdAt && (
-                  <>
-                    | Modified on
-                    <span className='lightgrey'> {getDateFromTimestamp(updatedAt)}</span>
-                  </>
-                )}
-              </Typography>
+    <Paper className='Comment_container' elevation={3}>
+      <div className="comment-header">
+        <Avatar alt={author.name} style={{marginBottom: 5}} />
+        {isBestComment && (
+            <div style={{width:'100%', display: 'flex', justifyContent: 'flex-end'}}>
+              {/* <div style={{ flex: 1 }} /> */}
+              <Chip 
+                icon={<Icon fontSize='small'>thumb_up_alt</Icon>} 
+                label='Best answer' 
+                color='primary' 
+                style={{display: 'flex', justifyContent: 'center'}}
+              />
             </div>
-            {best && (
+          )}
+      </div>
+     
+      <div className='flex_'>
+        
+        <div className='flex_column' >
+          <Typography variant='button' className='blue'>
+            {author.name}
+          </Typography>
+
+          <Typography variant='caption' className='lightgrey'>
+            Posted on
+            <span className='lightgrey'> {getDateFromTimestamp(createdAt)} </span>
+            <br/>
+            {updatedAt && updatedAt !== createdAt && (
               <>
-                <div style={{ flex: 1 }} />
-                <Chip icon={<Icon fontSize='small'>thumb_up_alt</Icon>} label='Best answer' color='primary' />
+                Modified on
+                <span className='lightgrey'> {getDateFromTimestamp(updatedAt)}</span>
               </>
             )}
-          </div>
-          <div className='Comment_element'>
-            {!editMode ? (
-              <Typography variant='body1' gutterBottom>
-                {message}
-              </Typography>
-            ) : (
-              <TextField
-                id='Comment'
-                label='Comment'
-                multiline
-                rows={4}
-                variant='outlined'
-                className='NewComment_textfield'
-                value={commentMessage}
-                onChange={(e) => setCommentMessage(e.target.value)}
-              />
-            )}
-          </div>
-          <div className='Comment_like'>
-            <Button onClick={() => updateLikeDislike('like')}>
+          </Typography>
+        </div>
+        
+      </div>
+      <div className='Comment_element'>
+        {!isInEditMode ? (
+          <Typography variant='body1' gutterBottom>
+            {message}
+          </Typography>
+        ) : (
+          <TextField
+            id='Comment'
+            label='Comment'
+            multiline
+            rows={4}
+            variant='outlined'
+            className='NewComment_textfield'
+            value={commentMessage}
+            onChange={(e) => setCommentMessage(e.target.value)}
+          />
+        )}
+      </div>
+      <div className='Comment_like'>
+        {author.id !== localStorage.getItem('stud-connect@userID') && (
+          <>
+            <Button 
+              // disabled={hasUserVotedComment('all')} 
+              onClick={() => updateLike()}
+            >
               <Icon className='blue' style={{ marginRight: 5 }}>
-                thumb_up
+                {hasUserVotedComment('like') ? 'thumb_up' : 'thumb_up_off_alt'}
               </Icon>
-              {like && like}
+              {like && like.length}
             </Button>
-            <Button onClick={() => updateLikeDislike('dislike')}>
+            <Button /* disabled={hasUserVotedComment('all')} */ onClick={() => updateDislike()}>
               <Icon className='blue' style={{ marginRight: 5 }}>
-                thumb_down
+                {hasUserVotedComment('dislike') ? 'thumb_down' : 'thumb_down_off_alt'}
               </Icon>
-              {dislike && dislike}
+              {dislike && dislike.length}
             </Button>
             <div className='flex1' />
-            {editMode ? (
-              <Button size='small' className='Comment_sendbutton' onClick={() => updateMessage()}>
-                <Icon fontSize='small' className='Comment_editbutton_icon'>
-                  send
-                </Icon>
-                Send
-              </Button>
-            ) : (
-              <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
-                <Icon fontSize='small' className='Comment_editbutton_icon'>
-                  edit
-                </Icon>
+          </>
+        )}
+        {isInEditMode ? (
+          <Button size='small' className='Comment_sendbutton' onClick={() => updateMessage()}>
+            <Icon fontSize='small' className='Comment_editbutton_icon'>
+              send
+            </Icon>
+            Send
+          </Button>
+        ) : (
+          author.id === localStorage.getItem('stud-connect@userID') && (
+            <Button size='small' className='Comment_editbutton' onClick={() => setEditMode(true)}>
+              <Icon fontSize='small' className='Comment_editbutton_icon'>
                 edit
-              </Button>
-            )}
-          </div>
-        </Paper>
-      </>
-    )
+              </Icon>
+              edit
+            </Button>
+          )
+        )}
+      </div>
+    </Paper>
   );
 }

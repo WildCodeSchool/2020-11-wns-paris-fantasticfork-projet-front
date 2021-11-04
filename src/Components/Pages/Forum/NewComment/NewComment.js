@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Paper, Icon, Avatar, TextField, IconButton } from '@material-ui/core';
+import { Paper, Icon, TextField, IconButton } from '@material-ui/core';
 import { CREATE_COMMENT } from '../../../../graphql/Comment';
 import './NewComment.css';
 
 // eslint-disable-next-line camelcase
 export default function NewComment({ reply, topic_id, uploaded, cancel }) {
+  const firstname = localStorage.getItem('stud-connect@firstname');
+  const lastname = localStorage.getItem('stud-connect@lastname');
+  const authorID = localStorage.getItem('stud-connect@userID');
+
   const [message, setMessage] = useState('');
 
   // eslint-disable-next-line no-empty-pattern
   const [createComment, {}] = useMutation(CREATE_COMMENT);
 
-  const submitCommment = () => {
+  const submitCommment = async () => {
     try {
-      createComment({ variables: { topicId: topic_id, author: 'author', commentBody: message } });
-      uploaded();
+      await createComment({ 
+        variables: { 
+          topicId: topic_id, 
+          author: `${firstname} ${lastname}`, 
+          authorID, 
+          commentBody: message 
+        } });
       cancel();
-    } catch {
+      uploaded();
+    } catch (e) {
       cancel();
     }
   };
@@ -29,7 +39,7 @@ export default function NewComment({ reply, topic_id, uploaded, cancel }) {
         </div>
       )}
       <Paper className='NewComment_container' elevation={3}>
-        <Avatar className='NewComment_avatar'>M</Avatar>
+        {/* <Avatar className='NewComment_avatar'>M</Avatar> */}
         <TextField
           id='Comment'
           label='Comment'

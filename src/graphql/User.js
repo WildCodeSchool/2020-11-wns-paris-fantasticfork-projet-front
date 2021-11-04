@@ -13,6 +13,9 @@ export const REGISTER_USER = gql`
       userID
       token
       tokenExpiration
+      firstname
+      lastname
+      role
     }
   }
 `;
@@ -23,6 +26,9 @@ export const LOGIN = gql`
       userID
       token
       tokenExpiration
+      firstname
+      lastname
+      role
     }
   }
 `;

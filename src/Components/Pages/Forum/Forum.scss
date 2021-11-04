@@ -1,0 +1,59 @@
+.Forum {
+    transition: transform 0.5s ease;
+}
+
+.forum-translate {
+    // transform: translateY(100px);
+    height: calc(100% + 50px);
+}
+
+.buttons-container, .tags {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 1em;
+    justify-content: flex-end;
+    
+}
+
+.buttons {
+    border-bottom: 3px solid var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.comment-count, .like-count {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--blue);
+    padding: 0px !important;
+}
+
+.comment-count {
+    margin-left: 15px;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+}
+
+.topic-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.single-topic:hover {
+    cursor: pointer;
+}

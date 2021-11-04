@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_TOPIC, UPDATE_TOPIC } from '../../../../graphql/Topic';
 import './TopicForm.css';
 
-const TopicForm = ({ open, close, mode, topicData }) => {
+const TopicForm = ({ open, close, mode, topicData, setIsRefetching }) => {
   const [addTopic, { loading }] = useMutation(ADD_TOPIC);
   const [updateTopic, { updateLoading }] = useMutation(UPDATE_TOPIC);
 
@@ -12,11 +12,13 @@ const TopicForm = ({ open, close, mode, topicData }) => {
     mode === 'update_topic'
       ? topicData
       : {
-          username: 'Student',
+          // eslint-disable-next-line max-len
+          username: `${localStorage.getItem('stud-connect@firstname')} ${localStorage.getItem('stud-connect@lastname')}`,
           subject: '',
           body: '',
           url: [],
           tags: [],
+          authorID: localStorage.getItem('stud-connect@userID'),
         }
   );
 
@@ -58,15 +60,17 @@ const TopicForm = ({ open, close, mode, topicData }) => {
   const handleSubmit = () => {
     if (mode === 'update_topic') {
       updateTopic({ variables: inputFields });
+      setIsRefetching(true);
     } else {
       addTopic({ variables: inputFields });
+      setIsRefetching(true);
     }
     close();
   };
 
   return (
     <Modal
-      style={{ width: '60%', top: 100, left: '20%' }}
+      className='new-topic-modal'
       open={open}
       onClose={close}
       closeAfterTransition
@@ -76,16 +80,8 @@ const TopicForm = ({ open, close, mode, topicData }) => {
       }}
     >
       <Paper style={{ width: '100%' }} className='flex_column'>
-        <div
-          className='flex_'
-          style={{
-            padding: 15,
-            paddingLeft: 150,
-            borderBottom: '1px solid #CCCCCC',
-          }}
-        >
-          <h3>{mode === 'update_topic' ? 'Update Topic !' : 'New Topic !'}</h3>
-          <div style={{ flex: 1 }} />
+        <div style={{ borderBottom: '1px solid #CCCCCC', display: 'flex', justifyContent: 'space-between'}}>
+          <h3 style={{marginLeft: 20}}>{mode === 'update_topic' ? 'Update Topic !' : 'New Topic !'}</h3>
           <IconButton color='primary' onClick={() => close()}>
             <Icon className='lightgrey'>close</Icon>
           </IconButton>
@@ -111,7 +107,7 @@ const TopicForm = ({ open, close, mode, topicData }) => {
             value={inputFields.subject}
             onChange={(e) => setInputFields({ ...inputFields, subject: e.target.value })}
             required
-            style={{ width: '70%', margin: 20 }}
+            style={{ width: '90%', margin: 20 }}
           />
           <TextField
             id='message'
@@ -123,9 +119,9 @@ const TopicForm = ({ open, close, mode, topicData }) => {
             value={inputFields.body}
             onChange={(e) => setInputFields({ ...inputFields, body: e.target.value })}
             required
-            style={{ width: '70%', margin: 20 }}
+            style={{ width: '90%', margin: 5 }}
           />
-          <div style={{ maxHeight: 150, width: '70%', overflow: 'auto' }}>
+          <div style={{ maxHeight: 150, width: '90%', overflow: 'auto' }}>
             {inputFields.url.length > 0 &&
               inputFields.url.map((url, idx) => (
                 <div key={url} className='url_list blue' href={url} target='_blank' rel='noopener noreferrer'>
@@ -144,8 +140,8 @@ const TopicForm = ({ open, close, mode, topicData }) => {
             style={{
               display: 'flex',
               alignItems: 'baseline',
-              width: '70%',
-              margin: 20,
+              width: '90%',
+              margin: 5,
             }}
           >
             <TextField
@@ -162,7 +158,7 @@ const TopicForm = ({ open, close, mode, topicData }) => {
               <Icon fontSize='small'>add</Icon>
             </IconButton>
           </div>
-          <div className='tags-input' style={{ width: '70%', margin: 20 }}>
+          <div className='tags-input' style={{ width: '90%', margin: 20 }}>
             <ul id='tags'>
               {inputFields.tags.length > 0 &&
                 inputFields.tags.map((tag, index) => (
@@ -181,7 +177,7 @@ const TopicForm = ({ open, close, mode, topicData }) => {
           <Button
             className='submit-button'
             variant='contained'
-            style={{ marginTop: '20px', marginBottom: '20px' }}
+            style={{ margin: 10}}
             color='secondary'
             onClick={handleSubmit}
           >

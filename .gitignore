@@ -11,6 +11,12 @@ package-lock.json
 
 # production
 /build
+deploy_branch_main.sh
+
+# docker (prod / staging)
+docker-compose.yml
+docker-compose.prod.yml
+docker-compose.dev.yml
 
 # misc
 .DS_Store
